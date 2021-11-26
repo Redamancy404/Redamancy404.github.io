@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>每天都要努力哇</title>
+  
+  
+  <link href="http://redamancy404.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://redamancy404.github.io/"/>
+  <updated>2021-11-26T05:21:06.770Z</updated>
+  <id>http://redamancy404.github.io/</id>
+  
+  <author>
+    <name>每天都要努力哇</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程-编码篇(四)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-si/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-si/</id>
+    <published>2021-10-28T09:33:43.000Z</published>
+    <updated>2021-11-26T05:21:06.770Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;主线程和子线程执行顺序控制&quot;&gt;&lt;a href=&quot;#主线程和子线程执行顺序控制&quot; class=&quot;headerlink&quot; title=&quot;主线程和子线程执行顺序控制&quot;&gt;&lt;/a&gt;主线程和子线程执行顺序控制&lt;/h2&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-编码篇(四)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E7%BC%96%E7%A0%81%E7%AF%87-%E5%9B%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程-基础篇(四)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-si/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-si/</id>
+    <published>2021-10-28T09:33:42.000Z</published>
+    <updated>2021-11-26T05:19:36.162Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;线程同步&quot;&gt;&lt;a href=&quot;#线程同步&quot; class=&quot;headerlink&quot; title=&quot;线程同步&quot;&gt;&lt;/a&gt;线程同步&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-基础篇(四)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%9B%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程-编码篇(三)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-san/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-san/</id>
+    <published>2021-10-28T09:32:43.000Z</published>
+    <updated>2021-11-26T05:11:36.842Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;线程挂起-恢复&quot;&gt;&lt;a href=&quot;#线程挂起-恢复&quot; class=&quot;headerlink&quot; title=&quot;线程挂起-恢复&quot;&gt;&lt;/a&gt;线程挂起-恢复&lt;/h2&gt;&lt;p&gt;需要用到的Windows API：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-编码篇(三)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E7%BC%96%E7%A0%81%E7%AF%87-%E4%B8%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程-基础篇(三)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-san/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-san/</id>
+    <published>2021-10-28T09:32:42.000Z</published>
+    <updated>2021-11-26T05:19:56.725Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;线程基本状态&quot;&gt;&lt;a href=&quot;#线程基本状态&quot; class=&quot;headerlink&quot; title=&quot;线程基本状态&quot;&gt;&lt;/a&gt;线程基本状态&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-基础篇(三)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%B8%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程-编码篇(二)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-er/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-bian-ma-pian-er/</id>
+    <published>2021-10-28T09:31:43.000Z</published>
+    <updated>2021-11-26T05:21:33.761Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;测试进程优先级和线程优先级&quot;&gt;&lt;a href=&quot;#测试进程优先级和线程优先级&quot; class=&quot;headerlink&quot; title=&quot;测试进程优先级和线程优先级&quot;&gt;&lt;/a&gt;测试进程优先级和线程优先级&lt;/h2&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-编码篇(二)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E7%BC%96%E7%A0%81%E7%AF%87-%E4%BA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程-基础篇(二)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-er/"/>
+    <id>http://redamancy404.github.io/2021/10/28/xian-cheng-ji-chu-pian-er/</id>
+    <published>2021-10-28T09:31:42.000Z</published>
+    <updated>2021-11-26T05:20:14.406Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;进程-线程优先级&quot;&gt;&lt;a href=&quot;#进程-线程优先级&quot; class=&quot;headerlink&quot; title=&quot;进程-线程优先级&quot;&gt;&lt;/a&gt;进程-线程优先级&lt;/h2&gt;&lt;h2 id=&quot;进程优先级&quot;&gt;&lt;a href=&quot;#进程优先级&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Windows核心编程" scheme="http://redamancy404.github.io/categories/Windows%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="线程-基础篇(二)" scheme="http://redamancy404.github.io/tags/%E7%BA%BF%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2019-1040</title>
+    <link href="http://redamancy404.github.io/2021/10/28/2019-1040/"/>
+    <id>http://redamancy404.github.io/2021/10/28/2019-1040/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-04T03:41:50.438Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;攻击者可以通过中间人攻击，绕过NTLM MIC（消息完整性检查）保护，将身份验证流量中继到目标服务器&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="打域控" scheme="http://redamancy404.github.io/categories/%E6%89%93%E5%9F%9F%E6%8E%A7/"/>
+    
+    
+    <category term="CVE-2019-1040" scheme="http://redamancy404.github.io/tags/CVE-2019-1040/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2021-1675&amp;&amp;CVE-2021-34527</title>
+    <link href="http://redamancy404.github.io/2021/10/28/2021-1675-2021-34527/"/>
+    <id>http://redamancy404.github.io/2021/10/28/2021-1675-2021-34527/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-04T03:43:32.530Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Windows-Print-Spooler-远程代码执行漏洞&quot;&gt;&lt;a href=&quot;#Windows-Print-Spooler-远程代码执行漏洞&quot; class=&quot;headerlink&quot; title=&quot;Windows Print Spooler</summary>
+        
+      
+    
+    
+    
+    <category term="打域控" scheme="http://redamancy404.github.io/categories/%E6%89%93%E5%9F%9F%E6%8E%A7/"/>
+    
+    
+    <category term="CVE-2021-1675&amp;&amp;CVE-2021-34527" scheme="http://redamancy404.github.io/tags/CVE-2021-1675-CVE-2021-34527/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AMSI对抗小结</title>
+    <link href="http://redamancy404.github.io/2021/10/28/amsi-dui-kang/"/>
+    <id>http://redamancy404.github.io/2021/10/28/amsi-dui-kang/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-10-28T13:26:49.509Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;AMSI对抗小结&quot;&gt;&lt;a href=&quot;#AMSI对抗小结&quot; class=&quot;headerlink&quot; title=&quot;AMSI对抗小结&quot;&gt;&lt;/a&gt;AMSI对抗小结&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="AMSI" scheme="http://redamancy404.github.io/categories/AMSI/"/>
+    
+    
+    <category term="AMSI对抗小结" scheme="http://redamancy404.github.io/tags/AMSI%E5%AF%B9%E6%8A%97%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Apache小结</title>
+    <link href="http://redamancy404.github.io/2021/10/28/apache/"/>
+    <id>http://redamancy404.github.io/2021/10/28/apache/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-10-28T12:10:53.589Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Apache&quot;&gt;&lt;a href=&quot;#Apache&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h1&gt;&lt;h2 id=&quot;Apache的简介&quot;&gt;&lt;a href=&quot;#Apache的简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="服务攻防" scheme="http://redamancy404.github.io/categories/%E6%9C%8D%E5%8A%A1%E6%94%BB%E9%98%B2/"/>
+    
+    
+    <category term="Apache小结" scheme="http://redamancy404.github.io/tags/Apache%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BypassUAC学习</title>
+    <link href="http://redamancy404.github.io/2021/10/28/bypassuac-xue-xi/"/>
+    <id>http://redamancy404.github.io/2021/10/28/bypassuac-xue-xi/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-04T03:21:05.619Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;UAC&quot;&gt;&lt;a href=&quot;#UAC&quot; class=&quot;headerlink&quot; title=&quot;UAC&quot;&gt;&lt;/a&gt;UAC&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="BypassUAC" scheme="http://redamancy404.github.io/categories/BypassUAC/"/>
+    
+    
+    <category term="BypassUAC学习" scheme="http://redamancy404.github.io/tags/BypassUAC%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C &amp; 汇编</title>
+    <link href="http://redamancy404.github.io/2021/10/28/c-hui-bian/"/>
+    <id>http://redamancy404.github.io/2021/10/28/c-hui-bian/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-10-28T13:58:31.040Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;c语言生成过程&quot;&gt;&lt;a href=&quot;#c语言生成过程&quot; class=&quot;headerlink&quot; title=&quot;c语言生成过程&quot;&gt;&lt;/a&gt;c语言生成过程&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="C &amp; 汇编" scheme="http://redamancy404.github.io/categories/C-%E6%B1%87%E7%BC%96/"/>
+    
+    
+    <category term="C &amp; 汇编" scheme="http://redamancy404.github.io/tags/C-%E6%B1%87%E7%BC%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2021-40444</title>
+    <link href="http://redamancy404.github.io/2021/10/28/cve-2021-40444-fu-xian/"/>
+    <id>http://redamancy404.github.io/2021/10/28/cve-2021-40444-fu-xian/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-12T12:27:08.097Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;CVE-2021-40444复现&quot;&gt;&lt;a href=&quot;#CVE-2021-40444复现&quot; class=&quot;headerlink&quot; title=&quot;CVE-2021-40444复现&quot;&gt;&lt;/a&gt;CVE-2021-40444复现&lt;/h2&gt;&lt;h3 id=&quot;漏洞描述&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="红队技巧" scheme="http://redamancy404.github.io/categories/%E7%BA%A2%E9%98%9F%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="CVE-2021-40444" scheme="http://redamancy404.github.io/tags/CVE-2021-40444/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CobalStrike Tips小结</title>
+    <link href="http://redamancy404.github.io/2021/10/28/cobalstrike-tips-xiao-jie/"/>
+    <id>http://redamancy404.github.io/2021/10/28/cobalstrike-tips-xiao-jie/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-10-28T13:28:29.070Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;CobalStrike-Tips&quot;&gt;&lt;a href=&quot;#CobalStrike-Tips&quot; class=&quot;headerlink&quot; title=&quot;CobalStrike Tips&quot;&gt;&lt;/a&gt;CobalStrike Tips&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="CobalStrike" scheme="http://redamancy404.github.io/categories/CobalStrike/"/>
+    
+    
+    <category term="CobalStrike Tips小结" scheme="http://redamancy404.github.io/tags/CobalStrike-Tips%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPP(组策略-MS14-025)</title>
+    <link href="http://redamancy404.github.io/2021/10/28/gpp-zu-ce-lue-ms14-025/"/>
+    <id>http://redamancy404.github.io/2021/10/28/gpp-zu-ce-lue-ms14-025/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-04T03:42:36.789Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;编号&quot;&gt;&lt;a href=&quot;#编号&quot; class=&quot;headerlink&quot; title=&quot;编号&quot;&gt;&lt;/a&gt;编号&lt;/h2&gt;&lt;p&gt;MS14-025&lt;/p&gt;
+&lt;h2 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="打域控" scheme="http://redamancy404.github.io/categories/%E6%89%93%E5%9F%9F%E6%8E%A7/"/>
+    
+    
+    <category term="GPP(组策略-MS14-025)" scheme="http://redamancy404.github.io/tags/GPP-%E7%BB%84%E7%AD%96%E7%95%A5-MS14-025/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GlassFish小结</title>
+    <link href="http://redamancy404.github.io/2021/10/28/glassfish/"/>
+    <id>http://redamancy404.github.io/2021/10/28/glassfish/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-10-28T12:23:04.145Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;使用Win7进行安装&lt;/p&gt;
+&lt;p&gt;官网：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="服务攻防" scheme="http://redamancy404.github.io/categories/%E6%9C%8D%E5%8A%A1%E6%94%BB%E9%98%B2/"/>
+    
+    
+    <category term="GlassFish小结" scheme="http://redamancy404.github.io/tags/GlassFish%E5%B0%8F%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go+VScode开发环境配置</title>
+    <link href="http://redamancy404.github.io/2021/10/28/go-vscode-kai-fa-huan-jing-pei-zhi/"/>
+    <id>http://redamancy404.github.io/2021/10/28/go-vscode-kai-fa-huan-jing-pei-zhi/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-10T13:20:46.251Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Go环境&quot;&gt;&lt;a href=&quot;#Go环境&quot; class=&quot;headerlink&quot; title=&quot;Go环境&quot;&gt;&lt;/a&gt;Go环境&lt;/h1&gt;&lt;h2 id=&quot;下载地址&quot;&gt;&lt;a href=&quot;#下载地址&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="http://redamancy404.github.io/categories/Go/"/>
+    
+    
+    <category term="Go+VScode开发环境配置" scheme="http://redamancy404.github.io/tags/Go-VScode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Google翻译的域名diao鱼</title>
+    <link href="http://redamancy404.github.io/2021/10/28/google-fan-yi-de-yu-ming-diao-yu/"/>
+    <id>http://redamancy404.github.io/2021/10/28/google-fan-yi-de-yu-ming-diao-yu/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-12T12:26:16.436Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;通过隐藏在 Google 的域后面来绕过链接分析器&lt;/p&gt;
+&lt;h2 id=&quot;实操&quot;&gt;&lt;a href=&quot;#实操&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="红队技巧" scheme="http://redamancy404.github.io/categories/%E7%BA%A2%E9%98%9F%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="Google翻译的域名diao鱼" scheme="http://redamancy404.github.io/tags/Google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%9F%9F%E5%90%8Ddiao%E9%B1%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go语言map学习</title>
+    <link href="http://redamancy404.github.io/2021/10/28/go-yu-yan-map/"/>
+    <id>http://redamancy404.github.io/2021/10/28/go-yu-yan-map/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-10T13:17:13.288Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;map&quot;&gt;&lt;a href=&quot;#map&quot; class=&quot;headerlink&quot; title=&quot;map&quot;&gt;&lt;/a&gt;map&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="http://redamancy404.github.io/categories/Go/"/>
+    
+    
+    <category term="Go语言map学习" scheme="http://redamancy404.github.io/tags/Go%E8%AF%AD%E8%A8%80map%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go语言切片学习</title>
+    <link href="http://redamancy404.github.io/2021/10/28/go-yu-yan-qie-pian/"/>
+    <id>http://redamancy404.github.io/2021/10/28/go-yu-yan-qie-pian/</id>
+    <published>2021-10-28T09:30:43.000Z</published>
+    <updated>2021-11-10T13:20:48.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;slice-切片&quot;&gt;&lt;a href=&quot;#slice-切片&quot; class=&quot;headerlink&quot; title=&quot;slice(切片)&quot;&gt;&lt;/a&gt;slice(切片)&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="http://redamancy404.github.io/categories/Go/"/>
+    
+    
+    <category term="Go语言切片学习" scheme="http://redamancy404.github.io/tags/Go%E8%AF%AD%E8%A8%80%E5%88%87%E7%89%87%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+</feed>

